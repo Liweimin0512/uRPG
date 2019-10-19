@@ -56,63 +56,6 @@ EntityCall* AccountBase::getCellEntityCall()
 
 void AccountBase::onRemoteMethodCall(MemoryStream& stream)
 {
-	ScriptModule* sm = *EntityDef::moduledefs.Find("Account");
-	uint16 methodUtype = 0;
-	uint16 componentPropertyUType = 0;
-
-	if (sm->usePropertyDescrAlias)
-	{
-		componentPropertyUType = stream.readUint8();
-	}
-	else
-	{
-		componentPropertyUType = stream.readUint16();
-	}
-
-	if (sm->useMethodDescrAlias)
-	{
-		methodUtype = stream.read<uint8>();
-	}
-	else
-	{
-		methodUtype = stream.read<uint16>();
-	}
-
-	if(componentPropertyUType > 0)
-	{
-		KBE_ASSERT(false);
-
-		return;
-	}
-
-	Method* pMethod = sm->idmethods[methodUtype];
-
-	switch(pMethod->methodUtype)
-	{
-		case 10005:
-		{
-			uint8 onCreateAvatarResult_arg1 = stream.readUint8();
-			AVATAR_INFOS onCreateAvatarResult_arg2;
-			((DATATYPE_AVATAR_INFOS*)pMethod->args[1])->createFromStreamEx(stream, onCreateAvatarResult_arg2);
-			onCreateAvatarResult(onCreateAvatarResult_arg1, onCreateAvatarResult_arg2);
-			break;
-		}
-		case 3:
-		{
-			uint64 onRemoveAvatar_arg1 = stream.readUint64();
-			onRemoveAvatar(onRemoveAvatar_arg1);
-			break;
-		}
-		case 10003:
-		{
-			AVATAR_INFOS_LIST onReqAvatarList_arg1;
-			((DATATYPE_AVATAR_INFOS_LIST*)pMethod->args[0])->createFromStreamEx(stream, onReqAvatarList_arg1);
-			onReqAvatarList(onReqAvatarList_arg1);
-			break;
-		}
-		default:
-			break;
-	};
 }
 
 void AccountBase::onUpdatePropertys(MemoryStream& stream)
@@ -160,24 +103,6 @@ void AccountBase::onUpdatePropertys(MemoryStream& stream)
 				{
 					if(inWorld())
 						onDirectionChanged(oldval_direction);
-				}
-
-				break;
-			}
-			case 2:
-			{
-				uint64 oldval_lastSelCharacter = lastSelCharacter;
-				lastSelCharacter = stream.readUint64();
-
-				if(pProp->isBase())
-				{
-					if(inited())
-						onLastSelCharacterChanged(oldval_lastSelCharacter);
-				}
-				else
-				{
-					if(inWorld())
-						onLastSelCharacterChanged(oldval_lastSelCharacter);
 				}
 
 				break;
@@ -237,27 +162,6 @@ void AccountBase::callPropertysSetMethods()
 		}
 	}
 
-	uint64 oldval_lastSelCharacter = lastSelCharacter;
-	Property* pProp_lastSelCharacter = pdatas[4];
-	if(pProp_lastSelCharacter->isBase())
-	{
-		if(inited() && !inWorld())
-			onLastSelCharacterChanged(oldval_lastSelCharacter);
-	}
-	else
-	{
-		if(inWorld())
-		{
-			if(pProp_lastSelCharacter->isOwnerOnly() && !isPlayer())
-			{
-			}
-			else
-			{
-				onLastSelCharacterChanged(oldval_lastSelCharacter);
-			}
-		}
-	}
-
 	FVector oldval_position = position;
 	Property* pProp_position = pdatas[1];
 	if(pProp_position->isBase())
@@ -284,8 +188,7 @@ void AccountBase::callPropertysSetMethods()
 AccountBase::AccountBase():
 	Entity(),
 	pBaseEntityCall(NULL),
-	pCellEntityCall(NULL),
-	lastSelCharacter((uint64)FCString::Atoi64(TEXT("0")))
+	pCellEntityCall(NULL)
 {
 }
 
