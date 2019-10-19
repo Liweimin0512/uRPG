@@ -1,0 +1,8 @@
+,entityType,name,id,type,spawnPos,resPath
+0,Space,新手村,1,1,"(771.5861, 211.0021, 776.5501)",spaces/xinshoucun
+1,Space,kbengine_ogre_demo,2,1,"(-97.9299, 0.0, -158.922)",spaces/kbengine_ogre_demo
+2,Space,kbengine_unity3d_demo,3,1,"(-97.9299, 1.5, -158.922)",spaces/kbengine_unity3d_demo
+3,Space,teleportspace,4,1,"(0.0, 1.5, 0.0)",spaces/teleportspace
+4,SpaceDuplicate,Duplicate(副本),5,2,"(0.0, 0.0, 0.0)",spaces/duplicate
+5,Space,kbengine_cocos2d_js_demo,6,1,"(108.0, 0.0, 90.0)",spaces/kbengine_cocos2d_js_demo
+6,Space,kbengine_ue4_demo,7,1,"(-97.9299, 0.0, -158.922)",spaces/kbengine_ue4_demo

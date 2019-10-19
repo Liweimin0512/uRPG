@@ -1,0 +1,24 @@
+<root>
+    <Volatile>
+        <positiion/>
+        <yaw/>
+        <pitch>20</pitch>
+    </Volatile>
+
+    <BaseMethods>
+        <loginToSpace>
+            <Arg>ENTITYCALL</Arg>
+            <Arg>ENTITY_UTYPE</Arg>
+            <Arg>PYTHON</Arg>
+        </loginToSpace>
+        <logoutSpace>
+            <Arg>ENTITY_ID/Arg>
+            <Arg>SPACE_ID</Arg>
+        </logoutSpace>
+
+    </BaseMethods>
+    <CellMethods>
+    </CellMethods>
+    <ClientMethods>
+    </ClientMethods>
+</root>

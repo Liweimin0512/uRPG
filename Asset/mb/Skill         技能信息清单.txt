@@ -1,0 +1,8 @@
+1001,浮生万刃,icon_zhu,Warrior,Basic,Basic,0,30
+1002,永恒零度,icon_up,Warrior,Skill,One,5,30
+1003,半月斩,iocn_ho,Warrior,Skill,Two,8,40
+1004,咫尺天涯,iocn_yi,Warrior,Skill,Three,10,50
+2001,雷动九天,icon_zhu,FemaleAssassin,Basic,Basic,0,30
+2002,炽修罗,icon_li,FemaleAssassin,Skill,One,5,35
+2003,不动明王,iocn_fo,FemaleAssassin,Skill,Two,8,40
+2004,唯我独尊,iocn_ho,FemaleAssassin,Skill,Three,13,50

@@ -1,0 +1,9 @@
+,script,name,id,icon,descr,HP,MP,speed
+0,SkillAttack,普通攻击,1,0,,0,0,0.0
+1,SkillAttack,普通攻击,1000101,0,,0,0,0.0
+2,SkillAttack,普通攻击,2000101,0,,0,0,0.0
+3,SkillAttack,普通攻击,3000101,0,,0,0,0.0
+4,SkillAttack,普通攻击,4000101,0,,0,0,0.0
+5,SkillAttack,普通攻击,5000101,0,,0,0,0.0
+6,SkillAttack,普通攻击,6000101,0,,0,0,0.0
+7,SkillAttack,普通攻击,7000101,0,,0,0,0.0

@@ -1,0 +1,18 @@
+language: cpp
+sudo: required
+compiler:
+   - gcc
+branches:
+  only:
+  - master
+  - 1.x
+#  - stable
+before_install:
+   - sudo apt-get update
+notifications:
+  recipients:
+    - kbesrv@gmail.com
+  email:
+    on_success: change
+    on_failure: always
+script: cd kbe/src && make
