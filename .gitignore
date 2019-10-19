@@ -43,3 +43,7 @@
 /Server/server_assets/kbengine_unity3d_plugins
 /Server/consultserver_assets
 /Server/gameserver_assets
+<<<<<<< HEAD
+=======
+/Server/kbe/src/.vs
+>>>>>>> dev

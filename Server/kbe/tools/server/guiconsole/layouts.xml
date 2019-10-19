@@ -1,0 +1,10 @@
+<root>
+    <default_layout>
+    	<dbmgr>127.0.0.1:20099</dbmgr>
+    	<cellappmgr>127.0.0.1:20099</cellappmgr>
+    	<baseappmgr>127.0.0.1:20099</baseappmgr>
+    	<baseapp>127.0.0.1:20099</baseapp>
+    	<cellapp>127.0.0.1:20099</cellapp>
+    	<loginapp>127.0.0.1:20099</loginapp>
+    </default_layout>
+</root>
