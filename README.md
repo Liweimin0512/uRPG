@@ -10,45 +10,24 @@
 
 建议围观的小伙伴采用和我相同的版本运行项目。
 
+## 分支描述
+
+* master 主分支，保证最新的可运行版本
+* release 发布分支，保证最新的可发布版本
+* dev 开发分支，保证最新的开发内容
+* bug debug分支，游戏中问题改正专用
+
 ## 目录结构
 
 - Asset     美术资源&配置表资源
-
-    - anim      动画
-    - fonts     字体
-    - fx        特效
-    - images    图片
-    - mb        配置表
-    - models    模型
-    - sound     声音
-
 - Client    客户端应用程序
 - Design    设计文档
-    - 世界观设定
-    - 数值设定
-        - 数值总表
-        - 战斗总表
-        - 经济总表
-    - 系统设计文档
-        - screens       场景
-            - login         登录
-            - select        选人
-            - main          主场景
-        - entitas       实体
-        - components    组件
-        - stategraphs   状态图
-        - behaviours    行为
-        - brains        大脑
-        - map           关卡
-        - widgets       界面
-        - scenarios     剧情
-
 - Server    服务器应用程序
 - Tools     其他开发工具
 
 ## 目前进度：
 
-- [ ] 登录注册模块  20%
+- [ ] 登录注册模块  70%
 - [ ] 创建角色&选择角色模块 
 - [ ] 基础行为系统（移动&跳跃）
 - [ ] 战斗系统
@@ -66,4 +45,4 @@
 - [ ] 拍卖行
 
 ## 开发日志
-本项目开发日志请关注本人的知乎主页：[https://zhuanlan.zhihu.com/c_1151855724538703872](https://zhuanlan.zhihu.com/c_1151855724538703872)
+本项目开发日志请关注本人的知乎专栏：[MMORPG开发日志](https://zhuanlan.zhihu.com/c_1151855724538703872)
