@@ -1,11 +1,44 @@
 # -*- coding: utf-8 -*-
+import time
+
 import KBEngine
+from AVATAR_INFO import TAvatarInfo
 from KBEDebug import *
 
 class Account(KBEngine.Proxy):
+	"""
+	账户实体
+	客户端登录成功，服务器自动创建此实体，通过此实体与客户端交互
+	"""
 	def __init__(self):
 		KBEngine.Proxy.__init__(self)
-		
+		self.activeAvatar = None
+		self.relogin = time.time()
+
+	def reqAvatarList(self):
+		"""
+		客户端请求查询角色列表
+		:return:角色列表
+		"""
+		DEBUG_MSG("Account[%i].reqAvatarList: size=%i."%(self.id, len(self.characters)))
+		self.client.onReqAvatarList(self.characters)
+
+	def reqCreateAvatar(self, name, roleType):
+		if len(self.characters) >= 3:
+			# 角色超上限
+			DEBUG_MSG("Account[%i].reqCreateAvatar:%s. character=%s.\n" % (self.id, name, self.characters))
+
+			avatarinfo = TAvatarInfo()
+			avatarinfo.extend([0 , "", 0, 0])
+			self.client.onCreateAvatarResult(3, avatarinfo)
+			return
+
+
+
+	#------------------------------
+	#         Callbacks
+	#------------------------------
+
 	def onTimer(self, id, userArg):
 		"""
 		KBEngine method.
