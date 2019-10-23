@@ -34,7 +34,7 @@ void Account::__init__()
 	KBENGINE_REGISTER_EVENT_OVERRIDE_FUNC("reqEnterGame", "reqEnterGame", [this](const UKBEventData* pEventData)
 	{
 		const UKBEventData_reqEnterGame& data = static_cast<const UKBEventData_reqEnterGame&>(*pEventData);
-		selectAvatarGame(data.avatarInfos.dbid);
+		reqEnterGame(data.avatarInfos.dbid);
 	});
 
 	// 触发登陆成功事件
@@ -54,21 +54,21 @@ void Account::onDestroy()
 	KBENGINE_DEREGISTER_ALL_EVENT();
 }
 
-//void Account::onLastSelCharacterChanged(uint64 oldValue)
-//{
-//
-//}
-//
+void Account::onLastSelCharacterChanged(uint64 oldValue)
+{
+
+}
+
 void Account::reqCreateAvatar(uint8 roleType, const FString& name)
 {
 	DEBUG_MSG("Account::reqCreateAvatar(): roleType=%d", roleType);
-	pBaseEntityCall->reqCreateAvatar(roleType, name);
+	pBaseEntityCall->reqCreateAvatar(name, roleType);
 }
 
 void Account::reqRemoveAvatar(uint64 dbid)
 {
 	DEBUG_MSG("Account::reqRemoveAvatar(): dbid=%lld", dbid);
-	pBaseEntityCall->reqRemoveAvatar(dbid);
+	pBaseEntityCall->reqRemoveAvatarDBID(dbid);
 }
 
 void Account::reqEnterGame(uint64 dbid)
@@ -93,10 +93,10 @@ void Account::onReqAvatarList(const AVATAR_INFO_LIST& datas)
 		infos.level = characterInfo_fixed_dict.level;
 		infos.roleType = characterInfo_fixed_dict.roleType;
 
-		const AVATAR_DATA& data_fixed_dict = characterInfo_fixed_dict.data;
+		//const AVATAR_DATA& data_fixed_dict = characterInfo_fixed_dict.data;
 
-		infos.data.param1 = data_fixed_dict.param1;
-		infos.data.param2 = data_fixed_dict.param2;
+		//infos.data.param1 = data_fixed_dict.param1;
+		//infos.data.param2 = data_fixed_dict.param2;
 
 		characters.values.Add(infos);
 
@@ -119,10 +119,10 @@ void Account::onCreateAvatarResult(uint8 retcode, const AVATAR_INFO& info)
 	infos.level = info.level;
 	infos.roleType = info.roleType;
 
-	const AVATAR_DATA& data_fixed_dict = info.data;
+	//const AVATAR_DATA& data_fixed_dict = info.data;
 
-	infos.data.param1 = data_fixed_dict.param1;
-	infos.data.param2 = data_fixed_dict.param2;
+	//infos.data.param1 = data_fixed_dict.param1;
+	//infos.data.param2 = data_fixed_dict.param2;
 
 	if(retcode == 0)
 		characters.values.Add(infos);
@@ -157,7 +157,7 @@ void Account::onRemoveAvatar(uint64 dbid)
 	if (infosFind < 0)
 		return;
 
-	AVATAR_INFOS infos = characters.values[infosFind];
+	AVATAR_INFO infos = characters.values[infosFind];
 
 	// ui event
 	UKBEventData_onRemoveAvatar* pEventData = NewObject<UKBEventData_onRemoveAvatar>();

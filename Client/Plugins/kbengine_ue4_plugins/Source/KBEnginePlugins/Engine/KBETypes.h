@@ -58,6 +58,25 @@ typedef FVector4 VECTOR4;
 
 typedef uint64 DBID;
 
+class AVATAR_DATA
+{
+public:
+	int8 param1;
+	TArray<uint8> param2;
+
+	AVATAR_DATA():
+	param1(0),
+	param2()
+	{
+	}
+
+};
+
+inline bool operator ==(const AVATAR_DATA& a, const AVATAR_DATA& b)
+{
+	return a.param1 == b.param1 && a.param2 == b.param2;
+};
+
 class AVATAR_INFO
 {
 public:

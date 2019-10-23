@@ -7,6 +7,18 @@
 namespace KBEngine
 {
 
+void DATATYPE_AVATAR_DATA::createFromStreamEx(MemoryStream& stream, AVATAR_DATA& datas)
+{
+	datas.param1 = stream.readInt8();
+	datas.param2 = stream.readBlob();
+}
+
+void DATATYPE_AVATAR_DATA::addToStreamEx(Bundle& stream, const AVATAR_DATA& v)
+{
+	stream.writeInt8(v.param1);
+	stream.writeBlob(v.param2);
+}
+
 void DATATYPE_AVATAR_INFO::createFromStreamEx(MemoryStream& stream, AVATAR_INFO& datas)
 {
 	datas.dbid = stream.readUint64();

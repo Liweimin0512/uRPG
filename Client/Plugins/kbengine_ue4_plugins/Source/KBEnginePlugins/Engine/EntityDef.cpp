@@ -167,7 +167,7 @@ void EntityDef::initScriptModules()
 
 	TArray<DATATYPE_BASE*> Account_onCreateAvatarResult_args;
 	Account_onCreateAvatarResult_args.Add(EntityDef::id2datatypes[2]);
-	Account_onCreateAvatarResult_args.Add(EntityDef::id2datatypes[22]);
+	Account_onCreateAvatarResult_args.Add(EntityDef::id2datatypes[23]);
 
 	Method* pAccount_onCreateAvatarResult = new Method();
 	pAccount_onCreateAvatarResult->name = TEXT("onCreateAvatarResult");
@@ -197,7 +197,7 @@ void EntityDef::initScriptModules()
 	//DEBUG_MSG("EntityDef::initScriptModules: add(Account), method(onRemoveAvatar / 8).");
 
 	TArray<DATATYPE_BASE*> Account_onReqAvatarList_args;
-	Account_onReqAvatarList_args.Add(EntityDef::id2datatypes[23]);
+	Account_onReqAvatarList_args.Add(EntityDef::id2datatypes[24]);
 
 	Method* pAccount_onReqAvatarList = new Method();
 	pAccount_onReqAvatarList->name = TEXT("onReqAvatarList");
@@ -528,6 +528,15 @@ void EntityDef::initDefTypes()
 
 	{
 		uint16 utype = 22;
+		FString typeName = TEXT("AVATAR_DATA");
+		DATATYPE_AVATAR_DATA* pDatatype = new DATATYPE_AVATAR_DATA();
+		EntityDef::datatypes.Add(typeName, (DATATYPE_BASE*)pDatatype);
+		EntityDef::id2datatypes.Add(utype, EntityDef::datatypes[typeName]);
+		EntityDef::datatype2id.Add(typeName, utype);
+	}
+
+	{
+		uint16 utype = 23;
 		FString typeName = TEXT("AVATAR_INFO");
 		DATATYPE_AVATAR_INFO* pDatatype = new DATATYPE_AVATAR_INFO();
 		EntityDef::datatypes.Add(typeName, (DATATYPE_BASE*)pDatatype);
@@ -536,7 +545,7 @@ void EntityDef::initDefTypes()
 	}
 
 	{
-		uint16 utype = 23;
+		uint16 utype = 24;
 		FString typeName = TEXT("AVATAR_INFO_LIST");
 		DATATYPE_AVATAR_INFO_LIST* pDatatype = new DATATYPE_AVATAR_INFO_LIST();
 		EntityDef::datatypes.Add(typeName, (DATATYPE_BASE*)pDatatype);
