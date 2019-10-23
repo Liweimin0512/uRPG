@@ -23,7 +23,7 @@ class Account(KBEngine.Proxy):
 		客户端请求查询角色列表
 		:return:角色列表
 		"""
-		DEBUG_MSG("Account[%i].reqAvatarList: size=%i."%(self.id, len(self.characters)))
+		DEBUG_MSG("Account[%i].reqAvatarList: size=%i." % (self.id, len(self.characters)))
 		self.client.onReqAvatarList(self.characters)
 
 	def reqCreateAvatar(self, name, roleType):
@@ -51,7 +51,7 @@ class Account(KBEngine.Proxy):
 			avatar.writeToDB(self._onAvatarSaved)
 
 		DEBUG_MSG("Account[%i].reqCreateAvatar:%s. spaceUType=%i, spawnPos=%s.\n"
-			%(self.id, name,avatar.cellData["spaceUType"], spaceData.get("spawnPos",(0,0,0))))
+			% (self.id, name, avatar.cellData["spaceUType"], spaceData.get("spawnPos", (0, 0, 0))))
 
 	def reqRemoveAvatar(self, name):
 		"""
@@ -78,7 +78,7 @@ class Account(KBEngine.Proxy):
 		# 注意:使用giveClientTo的entity必须是当前baseapp上的entity
 		if self.activeAvatar is None:
 			if dbid in self.characters:
-				#self.lastSelCharacter = dbid
+				# self.lastSelCharacter = dbid
 				# 由于需要从数据库加载角色，因此是一个异步过程，加载成功或者失败会调用__onAvatarCreated接口
 				# 当角色创建好之后，account会调用giveClientTo将客户端控制权（可理解为网络连接与某个实体的绑定）切换到Avatar身上，
 				# 之后客户端各种输入输出都通过服务器上这个Avatar来代理，任何proxy实体获得控制权都会调用onEntitiesEnabled
@@ -99,8 +99,8 @@ class Account(KBEngine.Proxy):
 		该entity被正式激活为可使用， 此时entity已经建立了client对应实体， 可以在此创建它的
 		cell部分。
 		"""
-		INFO_MSG("account[%i] entities enable. entityCall:%s" %
-				 (self.id, self.client))
+		INFO_MSG("account[%i] entities enable. entityCall:%s"
+				 % (self.id, self.client))
 
 	def onLogOnAttempt(self, ip, port, password):
 		"""

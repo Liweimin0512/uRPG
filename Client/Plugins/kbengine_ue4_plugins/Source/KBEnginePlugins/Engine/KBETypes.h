@@ -56,5 +56,47 @@ typedef FVector VECTOR3;
 
 typedef FVector4 VECTOR4;
 
+typedef uint64 DBID;
+
+class AVATAR_INFO
+{
+public:
+	uint64 dbid;
+	FString name;
+	uint8 roleType;
+	uint16 level;
+
+	AVATAR_INFO():
+	dbid(0),
+	name(),
+	roleType(0),
+	level(0)
+	{
+	}
+
+};
+
+inline bool operator ==(const AVATAR_INFO& a, const AVATAR_INFO& b)
+{
+	return a.dbid == b.dbid && a.name == b.name && a.roleType == b.roleType && a.level == b.level;
+};
+
+class AVATAR_INFO_LIST
+{
+public:
+	TArray<AVATAR_INFO> values;
+
+	AVATAR_INFO_LIST():
+	values()
+	{
+	}
+
+};
+
+inline bool operator ==(const AVATAR_INFO_LIST& a, const AVATAR_INFO_LIST& b)
+{
+	return a.values == b.values;
+};
+
 
 }

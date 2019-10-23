@@ -27,6 +27,9 @@ public:
 	EntityCellEntityCall_AccountBase* pCellEntityCall;
 
 
+	virtual void onCreateAvatarResult(uint8 arg1, const AVATAR_INFO& arg2) = 0; 
+	virtual void onRemoveAvatar(uint64 arg1) = 0; 
+	virtual void onReqAvatarList(const AVATAR_INFO_LIST& arg1) = 0; 
 
 	void onComponentsEnterworld() override;
 	void onComponentsLeaveworld() override;

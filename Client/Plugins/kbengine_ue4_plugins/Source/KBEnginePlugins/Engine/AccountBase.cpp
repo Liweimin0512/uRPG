@@ -56,6 +56,63 @@ EntityCall* AccountBase::getCellEntityCall()
 
 void AccountBase::onRemoteMethodCall(MemoryStream& stream)
 {
+	ScriptModule* sm = *EntityDef::moduledefs.Find("Account");
+	uint16 methodUtype = 0;
+	uint16 componentPropertyUType = 0;
+
+	if (sm->usePropertyDescrAlias)
+	{
+		componentPropertyUType = stream.readUint8();
+	}
+	else
+	{
+		componentPropertyUType = stream.readUint16();
+	}
+
+	if (sm->useMethodDescrAlias)
+	{
+		methodUtype = stream.read<uint8>();
+	}
+	else
+	{
+		methodUtype = stream.read<uint16>();
+	}
+
+	if(componentPropertyUType > 0)
+	{
+		KBE_ASSERT(false);
+
+		return;
+	}
+
+	Method* pMethod = sm->idmethods[methodUtype];
+
+	switch(pMethod->methodUtype)
+	{
+		case 6:
+		{
+			uint8 onCreateAvatarResult_arg1 = stream.readUint8();
+			AVATAR_INFO onCreateAvatarResult_arg2;
+			((DATATYPE_AVATAR_INFO*)pMethod->args[1])->createFromStreamEx(stream, onCreateAvatarResult_arg2);
+			onCreateAvatarResult(onCreateAvatarResult_arg1, onCreateAvatarResult_arg2);
+			break;
+		}
+		case 7:
+		{
+			uint64 onRemoveAvatar_arg1 = stream.readUint64();
+			onRemoveAvatar(onRemoveAvatar_arg1);
+			break;
+		}
+		case 5:
+		{
+			AVATAR_INFO_LIST onReqAvatarList_arg1;
+			((DATATYPE_AVATAR_INFO_LIST*)pMethod->args[0])->createFromStreamEx(stream, onReqAvatarList_arg1);
+			onReqAvatarList(onReqAvatarList_arg1);
+			break;
+		}
+		default:
+			break;
+	};
 }
 
 void AccountBase::onUpdatePropertys(MemoryStream& stream)
