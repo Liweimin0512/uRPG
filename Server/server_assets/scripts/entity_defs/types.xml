@@ -1,2 +1,36 @@
 <root>
+
+
+	<DBID>				UINT64		</DBID>
+
+
+
+    <AVATAR_INFO> FIXED_DICT
+		<implementedBy>AVATAR_INFO.avatar_info_inst</implementedBy>
+		<Properties>
+			<dbid>
+				<Type> DBID </Type>
+			</dbid>
+			<name>
+				<Type> UNICODE </Type>
+			</name>
+			<roleType>
+				<Type> UINT8 </Type>
+			</roleType>
+			<level>
+				<Type> UINT16 </Type>
+			</level>
+		</Properties>
+	</AVATAR_INFO>
+
+	<AVATAR_INFO_LIST> FIXED_DICT
+		<implementedBy>AVATAR_INFO.avatar_info_list_inst</implementedBy>
+		<Properties>
+			<values>
+				<Type>  ARRAY
+					<of>AVATAR_INFO</of>
+				</Type>
+			</values>
+		</Properties>
+	</AVATAR_INFO_LIST>
 </root>
