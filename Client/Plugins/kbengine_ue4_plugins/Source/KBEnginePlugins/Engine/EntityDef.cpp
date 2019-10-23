@@ -151,13 +151,27 @@ void EntityDef::initScriptModules()
 
 	//DEBUG_MSG("EntityDef::initScriptModules: add(Account), property(spaceID / 40002).");
 
+	Property* pAccount_lastSelCharacter = new Property();
+	pAccount_lastSelCharacter->name = TEXT("lastSelCharacter");
+	pAccount_lastSelCharacter->properUtype = 2;
+	pAccount_lastSelCharacter->properFlags = 32;
+	pAccount_lastSelCharacter->aliasID = 4;
+	KBVar* pAccount_lastSelCharacter_defval = new KBVar((uint64)FCString::Atoi64(TEXT("0")));
+	pAccount_lastSelCharacter->pDefaultVal = pAccount_lastSelCharacter_defval;
+	pAccountModule->propertys.Add(TEXT("lastSelCharacter"), pAccount_lastSelCharacter); 
+
+	pAccountModule->usePropertyDescrAlias = true;
+	pAccountModule->idpropertys.Add((uint16)pAccount_lastSelCharacter->aliasID, pAccount_lastSelCharacter);
+
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Account), property(lastSelCharacter / 2).");
+
 	TArray<DATATYPE_BASE*> Account_onCreateAvatarResult_args;
 	Account_onCreateAvatarResult_args.Add(EntityDef::id2datatypes[2]);
 	Account_onCreateAvatarResult_args.Add(EntityDef::id2datatypes[22]);
 
 	Method* pAccount_onCreateAvatarResult = new Method();
 	pAccount_onCreateAvatarResult->name = TEXT("onCreateAvatarResult");
-	pAccount_onCreateAvatarResult->methodUtype = 6;
+	pAccount_onCreateAvatarResult->methodUtype = 7;
 	pAccount_onCreateAvatarResult->aliasID = 1;
 	pAccount_onCreateAvatarResult->args = Account_onCreateAvatarResult_args;
 
@@ -165,14 +179,14 @@ void EntityDef::initScriptModules()
 	pAccountModule->useMethodDescrAlias = true;
 	pAccountModule->idmethods.Add((uint16)pAccount_onCreateAvatarResult->aliasID, pAccount_onCreateAvatarResult);
 
-	//DEBUG_MSG("EntityDef::initScriptModules: add(Account), method(onCreateAvatarResult / 6).");
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Account), method(onCreateAvatarResult / 7).");
 
 	TArray<DATATYPE_BASE*> Account_onRemoveAvatar_args;
 	Account_onRemoveAvatar_args.Add(EntityDef::id2datatypes[5]);
 
 	Method* pAccount_onRemoveAvatar = new Method();
 	pAccount_onRemoveAvatar->name = TEXT("onRemoveAvatar");
-	pAccount_onRemoveAvatar->methodUtype = 7;
+	pAccount_onRemoveAvatar->methodUtype = 8;
 	pAccount_onRemoveAvatar->aliasID = 2;
 	pAccount_onRemoveAvatar->args = Account_onRemoveAvatar_args;
 
@@ -180,14 +194,14 @@ void EntityDef::initScriptModules()
 	pAccountModule->useMethodDescrAlias = true;
 	pAccountModule->idmethods.Add((uint16)pAccount_onRemoveAvatar->aliasID, pAccount_onRemoveAvatar);
 
-	//DEBUG_MSG("EntityDef::initScriptModules: add(Account), method(onRemoveAvatar / 7).");
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Account), method(onRemoveAvatar / 8).");
 
 	TArray<DATATYPE_BASE*> Account_onReqAvatarList_args;
 	Account_onReqAvatarList_args.Add(EntityDef::id2datatypes[23]);
 
 	Method* pAccount_onReqAvatarList = new Method();
 	pAccount_onReqAvatarList->name = TEXT("onReqAvatarList");
-	pAccount_onReqAvatarList->methodUtype = 5;
+	pAccount_onReqAvatarList->methodUtype = 6;
 	pAccount_onReqAvatarList->aliasID = 3;
 	pAccount_onReqAvatarList->args = Account_onReqAvatarList_args;
 
@@ -195,7 +209,7 @@ void EntityDef::initScriptModules()
 	pAccountModule->useMethodDescrAlias = true;
 	pAccountModule->idmethods.Add((uint16)pAccount_onReqAvatarList->aliasID, pAccount_onReqAvatarList);
 
-	//DEBUG_MSG("EntityDef::initScriptModules: add(Account), method(onReqAvatarList / 5).");
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Account), method(onReqAvatarList / 6).");
 
 	TArray<DATATYPE_BASE*> Account_reqAvatarList_args;
 
@@ -234,7 +248,7 @@ void EntityDef::initScriptModules()
 
 	Method* pAccount_reqEnterGame = new Method();
 	pAccount_reqEnterGame->name = TEXT("reqEnterGame");
-	pAccount_reqEnterGame->methodUtype = 4;
+	pAccount_reqEnterGame->methodUtype = 3;
 	pAccount_reqEnterGame->aliasID = -1;
 	pAccount_reqEnterGame->args = Account_reqEnterGame_args;
 
@@ -243,14 +257,14 @@ void EntityDef::initScriptModules()
 
 	pAccountModule->idbase_methods.Add(pAccount_reqEnterGame->methodUtype, pAccount_reqEnterGame);
 
-	//DEBUG_MSG("EntityDef::initScriptModules: add(Account), method(reqEnterGame / 4).");
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Account), method(reqEnterGame / 3).");
 
 	TArray<DATATYPE_BASE*> Account_reqRemoveAvatar_args;
 	Account_reqRemoveAvatar_args.Add(EntityDef::id2datatypes[12]);
 
 	Method* pAccount_reqRemoveAvatar = new Method();
 	pAccount_reqRemoveAvatar->name = TEXT("reqRemoveAvatar");
-	pAccount_reqRemoveAvatar->methodUtype = 3;
+	pAccount_reqRemoveAvatar->methodUtype = 4;
 	pAccount_reqRemoveAvatar->aliasID = -1;
 	pAccount_reqRemoveAvatar->args = Account_reqRemoveAvatar_args;
 
@@ -259,7 +273,23 @@ void EntityDef::initScriptModules()
 
 	pAccountModule->idbase_methods.Add(pAccount_reqRemoveAvatar->methodUtype, pAccount_reqRemoveAvatar);
 
-	//DEBUG_MSG("EntityDef::initScriptModules: add(Account), method(reqRemoveAvatar / 3).");
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Account), method(reqRemoveAvatar / 4).");
+
+	TArray<DATATYPE_BASE*> Account_reqRemoveAvatarDBID_args;
+	Account_reqRemoveAvatarDBID_args.Add(EntityDef::id2datatypes[5]);
+
+	Method* pAccount_reqRemoveAvatarDBID = new Method();
+	pAccount_reqRemoveAvatarDBID->name = TEXT("reqRemoveAvatarDBID");
+	pAccount_reqRemoveAvatarDBID->methodUtype = 5;
+	pAccount_reqRemoveAvatarDBID->aliasID = -1;
+	pAccount_reqRemoveAvatarDBID->args = Account_reqRemoveAvatarDBID_args;
+
+	pAccountModule->methods.Add(TEXT("reqRemoveAvatarDBID"), pAccount_reqRemoveAvatarDBID); 
+	pAccountModule->base_methods.Add(TEXT("reqRemoveAvatarDBID"), pAccount_reqRemoveAvatarDBID);
+
+	pAccountModule->idbase_methods.Add(pAccount_reqRemoveAvatarDBID->methodUtype, pAccount_reqRemoveAvatarDBID);
+
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Account), method(reqRemoveAvatarDBID / 5).");
 
 }
 

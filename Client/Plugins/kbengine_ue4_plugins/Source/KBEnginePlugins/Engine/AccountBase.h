@@ -26,6 +26,8 @@ public:
 	EntityBaseEntityCall_AccountBase* pBaseEntityCall;
 	EntityCellEntityCall_AccountBase* pCellEntityCall;
 
+	uint64 lastSelCharacter;
+	virtual void onLastSelCharacterChanged(uint64 oldValue) {}
 
 	virtual void onCreateAvatarResult(uint8 arg1, const AVATAR_INFO& arg2) = 0; 
 	virtual void onRemoveAvatar(uint64 arg1) = 0; 

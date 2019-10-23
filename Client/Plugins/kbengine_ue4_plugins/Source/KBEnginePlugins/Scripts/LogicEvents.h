@@ -105,7 +105,7 @@ public:
 };
 
 UCLASS(Blueprintable, BlueprintType)
-class KBENGINEPLUGINS_API UKBEventData_selectAvatarGame : public UKBEventData
+class KBENGINEPLUGINS_API UKBEventData_reqEnterGame : public UKBEventData
 {
 	GENERATED_BODY()
 

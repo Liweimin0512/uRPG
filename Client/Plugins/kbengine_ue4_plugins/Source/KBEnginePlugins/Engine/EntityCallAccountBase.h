@@ -29,6 +29,7 @@ public:
 	void reqCreateAvatar(const FString& arg1, uint8 arg2);
 	void reqEnterGame(uint64 arg1);
 	void reqRemoveAvatar(const FString& arg1);
+	void reqRemoveAvatarDBID(uint64 arg1);
 };
 
 class KBENGINEPLUGINS_API EntityCellEntityCall_AccountBase : public EntityCall

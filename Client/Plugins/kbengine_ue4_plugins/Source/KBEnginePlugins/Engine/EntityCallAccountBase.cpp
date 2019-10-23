@@ -53,6 +53,16 @@ void EntityBaseEntityCall_AccountBase::reqRemoveAvatar(const FString& arg1)
 	sendCall(NULL);
 }
 
+void EntityBaseEntityCall_AccountBase::reqRemoveAvatarDBID(uint64 arg1)
+{
+	Bundle* pBundleRet = newCall("reqRemoveAvatarDBID", 0);
+	if(!pBundleRet)
+		return;
+
+	pBundleRet->writeUint64(arg1);
+	sendCall(NULL);
+}
+
 
 
 EntityCellEntityCall_AccountBase::EntityCellEntityCall_AccountBase(int32 eid, const FString& ename) : EntityCall(eid, ename)
