@@ -3,7 +3,17 @@
 
 	<DBID>				UINT64		</DBID>
 
-
+	<AVATAR_DATA>	FIXED_DICT
+		<implementedBy>AVATAR_DATA.AVATAR_DATA_PICKLER</implementedBy>
+		<Properties>
+			<param1>
+				<Type>	INT8	</Type>
+			</param1>
+			<param2>
+				<Type>	BLOB	</Type>
+			</param2>
+		</Properties>
+	</AVATAR_DATA>
 
     <AVATAR_INFO> FIXED_DICT
 		<implementedBy>AVATAR_INFO.avatar_info_inst</implementedBy>
