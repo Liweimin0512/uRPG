@@ -60,7 +60,17 @@
 			<default>
 				<!-- <host> localhost </host> -->
 				<!-- <databaseName> kbe </databaseName> -->
+				<auth>  
+					<username> root </username>									<!-- Type: String -->
+					<password> Lwm@1123581321 </password>							<!-- Type: String -->
+					
+					<!-- 为true则表示password是加密(rsa)的, 可防止明文配置 
+						(is true, password is RSA)
+					-->
+					<encrypt> true </encrypt>
+				</auth>
 			</default>
+
 		</databaseInterfaces>
 	</dbmgr>
 	

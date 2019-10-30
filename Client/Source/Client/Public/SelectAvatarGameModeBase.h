@@ -32,7 +32,7 @@ public:
 	UFUNCTION(BlueprintCallable, Category = KBEngine)
 		void reqCreateAvatar(uint8 roleType, const FString& name);
 	UFUNCTION(BlueprintCallable, Category = KBEngine)
-		void reqRemoveAvatar(const FAVATAR_INFOS* pEventData);
+		void reqRemoveAvatar(const FAVATAR_INFOS& avatarInfos);
 	UFUNCTION(BlueprintCallable, Category = KBEngine)
-		void reqEnterGame(const FAVATAR_INFOS* pEventData);
+		void reqEnterGame(const FAVATAR_INFOS& avatarInfos);
 };

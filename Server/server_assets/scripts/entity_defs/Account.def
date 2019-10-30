@@ -9,9 +9,8 @@
 			<Type> DBID </Type>
 			<Flags> BASE_AND_CLIENT </Flags>
 			<Default> 0 </Default>
-			<Persistent> true </Persistent>
+			<Persistent> true </Persistent> <!--是否需要持久化-->
 		</lastSelCharacter>
-
 		<activeAvatar>
 			<Type> ENTITYCALL </Type>
 			<Flags> BASE </Flags>

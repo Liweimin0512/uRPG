@@ -1,8 +1,8 @@
 <root>
 	<Properties>
 		<roleType> UINT8 </roleType>
-		<Flags> BASE </Flags>
-		<Persistent> true </Persistent> <!-- 需要持久化 -->
+			<Flags> BASE </Flags>
+			<Persistent> true </Persistent> <!-- 需要持久化 -->
 		<roleTypeCell>
 			<Type> UINT8 </Type>
 			<Flags> ALL_CLIENTS </Flags>
