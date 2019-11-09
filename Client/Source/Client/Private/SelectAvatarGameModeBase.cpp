@@ -43,11 +43,11 @@ void ASelectAvatarGameModeBase::addSpaceGeometryMapping_Implementation(const UKB
 
 }
 
-void ASelectAvatarGameModeBase::reqCreateAvatar(uint8 roleType, const FString& name)
+void ASelectAvatarGameModeBase::reqCreateAvatar(uint8 raceType, const FString& name)
 {
 	// 由于Account实体注册了该事件， 如果此时Account实体存在那么必然会执行到该事件 
 	UKBEventData_reqCreateAvatar* pEventData = NewObject<UKBEventData_reqCreateAvatar>();
-	pEventData->roleType = roleType;
+	pEventData->raceType = raceType;
 	pEventData->name = name;
 	KBENGINE_EVENT_FIRE("reqCreateAvatar", pEventData);
 }

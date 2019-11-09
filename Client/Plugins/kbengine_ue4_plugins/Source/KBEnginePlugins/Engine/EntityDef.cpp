@@ -8,6 +8,7 @@
 #include "Entity.h"
 
 #include "Scripts/Account.h"
+#include "Scripts/Avatar.h"
 
 namespace KBEngine
 {
@@ -95,6 +96,9 @@ Entity* EntityDef::createEntity(int utype)
 		case 1:
 			pEntity = new Account();
 			break;
+		case 2:
+			pEntity = new Avatar();
+			break;
 		default:
 			SCREEN_ERROR_MSG("EntityDef::createEntity() : entity(%d) not found!", utype);
 			break;
@@ -167,7 +171,7 @@ void EntityDef::initScriptModules()
 
 	TArray<DATATYPE_BASE*> Account_onCreateAvatarResult_args;
 	Account_onCreateAvatarResult_args.Add(EntityDef::id2datatypes[2]);
-	Account_onCreateAvatarResult_args.Add(EntityDef::id2datatypes[23]);
+	Account_onCreateAvatarResult_args.Add(EntityDef::id2datatypes[22]);
 
 	Method* pAccount_onCreateAvatarResult = new Method();
 	pAccount_onCreateAvatarResult->name = TEXT("onCreateAvatarResult");
@@ -197,7 +201,7 @@ void EntityDef::initScriptModules()
 	//DEBUG_MSG("EntityDef::initScriptModules: add(Account), method(onRemoveAvatar / 8).");
 
 	TArray<DATATYPE_BASE*> Account_onReqAvatarList_args;
-	Account_onReqAvatarList_args.Add(EntityDef::id2datatypes[24]);
+	Account_onReqAvatarList_args.Add(EntityDef::id2datatypes[23]);
 
 	Method* pAccount_onReqAvatarList = new Method();
 	pAccount_onReqAvatarList->name = TEXT("onReqAvatarList");
@@ -291,6 +295,81 @@ void EntityDef::initScriptModules()
 
 	//DEBUG_MSG("EntityDef::initScriptModules: add(Account), method(reqRemoveAvatarDBID / 5).");
 
+	ScriptModule* pAvatarModule = new ScriptModule("Avatar", 2);
+	EntityDef::moduledefs.Add(TEXT("Avatar"), pAvatarModule);
+	EntityDef::idmoduledefs.Add(2, pAvatarModule);
+
+	Property* pAvatar_position = new Property();
+	pAvatar_position->name = TEXT("position");
+	pAvatar_position->properUtype = 40000;
+	pAvatar_position->properFlags = 4;
+	pAvatar_position->aliasID = 1;
+	KBVar* pAvatar_position_defval = new KBVar(FVector());
+	pAvatar_position->pDefaultVal = pAvatar_position_defval;
+	pAvatarModule->propertys.Add(TEXT("position"), pAvatar_position); 
+
+	pAvatarModule->usePropertyDescrAlias = true;
+	pAvatarModule->idpropertys.Add((uint16)pAvatar_position->aliasID, pAvatar_position);
+
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), property(position / 40000).");
+
+	Property* pAvatar_direction = new Property();
+	pAvatar_direction->name = TEXT("direction");
+	pAvatar_direction->properUtype = 40001;
+	pAvatar_direction->properFlags = 4;
+	pAvatar_direction->aliasID = 2;
+	KBVar* pAvatar_direction_defval = new KBVar(FVector());
+	pAvatar_direction->pDefaultVal = pAvatar_direction_defval;
+	pAvatarModule->propertys.Add(TEXT("direction"), pAvatar_direction); 
+
+	pAvatarModule->usePropertyDescrAlias = true;
+	pAvatarModule->idpropertys.Add((uint16)pAvatar_direction->aliasID, pAvatar_direction);
+
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), property(direction / 40001).");
+
+	Property* pAvatar_spaceID = new Property();
+	pAvatar_spaceID->name = TEXT("spaceID");
+	pAvatar_spaceID->properUtype = 40002;
+	pAvatar_spaceID->properFlags = 16;
+	pAvatar_spaceID->aliasID = 3;
+	KBVar* pAvatar_spaceID_defval = new KBVar((uint32)FCString::Atoi64(TEXT("")));
+	pAvatar_spaceID->pDefaultVal = pAvatar_spaceID_defval;
+	pAvatarModule->propertys.Add(TEXT("spaceID"), pAvatar_spaceID); 
+
+	pAvatarModule->usePropertyDescrAlias = true;
+	pAvatarModule->idpropertys.Add((uint16)pAvatar_spaceID->aliasID, pAvatar_spaceID);
+
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), property(spaceID / 40002).");
+
+	Property* pAvatar_level = new Property();
+	pAvatar_level->name = TEXT("level");
+	pAvatar_level->properUtype = 6;
+	pAvatar_level->properFlags = 4;
+	pAvatar_level->aliasID = 4;
+	KBVar* pAvatar_level_defval = new KBVar((uint16)FCString::Atoi64(TEXT("")));
+	pAvatar_level->pDefaultVal = pAvatar_level_defval;
+	pAvatarModule->propertys.Add(TEXT("level"), pAvatar_level); 
+
+	pAvatarModule->usePropertyDescrAlias = true;
+	pAvatarModule->idpropertys.Add((uint16)pAvatar_level->aliasID, pAvatar_level);
+
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), property(level / 6).");
+
+	Property* pAvatar_raceTypeCell = new Property();
+	pAvatar_raceTypeCell->name = TEXT("raceTypeCell");
+	pAvatar_raceTypeCell->properUtype = 5;
+	pAvatar_raceTypeCell->properFlags = 4;
+	pAvatar_raceTypeCell->aliasID = 5;
+	KBVar* pAvatar_raceTypeCell_defval = new KBVar((uint8)FCString::Atoi64(TEXT("")));
+	pAvatar_raceTypeCell->pDefaultVal = pAvatar_raceTypeCell_defval;
+	pAvatarModule->propertys.Add(TEXT("raceTypeCell"), pAvatar_raceTypeCell); 
+
+	pAvatarModule->usePropertyDescrAlias = true;
+	pAvatarModule->idpropertys.Add((uint16)pAvatar_raceTypeCell->aliasID, pAvatar_raceTypeCell);
+
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), property(raceTypeCell / 5).");
+
+	pAvatarModule->useMethodDescrAlias = true;
 }
 
 void EntityDef::initDefTypes()
@@ -528,15 +607,6 @@ void EntityDef::initDefTypes()
 
 	{
 		uint16 utype = 22;
-		FString typeName = TEXT("AVATAR_DATA");
-		DATATYPE_AVATAR_DATA* pDatatype = new DATATYPE_AVATAR_DATA();
-		EntityDef::datatypes.Add(typeName, (DATATYPE_BASE*)pDatatype);
-		EntityDef::id2datatypes.Add(utype, EntityDef::datatypes[typeName]);
-		EntityDef::datatype2id.Add(typeName, utype);
-	}
-
-	{
-		uint16 utype = 23;
 		FString typeName = TEXT("AVATAR_INFO");
 		DATATYPE_AVATAR_INFO* pDatatype = new DATATYPE_AVATAR_INFO();
 		EntityDef::datatypes.Add(typeName, (DATATYPE_BASE*)pDatatype);
@@ -545,7 +615,7 @@ void EntityDef::initDefTypes()
 	}
 
 	{
-		uint16 utype = 24;
+		uint16 utype = 23;
 		FString typeName = TEXT("AVATAR_INFO_LIST");
 		DATATYPE_AVATAR_INFO_LIST* pDatatype = new DATATYPE_AVATAR_INFO_LIST();
 		EntityDef::datatypes.Add(typeName, (DATATYPE_BASE*)pDatatype);

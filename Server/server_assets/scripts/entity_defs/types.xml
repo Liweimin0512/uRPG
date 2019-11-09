@@ -24,9 +24,9 @@
 			<name>
 				<Type> UNICODE </Type>
 			</name>
-			<roleType>
+			<raceType>
 				<Type> UINT8 </Type>
-			</roleType>
+			</raceType>
 			<level>
 				<Type> UINT16 </Type>
 			</level>

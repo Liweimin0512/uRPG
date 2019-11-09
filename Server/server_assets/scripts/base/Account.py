@@ -26,7 +26,7 @@ class Account(KBEngine.Proxy):
 		DEBUG_MSG("Account[%i].reqAvatarList: size=%i." % (self.id, len(self.characters)))
 		self.client.onReqAvatarList(self.characters)
 
-	def reqCreateAvatar(self, name, roleType):
+	def reqCreateAvatar(self, name, raceType):
 		if len(self.characters) >= 3:
 			# 角色超上限
 			DEBUG_MSG("Account[%i].reqCreateAvatar:%s. character=%s.\n" % (self.id, name, self.characters))
@@ -41,7 +41,7 @@ class Account(KBEngine.Proxy):
 
 		props = {
 			"name" 			: name,
-			"roleType"		: roleType,
+			"raceType"		: raceType,
 			"level"			: 1,
 			"position"		: spaceData.get("spawnPos", (0, -5, -10)),
 		}

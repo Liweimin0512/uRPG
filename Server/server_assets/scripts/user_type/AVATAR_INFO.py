@@ -16,7 +16,7 @@ class TAvatarInfo(list):
         data = {
             "dbid"      :self[0],
             "name"      :self[1],
-            "roleType"  :self[2],
+            "raceType"  :self[2],
             "level"     :self[3],
         }
         return data

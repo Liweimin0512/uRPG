@@ -22,7 +22,7 @@ void Account::__init__()
 	KBENGINE_REGISTER_EVENT_OVERRIDE_FUNC("reqCreateAvatar", "reqCreateAvatar", [this](const UKBEventData* pEventData)
 	{
 		const UKBEventData_reqCreateAvatar& data = static_cast<const UKBEventData_reqCreateAvatar&>(*pEventData);
-		reqCreateAvatar(data.roleType, data.name);
+		reqCreateAvatar(data.raceType, data.name);
 	});
 
 	KBENGINE_REGISTER_EVENT_OVERRIDE_FUNC("reqRemoveAvatar", "reqRemoveAvatar", [this](const UKBEventData* pEventData)
@@ -91,7 +91,7 @@ void Account::onReqAvatarList(const AVATAR_INFO_LIST& datas)
 		infos.name = characterInfo_fixed_dict.name;
 		infos.dbid = characterInfo_fixed_dict.dbid;
 		infos.level = characterInfo_fixed_dict.level;
-		infos.roleType = characterInfo_fixed_dict.roleType;
+		infos.raceType = characterInfo_fixed_dict.raceType;
 
 		//const AVATAR_DATA& data_fixed_dict = characterInfo_fixed_dict.data;
 
@@ -101,7 +101,7 @@ void Account::onReqAvatarList(const AVATAR_INFO_LIST& datas)
 		characters.values.Add(infos);
 
 		// fill eventData
-		event_avatar.set(infos.dbid, infos.name, infos.roleType, infos.level, (lastSelCharacter == infos.dbid));
+		event_avatar.set(infos.dbid, infos.name, infos.raceType, infos.level, (lastSelCharacter == infos.dbid));
 		pEventData->avatars.Add(event_avatar);
 	}
 
@@ -117,7 +117,7 @@ void Account::onCreateAvatarResult(uint8 retcode, const AVATAR_INFO& info)
 	infos.name = info.name;
 	infos.dbid = info.dbid;
 	infos.level = info.level;
-	infos.roleType = info.roleType;
+	infos.raceType = info.raceType;
 
 	//const AVATAR_DATA& data_fixed_dict = info.data;
 
@@ -128,7 +128,7 @@ void Account::onCreateAvatarResult(uint8 retcode, const AVATAR_INFO& info)
 		characters.values.Add(infos);
 
 	// fill eventData
-	pEventData->avatarInfos.set(infos.dbid, infos.name, infos.roleType, infos.level, (lastSelCharacter == infos.dbid));
+	pEventData->avatarInfos.set(infos.dbid, infos.name, infos.raceType, infos.level, (lastSelCharacter == infos.dbid));
 	pEventData->errorCode = retcode;
 
 	// Error codes given by Account::reqCreateAvatar on the server
@@ -161,7 +161,7 @@ void Account::onRemoveAvatar(uint64 dbid)
 
 	// ui event
 	UKBEventData_onRemoveAvatar* pEventData = NewObject<UKBEventData_onRemoveAvatar>();
-	pEventData->avatarInfos.set(infos.dbid, infos.name, infos.roleType, infos.level, (lastSelCharacter == infos.dbid));
+	pEventData->avatarInfos.set(infos.dbid, infos.name, infos.raceType, infos.level, (lastSelCharacter == infos.dbid));
 	KBENGINE_EVENT_FIRE("onRemoveAvatar", pEventData);
 
 	characters.values.RemoveAt(infosFind);

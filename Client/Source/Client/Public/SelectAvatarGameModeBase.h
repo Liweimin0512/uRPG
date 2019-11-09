@@ -30,7 +30,7 @@ public:
 		void onRemoveAvatar(const UKBEventData* pEventData);
 
 	UFUNCTION(BlueprintCallable, Category = KBEngine)
-		void reqCreateAvatar(uint8 roleType, const FString& name);
+		void reqCreateAvatar(uint8 raceType, const FString& name);
 	UFUNCTION(BlueprintCallable, Category = KBEngine)
 		void reqRemoveAvatar(const FAVATAR_INFOS& avatarInfos);
 	UFUNCTION(BlueprintCallable, Category = KBEngine)

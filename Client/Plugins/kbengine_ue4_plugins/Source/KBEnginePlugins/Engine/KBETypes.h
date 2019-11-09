@@ -58,37 +58,18 @@ typedef FVector4 VECTOR4;
 
 typedef uint64 DBID;
 
-class AVATAR_DATA
-{
-public:
-	int8 param1;
-	TArray<uint8> param2;
-
-	AVATAR_DATA():
-	param1(0),
-	param2()
-	{
-	}
-
-};
-
-inline bool operator ==(const AVATAR_DATA& a, const AVATAR_DATA& b)
-{
-	return a.param1 == b.param1 && a.param2 == b.param2;
-};
-
 class AVATAR_INFO
 {
 public:
 	uint64 dbid;
 	FString name;
-	uint8 roleType;
+	uint8 raceType;
 	uint16 level;
 
 	AVATAR_INFO():
 	dbid(0),
 	name(),
-	roleType(0),
+	raceType(0),
 	level(0)
 	{
 	}
@@ -97,7 +78,7 @@ public:
 
 inline bool operator ==(const AVATAR_INFO& a, const AVATAR_INFO& b)
 {
-	return a.dbid == b.dbid && a.name == b.name && a.roleType == b.roleType && a.level == b.level;
+	return a.dbid == b.dbid && a.name == b.name && a.raceType == b.raceType && a.level == b.level;
 };
 
 class AVATAR_INFO_LIST

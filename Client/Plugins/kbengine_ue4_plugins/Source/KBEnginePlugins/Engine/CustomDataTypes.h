@@ -14,14 +14,6 @@ namespace KBEngine
 {
 
 
-class KBENGINEPLUGINS_API DATATYPE_AVATAR_DATA : DATATYPE_BASE
-{
-public:
-	void createFromStreamEx(MemoryStream& stream, AVATAR_DATA& datas);
-	void addToStreamEx(Bundle& stream, const AVATAR_DATA& v);
-};
-
-
 class KBENGINEPLUGINS_API DATATYPE_AVATAR_INFO : DATATYPE_BASE
 {
 public:

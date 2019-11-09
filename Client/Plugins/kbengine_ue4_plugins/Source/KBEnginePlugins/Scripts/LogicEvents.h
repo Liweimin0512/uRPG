@@ -52,7 +52,7 @@ class KBENGINEPLUGINS_API UKBEventData_reqCreateAvatar : public UKBEventData
 
 public:
 	UPROPERTY(Category = KBEngine, BlueprintReadWrite, EditAnywhere)
-	uint8 roleType;
+	uint8 raceType;
 
 	UPROPERTY(Category = KBEngine, BlueprintReadWrite, EditAnywhere)
 	FString name;

@@ -7,23 +7,11 @@
 namespace KBEngine
 {
 
-void DATATYPE_AVATAR_DATA::createFromStreamEx(MemoryStream& stream, AVATAR_DATA& datas)
-{
-	datas.param1 = stream.readInt8();
-	datas.param2 = stream.readBlob();
-}
-
-void DATATYPE_AVATAR_DATA::addToStreamEx(Bundle& stream, const AVATAR_DATA& v)
-{
-	stream.writeInt8(v.param1);
-	stream.writeBlob(v.param2);
-}
-
 void DATATYPE_AVATAR_INFO::createFromStreamEx(MemoryStream& stream, AVATAR_INFO& datas)
 {
 	datas.dbid = stream.readUint64();
 	datas.name = stream.readUnicode();
-	datas.roleType = stream.readUint8();
+	datas.raceType = stream.readUint8();
 	datas.level = stream.readUint16();
 }
 
@@ -31,7 +19,7 @@ void DATATYPE_AVATAR_INFO::addToStreamEx(Bundle& stream, const AVATAR_INFO& v)
 {
 	stream.writeUint64(v.dbid);
 	stream.writeUnicode(v.name);
-	stream.writeUint8(v.roleType);
+	stream.writeUint8(v.raceType);
 	stream.writeUint16(v.level);
 }
 
