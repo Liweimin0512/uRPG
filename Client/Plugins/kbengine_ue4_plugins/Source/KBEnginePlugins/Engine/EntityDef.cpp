@@ -355,20 +355,6 @@ void EntityDef::initScriptModules()
 
 	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), property(level / 6).");
 
-	Property* pAvatar_raceTypeCell = new Property();
-	pAvatar_raceTypeCell->name = TEXT("raceTypeCell");
-	pAvatar_raceTypeCell->properUtype = 5;
-	pAvatar_raceTypeCell->properFlags = 4;
-	pAvatar_raceTypeCell->aliasID = 5;
-	KBVar* pAvatar_raceTypeCell_defval = new KBVar((uint8)FCString::Atoi64(TEXT("")));
-	pAvatar_raceTypeCell->pDefaultVal = pAvatar_raceTypeCell_defval;
-	pAvatarModule->propertys.Add(TEXT("raceTypeCell"), pAvatar_raceTypeCell); 
-
-	pAvatarModule->usePropertyDescrAlias = true;
-	pAvatarModule->idpropertys.Add((uint16)pAvatar_raceTypeCell->aliasID, pAvatar_raceTypeCell);
-
-	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), property(raceTypeCell / 5).");
-
 	pAvatarModule->useMethodDescrAlias = true;
 }
 

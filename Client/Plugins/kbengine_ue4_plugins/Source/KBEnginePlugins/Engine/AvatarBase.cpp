@@ -143,24 +143,6 @@ void AvatarBase::onUpdatePropertys(MemoryStream& stream)
 
 				break;
 			}
-			case 5:
-			{
-				uint8 oldval_raceTypeCell = raceTypeCell;
-				raceTypeCell = stream.readUint8();
-
-				if(pProp->isBase())
-				{
-					if(inited())
-						onRaceTypeCellChanged(oldval_raceTypeCell);
-				}
-				else
-				{
-					if(inWorld())
-						onRaceTypeCellChanged(oldval_raceTypeCell);
-				}
-
-				break;
-			}
 			case 40002:
 			{
 				stream.readUint32();
@@ -240,35 +222,13 @@ void AvatarBase::callPropertysSetMethods()
 		}
 	}
 
-	uint8 oldval_raceTypeCell = raceTypeCell;
-	Property* pProp_raceTypeCell = pdatas[5];
-	if(pProp_raceTypeCell->isBase())
-	{
-		if(inited() && !inWorld())
-			onRaceTypeCellChanged(oldval_raceTypeCell);
-	}
-	else
-	{
-		if(inWorld())
-		{
-			if(pProp_raceTypeCell->isOwnerOnly() && !isPlayer())
-			{
-			}
-			else
-			{
-				onRaceTypeCellChanged(oldval_raceTypeCell);
-			}
-		}
-	}
-
 }
 
 AvatarBase::AvatarBase():
 	Entity(),
 	pBaseEntityCall(NULL),
 	pCellEntityCall(NULL),
-	level((uint16)FCString::Atoi64(TEXT("0"))),
-	raceTypeCell((uint8)FCString::Atoi64(TEXT("0")))
+	level((uint16)FCString::Atoi64(TEXT("0")))
 {
 }
 

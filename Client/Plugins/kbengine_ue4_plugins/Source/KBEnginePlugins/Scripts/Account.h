@@ -18,7 +18,7 @@ public:
 	virtual void __init__() override;
 	virtual void onDestroy() override;
 
-	void reqCreateAvatar(uint8 roleType, const FString& name);
+	void reqCreateAvatar(uint8 raceType, const FString& name);
 	void reqRemoveAvatar(uint64 dbid);
 	void reqEnterGame(uint64 dbid);
 

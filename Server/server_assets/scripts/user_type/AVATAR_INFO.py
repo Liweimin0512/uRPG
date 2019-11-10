@@ -22,7 +22,7 @@ class TAvatarInfo(list):
         return data
 
     def CreateFromDict(self,dictData):
-        self.extend([dictData["dbid"], dictData["name"], dictData["roleType"], dictData["level"]])
+        self.extend([dictData["dbid"], dictData["name"], dictData["raceType"], dictData["level"]])
         return self
 
 

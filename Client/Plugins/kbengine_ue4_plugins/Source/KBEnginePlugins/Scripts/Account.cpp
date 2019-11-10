@@ -59,10 +59,10 @@ void Account::onLastSelCharacterChanged(uint64 oldValue)
 
 }
 
-void Account::reqCreateAvatar(uint8 roleType, const FString& name)
+void Account::reqCreateAvatar(uint8 raceType, const FString& name)
 {
-	DEBUG_MSG("Account::reqCreateAvatar(): roleType=%d", roleType);
-	pBaseEntityCall->reqCreateAvatar(name, roleType);
+	DEBUG_MSG("Account::reqCreateAvatar(): roleType=%d", raceType);
+	pBaseEntityCall->reqCreateAvatar(name, raceType);
 }
 
 void Account::reqRemoveAvatar(uint64 dbid)

@@ -1,20 +1,71 @@
 <root>
 	<Properties>
+		<name>
+			<Type>UNICODE</Type>
+			<Flags> BASE </Flags>
+			<Persistent> true </Persistent> <!-- 需要持久化 -->
+		</name>
 		<raceType>
 			<Type> UINT8 </Type>
 			<Flags> BASE </Flags>
 			<Persistent> true </Persistent> <!-- 需要持久化 -->
 		</raceType>
-		<raceTypeCell>
-			<Type> UINT8 </Type>
-			<Flags> ALL_CLIENTS </Flags>
-			<Persistent> true </Persistent>
-		</raceTypeCell>
+<!--		<raceTypeCell>-->
+<!--			<Type> UINT8 </Type>-->
+<!--			<Flags> ALL_CLIENTS </Flags>-->
+<!--			<Persistent> true </Persistent>-->
+<!--		</raceTypeCell>-->
 		<level>
 			<Type> UINT16 </Type>
 			<Flags> ALL_CLIENTS </Flags>
 			<Persistent> true </Persistent>
 		</level>
+<!--		<strength>-->
+<!--			<Type> UINT8 </Type>-->
+<!--			<Flags> BASE </Flags>-->
+<!--			<Persistent> true </Persistent> &lt;!&ndash; 需要持久化 &ndash;&gt;-->
+<!--		</strength>-->
+<!--				<agile>-->
+<!--			<Type> UINT8 </Type>-->
+<!--			<Flags> BASE </Flags>-->
+<!--			<Persistent> true </Persistent> &lt;!&ndash; 需要持久化 &ndash;&gt;-->
+<!--		</agile>-->
+<!--				<intellect>-->
+<!--			<Type> UINT8 </Type>-->
+<!--			<Flags> BASE </Flags>-->
+<!--			<Persistent> true </Persistent> &lt;!&ndash; 需要持久化 &ndash;&gt;-->
+<!--		</intellect>-->
+<!--				<physique>-->
+<!--			<Type> UINT8 </Type>-->
+<!--			<Flags> BASE </Flags>-->
+<!--			<Persistent> true </Persistent> &lt;!&ndash; 需要持久化 &ndash;&gt;-->
+<!--		</physique>-->
+<!--				<memory>-->
+<!--			<Type> UINT8 </Type>-->
+<!--			<Flags> BASE </Flags>-->
+<!--			<Persistent> true </Persistent> &lt;!&ndash; 需要持久化 &ndash;&gt;-->
+<!--		</memory>-->
+<!--				<Insight>-->
+<!--			<Type> UINT8 </Type>-->
+<!--			<Flags> BASE </Flags>-->
+<!--			<Persistent> true </Persistent> &lt;!&ndash; 需要持久化 &ndash;&gt;-->
+<!--		</Insight>-->
+<!--				<lucky>-->
+<!--			<Type> UINT8 </Type>-->
+<!--			<Flags> BASE </Flags>-->
+<!--			<Persistent> true </Persistent> &lt;!&ndash; 需要持久化 &ndash;&gt;-->
+<!--		</lucky>-->
+<!--				<Trading>-->
+<!--			<Type> UINT8 </Type>-->
+<!--			<Flags> BASE </Flags>-->
+<!--			<Persistent> true </Persistent> &lt;!&ndash; 需要持久化 &ndash;&gt;-->
+<!--		</Trading>-->
+<!--				<theft>-->
+<!--			<Type> UINT8 </Type>-->
+<!--			<Flags> BASE </Flags>-->
+<!--			<Persistent> true </Persistent> &lt;!&ndash; 需要持久化 &ndash;&gt;-->
+<!--		</theft>-->
+
 <!--		<itemList>-->
 <!--			<Type> ITEM_INFO_LIST </Type>-->
 <!--			<Flags> BASE </Flags>-->

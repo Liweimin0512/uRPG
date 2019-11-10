@@ -28,8 +28,6 @@ public:
 
 	uint16 level;
 	virtual void onLevelChanged(uint16 oldValue) {}
-	uint8 raceTypeCell;
-	virtual void onRaceTypeCellChanged(uint8 oldValue) {}
 
 
 	void onComponentsEnterworld() override;
