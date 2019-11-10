@@ -77,7 +77,7 @@ void Account::reqEnterGame(uint64 dbid)
 	pBaseEntityCall->reqEnterGame(dbid);
 }
 
-void Account::onReqAvatarList(const AVATAR_INFO_LIST& datas)
+void Account::onReqAvatarList(const AVATAR_INFOS_LIST& datas)
 {
 	UKBEventData_onReqAvatarList* pEventData = NewObject<UKBEventData_onReqAvatarList>();
 
@@ -85,8 +85,8 @@ void Account::onReqAvatarList(const AVATAR_INFO_LIST& datas)
 	{
 		FAVATAR_INFOS event_avatar;
 
-		const AVATAR_INFO& characterInfo_fixed_dict = characterInfoItem;
-		AVATAR_INFO infos;
+		const AVATAR_INFOS& characterInfo_fixed_dict = characterInfoItem;
+		AVATAR_INFOS infos;
 
 		infos.name = characterInfo_fixed_dict.name;
 		infos.dbid = characterInfo_fixed_dict.dbid;
@@ -108,11 +108,11 @@ void Account::onReqAvatarList(const AVATAR_INFO_LIST& datas)
 	KBENGINE_EVENT_FIRE("onReqAvatarList", pEventData);
 }
 
-void Account::onCreateAvatarResult(uint8 retcode, const AVATAR_INFO& info)
+void Account::onCreateAvatarResult(uint8 retcode, const AVATAR_INFOS& info)
 {
 	UKBEventData_onCreateAvatarResult* pEventData = NewObject<UKBEventData_onCreateAvatarResult>();
 
-	AVATAR_INFO infos;
+	AVATAR_INFOS infos;
 
 	infos.name = info.name;
 	infos.dbid = info.dbid;
@@ -157,7 +157,7 @@ void Account::onRemoveAvatar(uint64 dbid)
 	if (infosFind < 0)
 		return;
 
-	AVATAR_INFO infos = characters.values[infosFind];
+	AVATAR_INFOS infos = characters.values[infosFind];
 
 	// ui event
 	UKBEventData_onRemoveAvatar* pEventData = NewObject<UKBEventData_onRemoveAvatar>();

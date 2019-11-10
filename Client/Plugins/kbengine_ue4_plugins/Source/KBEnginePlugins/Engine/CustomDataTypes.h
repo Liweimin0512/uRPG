@@ -14,23 +14,48 @@ namespace KBEngine
 {
 
 
-class KBENGINEPLUGINS_API DATATYPE_AVATAR_INFO : DATATYPE_BASE
+class KBENGINEPLUGINS_API DATATYPE_ENTITY_FORBID_COUNTER : DATATYPE_BASE
 {
 public:
-	void createFromStreamEx(MemoryStream& stream, AVATAR_INFO& datas);
-	void addToStreamEx(Bundle& stream, const AVATAR_INFO& v);
+	void createFromStreamEx(MemoryStream& stream, ENTITY_FORBID_COUNTER& datas);
+	void addToStreamEx(Bundle& stream, const ENTITY_FORBID_COUNTER& v);
 };
 
 
-class KBENGINEPLUGINS_API DATATYPE_AVATAR_INFO_LIST : DATATYPE_BASE
+class KBENGINEPLUGINS_API DATATYPE_ENTITYID_LIST : DATATYPE_BASE
 {
 public:
-	class KBENGINEPLUGINS_API DATATYPE__AVATAR_INFO_LIST_values_ArrayType_ChildArray : public DATATYPE_BASE
+	void createFromStreamEx(MemoryStream& stream, ENTITYID_LIST& datas);
+	void addToStreamEx(Bundle& stream, const ENTITYID_LIST& v);
+};
+
+
+class KBENGINEPLUGINS_API DATATYPE_AVATAR_DATA : DATATYPE_BASE
+{
+public:
+	void createFromStreamEx(MemoryStream& stream, AVATAR_DATA& datas);
+	void addToStreamEx(Bundle& stream, const AVATAR_DATA& v);
+};
+
+
+class KBENGINEPLUGINS_API DATATYPE_AVATAR_INFOS : DATATYPE_BASE
+{
+public:
+	DATATYPE_AVATAR_DATA data_DataType;
+	void createFromStreamEx(MemoryStream& stream, AVATAR_INFOS& datas);
+	void addToStreamEx(Bundle& stream, const AVATAR_INFOS& v);
+};
+
+
+class KBENGINEPLUGINS_API DATATYPE_AVATAR_INFOS_LIST : DATATYPE_BASE
+{
+public:
+	class KBENGINEPLUGINS_API DATATYPE__AVATAR_INFOS_LIST_values_ArrayType_ChildArray : public DATATYPE_BASE
 	{
 	public:
-		DATATYPE_AVATAR_INFO itemType;
+		DATATYPE_AVATAR_INFOS itemType;
 
-		void createFromStreamEx(MemoryStream& stream, TArray<AVATAR_INFO>& datas)
+		void createFromStreamEx(MemoryStream& stream, TArray<AVATAR_INFOS>& datas)
 		{
 			uint32 size = stream.readUint32();
 			while(size > 0)
@@ -41,7 +66,7 @@ public:
 
 		}
 
-		void addToStreamEx(Bundle& stream, const TArray<AVATAR_INFO>& v)
+		void addToStreamEx(Bundle& stream, const TArray<AVATAR_INFOS>& v)
 		{
 			stream.writeUint32((uint32)v.Num());
 			for(int i=0; i<v.Num(); ++i)
@@ -51,10 +76,10 @@ public:
 		}
 	};
 
-	DATATYPE__AVATAR_INFO_LIST_values_ArrayType_ChildArray values_DataType;
+	DATATYPE__AVATAR_INFOS_LIST_values_ArrayType_ChildArray values_DataType;
 
-	void createFromStreamEx(MemoryStream& stream, AVATAR_INFO_LIST& datas);
-	void addToStreamEx(Bundle& stream, const AVATAR_INFO_LIST& v);
+	void createFromStreamEx(MemoryStream& stream, AVATAR_INFOS_LIST& datas);
+	void addToStreamEx(Bundle& stream, const AVATAR_INFOS_LIST& v);
 };
 
 

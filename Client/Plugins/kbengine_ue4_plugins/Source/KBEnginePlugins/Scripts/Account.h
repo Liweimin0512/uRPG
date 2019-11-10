@@ -22,14 +22,14 @@ public:
 	void reqRemoveAvatar(uint64 dbid);
 	void reqEnterGame(uint64 dbid);
 
-	virtual void onCreateAvatarResult(uint8 retcode, const AVATAR_INFO& info) override;
+	virtual void onCreateAvatarResult(uint8 retcode, const AVATAR_INFOS& info) override;
 	virtual void onRemoveAvatar(uint64 dbid) override;
-	virtual void onReqAvatarList(const AVATAR_INFO_LIST& datas) override;
+	virtual void onReqAvatarList(const AVATAR_INFOS_LIST& datas) override;
 
 public:
 	void onLastSelCharacterChanged(uint64 oldValue) override;
 
-	AVATAR_INFO_LIST characters;
+	AVATAR_INFOS_LIST characters;
 
 };
 

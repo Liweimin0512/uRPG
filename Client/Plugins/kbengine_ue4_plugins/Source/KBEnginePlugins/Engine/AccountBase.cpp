@@ -92,8 +92,8 @@ void AccountBase::onRemoteMethodCall(MemoryStream& stream)
 		case 7:
 		{
 			uint8 onCreateAvatarResult_arg1 = stream.readUint8();
-			AVATAR_INFO onCreateAvatarResult_arg2;
-			((DATATYPE_AVATAR_INFO*)pMethod->args[1])->createFromStreamEx(stream, onCreateAvatarResult_arg2);
+			AVATAR_INFOS onCreateAvatarResult_arg2;
+			((DATATYPE_AVATAR_INFOS*)pMethod->args[1])->createFromStreamEx(stream, onCreateAvatarResult_arg2);
 			onCreateAvatarResult(onCreateAvatarResult_arg1, onCreateAvatarResult_arg2);
 			break;
 		}
@@ -105,8 +105,8 @@ void AccountBase::onRemoteMethodCall(MemoryStream& stream)
 		}
 		case 6:
 		{
-			AVATAR_INFO_LIST onReqAvatarList_arg1;
-			((DATATYPE_AVATAR_INFO_LIST*)pMethod->args[0])->createFromStreamEx(stream, onReqAvatarList_arg1);
+			AVATAR_INFOS_LIST onReqAvatarList_arg1;
+			((DATATYPE_AVATAR_INFOS_LIST*)pMethod->args[0])->createFromStreamEx(stream, onReqAvatarList_arg1);
 			onReqAvatarList(onReqAvatarList_arg1);
 			break;
 		}

@@ -29,9 +29,9 @@ public:
 	uint64 lastSelCharacter;
 	virtual void onLastSelCharacterChanged(uint64 oldValue) {}
 
-	virtual void onCreateAvatarResult(uint8 arg1, const AVATAR_INFO& arg2) = 0; 
+	virtual void onCreateAvatarResult(uint8 arg1, const AVATAR_INFOS& arg2) = 0; 
 	virtual void onRemoveAvatar(uint64 arg1) = 0; 
-	virtual void onReqAvatarList(const AVATAR_INFO_LIST& arg1) = 0; 
+	virtual void onReqAvatarList(const AVATAR_INFOS_LIST& arg1) = 0; 
 
 	void onComponentsEnterworld() override;
 	void onComponentsLeaveworld() override;

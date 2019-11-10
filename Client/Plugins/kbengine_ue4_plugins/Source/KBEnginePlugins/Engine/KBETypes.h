@@ -56,44 +56,139 @@ typedef FVector VECTOR3;
 
 typedef FVector4 VECTOR4;
 
+typedef int32 OBJECT_ID;
+
+typedef uint8 BOOL;
+
+typedef int32 CONTROLLER_ID;
+
+typedef int32 EXPERIENCE;
+
+typedef int32 ITEM_ID;
+
+typedef int32 SKILLID;
+
+typedef int32 QUESTID;
+
 typedef uint64 DBID;
 
-class AVATAR_INFO
+typedef uint64 UID;
+
+typedef TArray<uint8> UID1;
+
+typedef int32 ENTITY_ID;
+
+typedef uint32 ENTITY_NO;
+
+typedef uint32 SPACE_ID;
+
+typedef FVector POSITION3D;
+
+typedef FVector DIRECTION3D;
+
+typedef uint32 ENTITY_UTYPE;
+
+typedef int32 DAMAGE_TYPE;
+
+typedef int32 ENMITY;
+
+typedef int32 HP;
+
+typedef int32 MP;
+
+typedef int8 ENTITY_STATE;
+
+typedef uint8 ENTITY_SUBSTATE;
+
+typedef int32 ENTITY_FORBIDS;
+
+class ENTITY_FORBID_COUNTER : public TArray<int8>
+{
+public:
+
+	ENTITY_FORBID_COUNTER()
+	{
+	}
+
+};
+
+inline bool operator ==(const ENTITY_FORBID_COUNTER& a, const ENTITY_FORBID_COUNTER& b)
+{
+	return a == b;
+};
+
+class ENTITYID_LIST : public TArray<int32>
+{
+public:
+
+	ENTITYID_LIST()
+	{
+	}
+
+};
+
+inline bool operator ==(const ENTITYID_LIST& a, const ENTITYID_LIST& b)
+{
+	return a == b;
+};
+
+class AVATAR_DATA
+{
+public:
+	int8 param1;
+	TArray<uint8> param2;
+
+	AVATAR_DATA():
+	param1(0),
+	param2()
+	{
+	}
+
+};
+
+inline bool operator ==(const AVATAR_DATA& a, const AVATAR_DATA& b)
+{
+	return a.param1 == b.param1 && a.param2 == b.param2;
+};
+
+class AVATAR_INFOS
 {
 public:
 	uint64 dbid;
 	FString name;
 	uint8 raceType;
 	uint16 level;
+	AVATAR_DATA data;
 
-	AVATAR_INFO():
+	AVATAR_INFOS():
 	dbid(0),
 	name(),
 	raceType(0),
-	level(0)
+	level(0),
+	data()
 	{
 	}
 
 };
 
-inline bool operator ==(const AVATAR_INFO& a, const AVATAR_INFO& b)
+inline bool operator ==(const AVATAR_INFOS& a, const AVATAR_INFOS& b)
 {
-	return a.dbid == b.dbid && a.name == b.name && a.raceType == b.raceType && a.level == b.level;
+	return a.dbid == b.dbid && a.name == b.name && a.raceType == b.raceType && a.level == b.level && a.data == b.data;
 };
 
-class AVATAR_INFO_LIST
+class AVATAR_INFOS_LIST
 {
 public:
-	TArray<AVATAR_INFO> values;
+	TArray<AVATAR_INFOS> values;
 
-	AVATAR_INFO_LIST():
+	AVATAR_INFOS_LIST():
 	values()
 	{
 	}
 
 };
 
-inline bool operator ==(const AVATAR_INFO_LIST& a, const AVATAR_INFO_LIST& b)
+inline bool operator ==(const AVATAR_INFOS_LIST& a, const AVATAR_INFOS_LIST& b)
 {
 	return a.values == b.values;
 };

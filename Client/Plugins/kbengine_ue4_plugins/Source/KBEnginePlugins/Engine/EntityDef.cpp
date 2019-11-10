@@ -171,7 +171,7 @@ void EntityDef::initScriptModules()
 
 	TArray<DATATYPE_BASE*> Account_onCreateAvatarResult_args;
 	Account_onCreateAvatarResult_args.Add(EntityDef::id2datatypes[2]);
-	Account_onCreateAvatarResult_args.Add(EntityDef::id2datatypes[22]);
+	Account_onCreateAvatarResult_args.Add(EntityDef::id2datatypes[25]);
 
 	Method* pAccount_onCreateAvatarResult = new Method();
 	pAccount_onCreateAvatarResult->name = TEXT("onCreateAvatarResult");
@@ -201,7 +201,7 @@ void EntityDef::initScriptModules()
 	//DEBUG_MSG("EntityDef::initScriptModules: add(Account), method(onRemoveAvatar / 8).");
 
 	TArray<DATATYPE_BASE*> Account_onReqAvatarList_args;
-	Account_onReqAvatarList_args.Add(EntityDef::id2datatypes[23]);
+	Account_onReqAvatarList_args.Add(EntityDef::id2datatypes[26]);
 
 	Method* pAccount_onReqAvatarList = new Method();
 	pAccount_onReqAvatarList->name = TEXT("onReqAvatarList");
@@ -344,7 +344,7 @@ void EntityDef::initScriptModules()
 	Property* pAvatar_level = new Property();
 	pAvatar_level->name = TEXT("level");
 	pAvatar_level->properUtype = 6;
-	pAvatar_level->properFlags = 4;
+	pAvatar_level->properFlags = 8;
 	pAvatar_level->aliasID = 4;
 	KBVar* pAvatar_level_defval = new KBVar((uint16)FCString::Atoi64(TEXT("")));
 	pAvatar_level->pDefaultVal = pAvatar_level_defval;
@@ -355,6 +355,90 @@ void EntityDef::initScriptModules()
 
 	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), property(level / 6).");
 
+	Property* pAvatar_modelID = new Property();
+	pAvatar_modelID->name = TEXT("modelID");
+	pAvatar_modelID->properUtype = 41006;
+	pAvatar_modelID->properFlags = 4;
+	pAvatar_modelID->aliasID = 5;
+	KBVar* pAvatar_modelID_defval = new KBVar((uint32)FCString::Atoi64(TEXT("0")));
+	pAvatar_modelID->pDefaultVal = pAvatar_modelID_defval;
+	pAvatarModule->propertys.Add(TEXT("modelID"), pAvatar_modelID); 
+
+	pAvatarModule->usePropertyDescrAlias = true;
+	pAvatarModule->idpropertys.Add((uint16)pAvatar_modelID->aliasID, pAvatar_modelID);
+
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), property(modelID / 41006).");
+
+	Property* pAvatar_modelScale = new Property();
+	pAvatar_modelScale->name = TEXT("modelScale");
+	pAvatar_modelScale->properUtype = 41007;
+	pAvatar_modelScale->properFlags = 4;
+	pAvatar_modelScale->aliasID = 6;
+	KBVar* pAvatar_modelScale_defval = new KBVar((uint8)FCString::Atoi64(TEXT("30")));
+	pAvatar_modelScale->pDefaultVal = pAvatar_modelScale_defval;
+	pAvatarModule->propertys.Add(TEXT("modelScale"), pAvatar_modelScale); 
+
+	pAvatarModule->usePropertyDescrAlias = true;
+	pAvatarModule->idpropertys.Add((uint16)pAvatar_modelScale->aliasID, pAvatar_modelScale);
+
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), property(modelScale / 41007).");
+
+	Property* pAvatar_name = new Property();
+	pAvatar_name->name = TEXT("name");
+	pAvatar_name->properUtype = 41003;
+	pAvatar_name->properFlags = 4;
+	pAvatar_name->aliasID = 7;
+	KBVar* pAvatar_name_defval = new KBVar(FString());
+	pAvatar_name->pDefaultVal = pAvatar_name_defval;
+	pAvatarModule->propertys.Add(TEXT("name"), pAvatar_name); 
+
+	pAvatarModule->usePropertyDescrAlias = true;
+	pAvatarModule->idpropertys.Add((uint16)pAvatar_name->aliasID, pAvatar_name);
+
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), property(name / 41003).");
+
+	Property* pAvatar_own_val = new Property();
+	pAvatar_own_val->name = TEXT("own_val");
+	pAvatar_own_val->properUtype = 7;
+	pAvatar_own_val->properFlags = 16;
+	pAvatar_own_val->aliasID = 8;
+	KBVar* pAvatar_own_val_defval = new KBVar((uint16)FCString::Atoi64(TEXT("")));
+	pAvatar_own_val->pDefaultVal = pAvatar_own_val_defval;
+	pAvatarModule->propertys.Add(TEXT("own_val"), pAvatar_own_val); 
+
+	pAvatarModule->usePropertyDescrAlias = true;
+	pAvatarModule->idpropertys.Add((uint16)pAvatar_own_val->aliasID, pAvatar_own_val);
+
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), property(own_val / 7).");
+
+	Property* pAvatar_uid = new Property();
+	pAvatar_uid->name = TEXT("uid");
+	pAvatar_uid->properUtype = 41004;
+	pAvatar_uid->properFlags = 4;
+	pAvatar_uid->aliasID = 9;
+	KBVar* pAvatar_uid_defval = new KBVar((uint32)FCString::Atoi64(TEXT("0")));
+	pAvatar_uid->pDefaultVal = pAvatar_uid_defval;
+	pAvatarModule->propertys.Add(TEXT("uid"), pAvatar_uid); 
+
+	pAvatarModule->usePropertyDescrAlias = true;
+	pAvatarModule->idpropertys.Add((uint16)pAvatar_uid->aliasID, pAvatar_uid);
+
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), property(uid / 41004).");
+
+	Property* pAvatar_utype = new Property();
+	pAvatar_utype->name = TEXT("utype");
+	pAvatar_utype->properUtype = 41005;
+	pAvatar_utype->properFlags = 4;
+	pAvatar_utype->aliasID = 10;
+	KBVar* pAvatar_utype_defval = new KBVar((uint32)FCString::Atoi64(TEXT("0")));
+	pAvatar_utype->pDefaultVal = pAvatar_utype_defval;
+	pAvatarModule->propertys.Add(TEXT("utype"), pAvatar_utype); 
+
+	pAvatarModule->usePropertyDescrAlias = true;
+	pAvatarModule->idpropertys.Add((uint16)pAvatar_utype->aliasID, pAvatar_utype);
+
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), property(utype / 41005).");
+
 	pAvatarModule->useMethodDescrAlias = true;
 }
 
@@ -362,7 +446,7 @@ void EntityDef::initDefTypes()
 {
 	{
 		uint16 utype = 2;
-		FString typeName = TEXT("UINT8");
+		FString typeName = TEXT("ENTITY_SUBSTATE");
 		FString name = TEXT("UINT8");
 		DATATYPE_BASE** fPtr = EntityDef::datatypes.Find(name);
 		DATATYPE_BASE* pVal = fPtr != NULL ? *fPtr : NULL;
@@ -384,7 +468,7 @@ void EntityDef::initDefTypes()
 
 	{
 		uint16 utype = 5;
-		FString typeName = TEXT("DBID");
+		FString typeName = TEXT("UID");
 		FString name = TEXT("UINT64");
 		DATATYPE_BASE** fPtr = EntityDef::datatypes.Find(name);
 		DATATYPE_BASE* pVal = fPtr != NULL ? *fPtr : NULL;
@@ -395,7 +479,7 @@ void EntityDef::initDefTypes()
 
 	{
 		uint16 utype = 4;
-		FString typeName = TEXT("UINT32");
+		FString typeName = TEXT("ENTITY_UTYPE");
 		FString name = TEXT("UINT32");
 		DATATYPE_BASE** fPtr = EntityDef::datatypes.Find(name);
 		DATATYPE_BASE* pVal = fPtr != NULL ? *fPtr : NULL;
@@ -406,7 +490,7 @@ void EntityDef::initDefTypes()
 
 	{
 		uint16 utype = 6;
-		FString typeName = TEXT("INT8");
+		FString typeName = TEXT("ENTITY_STATE");
 		FString name = TEXT("INT8");
 		DATATYPE_BASE** fPtr = EntityDef::datatypes.Find(name);
 		DATATYPE_BASE* pVal = fPtr != NULL ? *fPtr : NULL;
@@ -428,7 +512,7 @@ void EntityDef::initDefTypes()
 
 	{
 		uint16 utype = 8;
-		FString typeName = TEXT("INT32");
+		FString typeName = TEXT("ENTITY_FORBIDS");
 		FString name = TEXT("INT32");
 		DATATYPE_BASE** fPtr = EntityDef::datatypes.Find(name);
 		DATATYPE_BASE* pVal = fPtr != NULL ? *fPtr : NULL;
@@ -494,7 +578,7 @@ void EntityDef::initDefTypes()
 
 	{
 		uint16 utype = 10;
-		FString typeName = TEXT("PYTHON");
+		FString typeName = TEXT("UID1");
 		FString name = TEXT("PYTHON");
 		DATATYPE_BASE** fPtr = EntityDef::datatypes.Find(name);
 		DATATYPE_BASE* pVal = fPtr != NULL ? *fPtr : NULL;
@@ -571,7 +655,7 @@ void EntityDef::initDefTypes()
 
 	{
 		uint16 utype = 16;
-		FString typeName = TEXT("VECTOR3");
+		FString typeName = TEXT("DIRECTION3D");
 		FString name = TEXT("VECTOR3");
 		DATATYPE_BASE** fPtr = EntityDef::datatypes.Find(name);
 		DATATYPE_BASE* pVal = fPtr != NULL ? *fPtr : NULL;
@@ -593,8 +677,8 @@ void EntityDef::initDefTypes()
 
 	{
 		uint16 utype = 22;
-		FString typeName = TEXT("AVATAR_INFO");
-		DATATYPE_AVATAR_INFO* pDatatype = new DATATYPE_AVATAR_INFO();
+		FString typeName = TEXT("ENTITY_FORBID_COUNTER");
+		DATATYPE_ENTITY_FORBID_COUNTER* pDatatype = new DATATYPE_ENTITY_FORBID_COUNTER();
 		EntityDef::datatypes.Add(typeName, (DATATYPE_BASE*)pDatatype);
 		EntityDef::id2datatypes.Add(utype, EntityDef::datatypes[typeName]);
 		EntityDef::datatype2id.Add(typeName, utype);
@@ -602,8 +686,35 @@ void EntityDef::initDefTypes()
 
 	{
 		uint16 utype = 23;
-		FString typeName = TEXT("AVATAR_INFO_LIST");
-		DATATYPE_AVATAR_INFO_LIST* pDatatype = new DATATYPE_AVATAR_INFO_LIST();
+		FString typeName = TEXT("ENTITYID_LIST");
+		DATATYPE_ENTITYID_LIST* pDatatype = new DATATYPE_ENTITYID_LIST();
+		EntityDef::datatypes.Add(typeName, (DATATYPE_BASE*)pDatatype);
+		EntityDef::id2datatypes.Add(utype, EntityDef::datatypes[typeName]);
+		EntityDef::datatype2id.Add(typeName, utype);
+	}
+
+	{
+		uint16 utype = 24;
+		FString typeName = TEXT("AVATAR_DATA");
+		DATATYPE_AVATAR_DATA* pDatatype = new DATATYPE_AVATAR_DATA();
+		EntityDef::datatypes.Add(typeName, (DATATYPE_BASE*)pDatatype);
+		EntityDef::id2datatypes.Add(utype, EntityDef::datatypes[typeName]);
+		EntityDef::datatype2id.Add(typeName, utype);
+	}
+
+	{
+		uint16 utype = 25;
+		FString typeName = TEXT("AVATAR_INFOS");
+		DATATYPE_AVATAR_INFOS* pDatatype = new DATATYPE_AVATAR_INFOS();
+		EntityDef::datatypes.Add(typeName, (DATATYPE_BASE*)pDatatype);
+		EntityDef::id2datatypes.Add(utype, EntityDef::datatypes[typeName]);
+		EntityDef::datatype2id.Add(typeName, utype);
+	}
+
+	{
+		uint16 utype = 26;
+		FString typeName = TEXT("AVATAR_INFOS_LIST");
+		DATATYPE_AVATAR_INFOS_LIST* pDatatype = new DATATYPE_AVATAR_INFOS_LIST();
 		EntityDef::datatypes.Add(typeName, (DATATYPE_BASE*)pDatatype);
 		EntityDef::id2datatypes.Add(utype, EntityDef::datatypes[typeName]);
 		EntityDef::datatype2id.Add(typeName, utype);

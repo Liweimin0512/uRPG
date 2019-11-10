@@ -5,7 +5,8 @@ import GlobalConst
 import KBEngine
 import d_race
 import d_spaces
-from AVATAR_INFO import TAvatarInfo
+from AVATAR_DATA import TAvatarData
+from AVATAR_INFOS import TAvatarInfos
 from KBEDebug import *
 
 
@@ -29,14 +30,28 @@ class Account(KBEngine.Proxy):
         self.client.onReqAvatarList(self.characters)
 
     def reqCreateAvatar(self, name, raceType):
-        # if len(self.characters) >= 3:
-        #     # 角色超上限
-        #     DEBUG_MSG("Account[%i].reqCreateAvatar:%s. character=%s.\n" % (self.id, name, self.characters))
-        # 
-        #     avatarinfo = TAvatarInfo()
-        #     avatarinfo.extend([0, "", 0, 0])
-        #     self.client.onCreateAvatarResult(3, avatarinfo)
-        #     return
+        """
+        客户端请求创建角色
+        :param name: 角色名
+        :param raceType: 角色种族
+        :return:角色
+        """
+
+        avatarInfo = TAvatarInfos()
+        avatarInfo.extend([0, "", 0, 0, TAvatarData().createFromDict({"param1": 0, "param2": b''})])
+
+        # 服务器重名检测
+        """
+        if name in all_avatar_names:
+        	retcode = 2
+        	self.client.onCreateAvatarResult(retcode, avatarinfo)
+        	return
+        """
+
+        if len(self.characters) >= 3:
+            DEBUG_MSG("Account[%i].reqCreateAvatar:%s. character=%s.\n" % (self.id, name, self.characters))
+            self.client.onCreateAvatarResult(3, avatarInfo)
+            return
 
         spaceUType = GlobalConst.g_demoMaps.get(self.getClientDatas()[0], 1)
         spaceData = d_spaces.datas.get(spaceUType)
@@ -46,11 +61,11 @@ class Account(KBEngine.Proxy):
             "name": name,
             "raceType": raceType,
             "level": 1,
-            # "position"		: spaceData.get("spawnPos", (0, -5, -10)),
+            "position": spaceData.get("spawnPos", (0, -5, -10)),
         }
 
-        # avatar = KBEngine.createEntityLocally("Avatar", props)
-        avatar = KBEngine.createEntityAnywhere("Avatar", {})
+        avatar = KBEngine.createEntityLocally("Avatar", props)
+        # avatar = KBEngine.createEntityAnywhere("Avatar", {})
         if avatar:
             avatar.writeToDB(self._onAvatarSaved)
 
@@ -111,136 +126,133 @@ class Account(KBEngine.Proxy):
         else:
             self.giveClientTo(self.activeAvatar)
 
+    # --------------------------------------------------------------------------------------------
+    #                              Callbacks
+    # --------------------------------------------------------------------------------------------
 
-# ------------------------------
+    def onClientEnabled(self):
+        """
+        KBEngine method.
+        该entity被正式激活为可使用， 此时entity已经建立了client对应实体， 可以在此创建它的
+        cell部分。
+        """
+        INFO_MSG("account[%i] entities enable. entityCall:%s"
+                 % (self.id, self.client))
 
-def onClientEnabled(self):
-    """
-    KBEngine method.
-    该entity被正式激活为可使用， 此时entity已经建立了client对应实体， 可以在此创建它的
-    cell部分。
-    """
-    INFO_MSG("account[%i] entities enable. entityCall:%s"
-             % (self.id, self.client))
+    def onLogOnAttempt(self, ip, port, password):
+        """
+        KBEngine method.
+        客户端登陆失败时会回调到这里
+        """
+        # 如果一个在线的账号被一个客户端登陆并且onLogOnAttempt返回允许
+        # 那么会踢掉之前的客户端连接
+        # 那么此时self.activeAvatar可能不为None， 常规的流程是销毁这个角色等新客户端上来重新选择角色进入
+        if self.activeAvatar:
+            if self.activeAvatar.client is not None:
+                self.activeAvatar.giveClientTo(self)
 
+            self.relogin = time.time()
+            # self.activeAvatar.destroySelf()
+            if self.activeAvatar.cell is not None:
+                self.activeAvatar.destroyCellEntity()
+            self.activeAvatar = None
 
-def onLogOnAttempt(self, ip, port, password):
-    """
-    KBEngine method.
-    客户端登陆失败时会回调到这里
-    """
-    # 如果一个在线的账号被一个客户端登陆并且onLogOnAttempt返回允许
-    # 那么会踢掉之前的客户端连接
-    # 那么此时self.activeAvatar可能不为None， 常规的流程是销毁这个角色等新客户端上来重新选择角色进入
-    if self.activeAvatar:
-        if self.activeAvatar.client is not None:
-            self.activeAvatar.giveClientTo(self)
+        return KBEngine.LOG_ON_ACCEPT
 
-        self.relogin = time.time()
-        # self.activeAvatar.destroySelf()
-        if self.activeAvatar.cell is not None:
-            self.activeAvatar.destroyCellEntity()
-        self.activeAvatar = None
+    def onClientDeath(self):
+        """
+        KBEngine method.
+        客户端对应实体已经销毁
+        """
+        if self.activeAvatar:
+            self.activeAvatar.accountEntity = None
+            self.activeAvatar = None
 
-    return KBEngine.LOG_ON_ACCEPT
+        DEBUG_MSG("Account[%i].onClientDeath:" % self.id)
+        self.destroy()
 
+    def onDestroy(self):
+        """
+        entity销毁时回调
+        """
+        DEBUG_MSG("Account::onDestroy: %i." % self.id)
 
-def onClientDeath(self):
-    """
-    KBEngine method.
-    客户端对应实体已经销毁
-    """
-    if self.activeAvatar:
-        self.activeAvatar.accountEntity = None
-        self.activeAvatar = None
+        if self.activeAvatar:
+            self.activeAvatar.accountEntity = None
 
-    DEBUG_MSG("Account[%i].onClientDeath:" % self.id)
-    self.destroy()
+            try:
+                self.activeAvatar.destroySelf()
+            except:
+                pass
 
+            self.activeAvatar = None
 
-def onDestroy(self):
-    """
-    entity销毁时回调
-    """
-    DEBUG_MSG("Account::onDestroy: %i." % self.id)
+    def _onAvatarEnter(self, baseRef, dbid, wasActive):
+        """
+        选择角色进入游戏时被回调
+        :param baseRef:
+        :param dbid:
+        :param wasActive:
+        """
+        if wasActive:
+            ERROR_MSG("Account::__onAvatarCreated:(%i): this character is in world now!" % (self.id))
+            baseRef.accountEntity = self
+            self.activeAvatar = baseRef
+            self.giveClientTo(baseRef)
+            return
+        if baseRef is None:
+            ERROR_MSG("Account::__onAvatarCreated:(%i): the character you wanted to created is not exist!" % (self.id))
+            return
 
-    if self.activeAvatar:
-        self.activeAvatar.accountEntity = None
+        avatar = KBEngine.entities().get(baseRef.id)
+        if avatar is None:
+            ERROR_MSG("Account::__onAvatarCreated:(%i): when character was created, it died as well!" % (self.id))
+            return
 
-        try:
-            self.activeAvatar.destroySelf()
-        except:
-            pass
+        if self.isDestroyed:
+            ERROR_MSG("Account::__onAvatarCreated:(%i): i dead, will the destroy of Avatar!" % (self.id))
+            avatar.destroy()
+            return
 
-        self.activeAvatar = None
+        info = self.characters[dbid]
+        profesional = info[2]
 
+        avatar.accountEntity = self
+        self.activeAvatar = avatar
+        self.giveClientTo(avatar)
 
-def _onAvatarEnter(self, baseRef, dbid, wasActive):
-    """
-    选择角色进入游戏时被回调
-    :param baseRef:
-    :param dbid:
-    :param wasActive:
-    """
-    if wasActive:
-        ERROR_MSG("Account::__onAvatarCreated:(%i): this character is in world now!" % (self.id))
-        baseRef.accountEntity = self
-        self.activeAvatar = baseRef
-        self.giveClientTo(baseRef)
-        return
-    if baseRef is None:
-        ERROR_MSG("Account::__onAvatarCreated:(%i): the character you wanted to created is not exist!" % (self.id))
-        return
+    def _onAvatarSaved(self, success, avatar):
+        """
+        新建角色写入服务器回调
+        :param success:成功
+        :param avatar:角色数据
+        """
+        INFO_MSG('Account::_onAvatarSaved:(%i) create avatar state: %i, %s, %i' % (
+            self.id, success, avatar.cellData["name"], avatar.databaseID))
 
-    avatar = KBEngine.entities().get(baseRef.id)
-    if avatar is None:
-        ERROR_MSG("Account::__onAvatarCreated:(%i): when character was created, it died as well!" % (self.id))
-        return
+        # 如果此时账号已经销毁， 角色已经无法被记录则我们清除这个角色
+        if self.isDestroyed:
+            if avatar:
+                avatar.destroy(True)
+            return
 
-    if self.isDestroyed:
-        ERROR_MSG("Account::__onAvatarCreated:(%i): i dead, will the destroy of Avatar!" % (self.id))
+        avatarinfo = TAvatarInfos()
+        avatarinfo.extend([0, "", 0, 0, TAvatarData().createFromDict({"param1": 0, "param2": b''})])
+
+        if success:
+            info = TAvatarInfos()
+            info.extend([avatar.databaseID, avatar.cellData["name"], avatar.raceType, 1,
+                         TAvatarData().createFromDict({"param1": 1, "param2": b'1'})])
+            self.characters[avatar.databaseID] = info
+            avatarinfo[0] = avatar.databaseID
+            avatarinfo[1] = avatar.cellData["name"]
+            avatarinfo[2] = avatar.raceType
+            avatarinfo[3] = 1
+            self.writeToDB()
+        else:
+            avatarinfo[1] = "创建失败了"
+
         avatar.destroy()
-        return
 
-    info = self.characters[dbid]
-    profesional = info[2]
-
-    avatar.accountEntity = self
-    self.activeAvatar = avatar
-    self.giveClientTo(avatar)
-
-
-def _onAvatarSaved(self, success, avatar):
-    """
-    新建角色写入服务器回调
-    :param success:
-    :param avatar:
-    """
-    INFO_MSG('Account::_onAvatarSaved:(%i) create avatar state: %i, %s, %i' % (
-        self.id, success, avatar.cellData["name"], avatar.databaseID))
-
-    # 如果此时账号已经销毁， 角色已经无法被记录则我们清除这个角色
-    # if self.isDestroyed:
-    #     if avatar:
-    #         avatar.destroy(True)
-    #     return
-
-    avatarinfo = TAvatarInfo()
-    avatarinfo.extend([0, "", 0, 0])
-
-    errorcode = 0
-    if success:
-        avatarinfo[0] = avatar.databaseID
-        avatarinfo[1] = avatar.cellData["name"]
-        avatarinfo[2] = avatar.raceType
-        avatarinfo[3] = 1
-        self.characters[avatar.databaseID] = avatarinfo
-        self.writeToDB()
-    else:
-        avatarinfo[1] = "创建失败了"
-        errorcode = 4
-
-    avatar.destroy()
-
-    if self.client:
-        self.client.onCreateAvatarResult(errorcode, avatarinfo)
+        if self.client:
+            self.client.onCreateAvatarResult(0, avatarinfo)
