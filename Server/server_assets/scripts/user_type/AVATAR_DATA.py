@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import KBEngine
 import GlobalConst
 from KBEDebug import *
@@ -8,6 +9,8 @@ class TAvatarData(dict):
     """
 
     def __init__(self):
+        """
+        """
         dict.__init__(self)
 
     def asDict(self):
@@ -15,7 +18,9 @@ class TAvatarData(dict):
             return {"param1": val[0], "param2": val[1]}
 
     def createFromDict(self, dictData):
-        self[dictData["param1"]] = [dictData["param1"], dictData["param2"]]
+        self[dictData["param1"]] = [dictData["param1"],
+                                    dictData["param2"]]
+        return self
 
 
 class AVATAR_DATA_PICKLER:

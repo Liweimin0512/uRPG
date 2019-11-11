@@ -11,5 +11,5 @@ class Avatar(KBEngine.Proxy, GameObject):
         GameObject.__init__(self)
 
         self.accountEntity = None
-        # self.cellData["dbid"] = self.databaseID
-        # self.name = self.cellData["name"]
+        self.cellData["dbid"] = self.databaseID
+        self.name = self.cellData["name"]

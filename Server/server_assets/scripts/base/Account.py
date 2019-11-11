@@ -36,7 +36,6 @@ class Account(KBEngine.Proxy):
         :param raceType: 角色种族
         :return:角色
         """
-
         avatarInfo = TAvatarInfos()
         avatarInfo.extend([0, "", 0, 0, TAvatarData().createFromDict({"param1": 0, "param2": b''})])
 
@@ -49,7 +48,7 @@ class Account(KBEngine.Proxy):
         """
 
         if len(self.characters) >= 3:
-            DEBUG_MSG("Account[%i].reqCreateAvatar:%s. character=%s.\n" % (self.id, name, self.characters))
+            DEBUG_MSG("Account[%i].reqCreateAvatar:%s. character=%s.max!!!\n" % (self.id, name, self.characters))
             self.client.onCreateAvatarResult(3, avatarInfo)
             return
 
@@ -69,12 +68,9 @@ class Account(KBEngine.Proxy):
         if avatar:
             avatar.writeToDB(self._onAvatarSaved)
 
-        DEBUG_MSG("Account[%i].reqCreateAvatar:%s.\n"  # spaceUType=%i, spawnPos=%s.\n
-                  % (self.id,
-                     name
-                     # avatar.cellData["spaceUType"],
-                     # spaceData.get("spawnPos", (0, 0, 0))
-                     ))
+        DEBUG_MSG("Account[%i].reqCreateAvatar:%s.\n" % (self.id, name))
+        # DEBUG_MSG("Account[%i].reqCreateAvatar:%s.\n"  # spaceUType=%i, spawnPos=%s.\n
+        #           % (self.id, name, avatar.cellData["spaceUType"], spaceData.get("spawnPos", (0, 0, 0))))
 
     def reqRemoveAvatar(self, name):
         """
@@ -227,8 +223,8 @@ class Account(KBEngine.Proxy):
         :param success:成功
         :param avatar:角色数据
         """
-        # INFO_MSG('Account::_onAvatarSaved:(%i) create avatar state: %i, %s, %i' % (
-        #     self.id, success, avatar.cellData["name"], avatar.databaseID))
+        INFO_MSG('Account::_onAvatarSaved:(%i) create avatar state: %i, %s, %i' % (
+            self.id, success, avatar.cellData["name"], avatar.databaseID))
 
         # 如果此时账号已经销毁， 角色已经无法被记录则我们清除这个角色
         if self.isDestroyed:
@@ -241,11 +237,11 @@ class Account(KBEngine.Proxy):
 
         if success:
             info = TAvatarInfos()
-            # info.extend([avatar.databaseID, avatar.cellData["name"], avatar.raceType, 1,
-            #              TAvatarData().createFromDict({"param1": 1, "param2": b'1'})])
-            # self.characters[avatar.databaseID] = info
+            info.extend([avatar.databaseID, avatar.cellData["name"], avatar.raceType, 1,
+                         TAvatarData().createFromDict({"param1": 1, "param2": b'1'})])
+            self.characters[avatar.databaseID] = info
             avatarinfo[0] = avatar.databaseID
-            # avatarinfo[1] = avatar.cellData["name"]
+            avatarinfo[1] = avatar.cellData["name"]
             avatarinfo[2] = avatar.raceType
             avatarinfo[3] = 1
             self.writeToDB()

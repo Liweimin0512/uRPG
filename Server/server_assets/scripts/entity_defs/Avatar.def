@@ -25,11 +25,6 @@
 <!--        <Interface>Dialog</Interface>-->
     </Interfaces>
     <Properties>
-        <name>
-            <Type>UNICODE</Type>
-            <Flags>BASE</Flags>
-            <Persistent>true</Persistent> <!-- 需要持久化 -->
-        </name>
         <raceType>
             <Type>UINT8</Type>
             <Flags>BASE</Flags>

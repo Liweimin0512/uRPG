@@ -107,7 +107,7 @@ void AvatarBase::onUpdatePropertys(MemoryStream& stream)
 
 				break;
 			}
-			case 6:
+			case 5:
 			{
 				uint16 oldval_level = level;
 				level = stream.readUint16();
@@ -179,7 +179,7 @@ void AvatarBase::onUpdatePropertys(MemoryStream& stream)
 
 				break;
 			}
-			case 7:
+			case 6:
 			{
 				uint16 oldval_own_val = own_val;
 				own_val = stream.readUint16();

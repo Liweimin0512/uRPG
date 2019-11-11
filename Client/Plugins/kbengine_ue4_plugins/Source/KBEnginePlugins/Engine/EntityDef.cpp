@@ -343,7 +343,7 @@ void EntityDef::initScriptModules()
 
 	Property* pAvatar_level = new Property();
 	pAvatar_level->name = TEXT("level");
-	pAvatar_level->properUtype = 6;
+	pAvatar_level->properUtype = 5;
 	pAvatar_level->properFlags = 8;
 	pAvatar_level->aliasID = 4;
 	KBVar* pAvatar_level_defval = new KBVar((uint16)FCString::Atoi64(TEXT("")));
@@ -353,7 +353,7 @@ void EntityDef::initScriptModules()
 	pAvatarModule->usePropertyDescrAlias = true;
 	pAvatarModule->idpropertys.Add((uint16)pAvatar_level->aliasID, pAvatar_level);
 
-	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), property(level / 6).");
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), property(level / 5).");
 
 	Property* pAvatar_modelID = new Property();
 	pAvatar_modelID->name = TEXT("modelID");
@@ -399,7 +399,7 @@ void EntityDef::initScriptModules()
 
 	Property* pAvatar_own_val = new Property();
 	pAvatar_own_val->name = TEXT("own_val");
-	pAvatar_own_val->properUtype = 7;
+	pAvatar_own_val->properUtype = 6;
 	pAvatar_own_val->properFlags = 16;
 	pAvatar_own_val->aliasID = 8;
 	KBVar* pAvatar_own_val_defval = new KBVar((uint16)FCString::Atoi64(TEXT("")));
@@ -409,7 +409,7 @@ void EntityDef::initScriptModules()
 	pAvatarModule->usePropertyDescrAlias = true;
 	pAvatarModule->idpropertys.Add((uint16)pAvatar_own_val->aliasID, pAvatar_own_val);
 
-	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), property(own_val / 7).");
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), property(own_val / 6).");
 
 	Property* pAvatar_uid = new Property();
 	pAvatar_uid->name = TEXT("uid");
