@@ -52,7 +52,7 @@ class KBENGINEPLUGINS_API UKBEventData_reqCreateAvatar : public UKBEventData
 
 public:
 	UPROPERTY(Category = KBEngine, BlueprintReadWrite, EditAnywhere)
-	uint8 roleType;
+	uint8 raceType;
 
 	UPROPERTY(Category = KBEngine, BlueprintReadWrite, EditAnywhere)
 	FString name;
@@ -105,7 +105,7 @@ public:
 };
 
 UCLASS(Blueprintable, BlueprintType)
-class KBENGINEPLUGINS_API UKBEventData_selectAvatarGame : public UKBEventData
+class KBENGINEPLUGINS_API UKBEventData_reqEnterGame : public UKBEventData
 {
 	GENERATED_BODY()
 
@@ -180,141 +180,141 @@ public:
 	int entityID;
 };
 
-UCLASS(Blueprintable, BlueprintType)
-class KBENGINEPLUGINS_API UKBEventData_set_HP : public UKBEventData
-{
-	GENERATED_BODY()
-
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	int32 HP;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	int entityID;
-};
-
-UCLASS(Blueprintable, BlueprintType)
-class KBENGINEPLUGINS_API UKBEventData_set_HP_Max : public UKBEventData
-{
-	GENERATED_BODY()
-
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	int32 HP_Max;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	int entityID;
-};
-
-UCLASS(Blueprintable, BlueprintType)
-class KBENGINEPLUGINS_API UKBEventData_set_MP : public UKBEventData
-{
-	GENERATED_BODY()
-
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	int32 MP;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	int entityID;
-};
-
-UCLASS(Blueprintable, BlueprintType)
-class KBENGINEPLUGINS_API UKBEventData_MP_Max : public UKBEventData
-{
-	GENERATED_BODY()
-
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	int32 MP_Max;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	int entityID;
-};
-
-
+//UCLASS(Blueprintable, BlueprintType)
+//class KBENGINEPLUGINS_API UKBEventData_set_HP : public UKBEventData
+//{
+//	GENERATED_BODY()
+//
+//public:
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	int32 HP;
+//
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	int entityID;
+//};
+//
+//UCLASS(Blueprintable, BlueprintType)
+//class KBENGINEPLUGINS_API UKBEventData_set_HP_Max : public UKBEventData
+//{
+//	GENERATED_BODY()
+//
+//public:
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	int32 HP_Max;
+//
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	int entityID;
+//};
+//
+//UCLASS(Blueprintable, BlueprintType)
+//class KBENGINEPLUGINS_API UKBEventData_set_MP : public UKBEventData
+//{
+//	GENERATED_BODY()
+//
+//public:
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	int32 MP;
+//
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	int entityID;
+//};
+//
+//UCLASS(Blueprintable, BlueprintType)
+//class KBENGINEPLUGINS_API UKBEventData_MP_Max : public UKBEventData
+//{
+//	GENERATED_BODY()
+//
+//public:
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	int32 MP_Max;
+//
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	int entityID;
+//};
 
 
-UCLASS(Blueprintable, BlueprintType)
-class KBENGINEPLUGINS_API UKBEventData_set_flags : public UKBEventData
-{
-	GENERATED_BODY()
 
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	int32 flags;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	int entityID;
-};
-
-UCLASS(Blueprintable, BlueprintType)
-class KBENGINEPLUGINS_API UKBEventData_set_state : public UKBEventData
-{
-	GENERATED_BODY()
-
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	int32 state;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	int entityID;
-};
-
-UCLASS(Blueprintable, BlueprintType)
-class KBENGINEPLUGINS_API UKBEventData_set_subState : public UKBEventData
-{
-	GENERATED_BODY()
-
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	int32 subState;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	int entityID;
-};
-
-UCLASS(Blueprintable, BlueprintType)
-class KBENGINEPLUGINS_API UKBEventData_set_forbids : public UKBEventData
-{
-	GENERATED_BODY()
-
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	int32 forbids;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	int entityID;
-};
-
-UCLASS(Blueprintable, BlueprintType)
-class KBENGINEPLUGINS_API UKBEventData_reqRelive : public UKBEventData
-{
-	GENERATED_BODY()
-
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	uint8 reliveType;
-};
-
-UCLASS(Blueprintable, BlueprintType)
-class KBENGINEPLUGINS_API UKBEventData_recvDamage : public UKBEventData
-{
-	GENERATED_BODY()
-
-public:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	int32 attackerID;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	int32 skillID;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	int32 damageType;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	int32 damage;
-
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	int entityID;
-};
+//UCLASS(Blueprintable, BlueprintType)
+//class KBENGINEPLUGINS_API UKBEventData_set_flags : public UKBEventData
+//{
+//	GENERATED_BODY()
+//
+//public:
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	int32 flags;
+//
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	int entityID;
+//};
+//
+//UCLASS(Blueprintable, BlueprintType)
+//class KBENGINEPLUGINS_API UKBEventData_set_state : public UKBEventData
+//{
+//	GENERATED_BODY()
+//
+//public:
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	int32 state;
+//
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	int entityID;
+//};
+//
+//UCLASS(Blueprintable, BlueprintType)
+//class KBENGINEPLUGINS_API UKBEventData_set_subState : public UKBEventData
+//{
+//	GENERATED_BODY()
+//
+//public:
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	int32 subState;
+//
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	int entityID;
+//};
+//
+//UCLASS(Blueprintable, BlueprintType)
+//class KBENGINEPLUGINS_API UKBEventData_set_forbids : public UKBEventData
+//{
+//	GENERATED_BODY()
+//
+//public:
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	int32 forbids;
+//
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	int entityID;
+//};
+//
+//UCLASS(Blueprintable, BlueprintType)
+//class KBENGINEPLUGINS_API UKBEventData_reqRelive : public UKBEventData
+//{
+//	GENERATED_BODY()
+//
+//public:
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	uint8 reliveType;
+//};
+//
+//UCLASS(Blueprintable, BlueprintType)
+//class KBENGINEPLUGINS_API UKBEventData_recvDamage : public UKBEventData
+//{
+//	GENERATED_BODY()
+//
+//public:
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	int32 attackerID;
+//
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	int32 skillID;
+//
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	int32 damageType;
+//
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	int32 damage;
+//
+//	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+//	int entityID;
+//};

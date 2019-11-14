@@ -1,0 +1,60 @@
+<root>
+    <Properties>
+        <characters>
+            <Type>AVATAR_INFOS_LIST</Type>
+            <Flags>BASE</Flags>
+            <Default></Default>
+            <Persistent>true</Persistent>
+        </characters>
+        <lastSelCharacter>
+            <Type>DBID</Type>
+            <Flags>BASE_AND_CLIENT</Flags>
+            <Default>0</Default>
+            <Persistent>true</Persistent> <!--是否需要持久化-->
+        </lastSelCharacter>
+        <activeCharacter>
+            <Type>ENTITYCALL</Type>
+            <Flags>BASE</Flags>
+        </activeCharacter>
+    </Properties>
+
+    <ClientMethods>
+        <onReqAvatarList>
+            <Arg>AVATAR_INFOS_LIST</Arg>
+        </onReqAvatarList>
+        <onCreateAvatarResult>
+            <Arg>UINT8</Arg>
+            <Arg>AVATAR_INFOS</Arg>
+        </onCreateAvatarResult>
+        <onRemoveAvatar>
+            <Arg>DBID</Arg>
+        </onRemoveAvatar>
+    </ClientMethods>
+
+    <BaseMethods>
+        <reqAvatarList>
+            <Exposed/>
+        </reqAvatarList>
+        <reqCreateAvatar>
+            <Arg>UNICODE</Arg>
+            <Arg>UINT8</Arg>
+            <Exposed/>
+        </reqCreateAvatar>
+        <reqEnterGame>
+            <Exposed/>
+            <Arg>DBID</Arg>
+        </reqEnterGame>
+        <reqRemoveAvatar>
+            <Exposed/>
+            <Arg>UNICODE</Arg> <!-- name -->
+        </reqRemoveAvatar>
+        <reqRemoveAvatarDBID>
+            <Exposed/>
+            <Arg>DBID</Arg>
+        </reqRemoveAvatarDBID>
+    </BaseMethods>
+
+    <CellMethods>
+    </CellMethods>
+
+</root>
