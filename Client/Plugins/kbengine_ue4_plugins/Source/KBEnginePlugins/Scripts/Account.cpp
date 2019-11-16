@@ -61,7 +61,7 @@ void Account::onLastSelCharacterChanged(uint64 oldValue)
 
 void Account::reqCreateAvatar(uint8 raceType, const FString& name)
 {
-	DEBUG_MSG("Account::reqCreateAvatar(): roleType=%d", raceType);
+	DEBUG_MSG("Account::reqCreateAvatar(): raceType=%d", raceType);
 	pBaseEntityCall->reqCreateAvatar(name, raceType);
 }
 

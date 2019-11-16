@@ -75,7 +75,7 @@ class Account(KBEngine.Proxy):
     def reqRemoveAvatar(self, name):
         """
         请求删除一个角色
-        :param name:
+        :param name:角色名
         :return:
         """
         DEBUG_MSG("Account[%i].reqRemoveAvatar: %s" % (self.id, name))
