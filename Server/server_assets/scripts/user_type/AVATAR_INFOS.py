@@ -15,11 +15,11 @@ class TAvatarInfos(list):
 
     def asDict(self):
         data = {
-            "dbid"		: self[0],
-            "name"			: self[1],
-            "raceType"		: self[2],
-            "level"			: self[3],
-            "data"			: self[4],
+            "dbid": self[0],
+            "name": self[1],
+            "raceType": self[2],
+            "level": self[3],
+            "data": self[4],
         }
 
         return data
@@ -27,6 +27,7 @@ class TAvatarInfos(list):
     def createFromDict(self, dictData):
         self.extend([dictData["dbid"], dictData["name"], dictData["raceType"], dictData["level"], dictData["data"]])
         return self
+
 
 class AVATAR_INFOS_PICKLER:
     def __init__(self):
@@ -41,11 +42,14 @@ class AVATAR_INFOS_PICKLER:
     def isSameType(self, obj):
         return isinstance(obj, TAvatarInfos)
 
+
 avatar_info_inst = AVATAR_INFOS_PICKLER()
+
 
 class TAvatarInfosList(dict):
     """
     """
+
     def __init__(self):
         """
         """
@@ -53,7 +57,7 @@ class TAvatarInfosList(dict):
 
     def asDict(self):
         datas = []
-        dct = {"values" : datas}
+        dct = {"values": datas}
 
         for key, val in self.items():
             datas.append(val)
@@ -64,6 +68,7 @@ class TAvatarInfosList(dict):
         for data in dictData["values"]:
             self[data[0]] = data
         return self
+
 
 class AVATAR_INFOS_LIST_PICKLER:
     def __init__(self):
@@ -77,4 +82,3 @@ class AVATAR_INFOS_LIST_PICKLER:
 
     def isSameType(self, obj):
         return isinstance(obj, TAvatarInfosList)
-

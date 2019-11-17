@@ -15,7 +15,6 @@ class Account(KBEngine.Proxy):
 	账户实体
 	客户端登录成功，服务器自动创建此实体，通过此实体与客户端交互
 	"""
-
     def __init__(self):
         KBEngine.Proxy.__init__(self)
         self.activeAvatar = None
@@ -76,7 +75,7 @@ class Account(KBEngine.Proxy):
         """
         请求删除一个角色
         :param name:角色名
-        :return:
+        :return:删除的角色dbid
         """
         DEBUG_MSG("Account[%i].reqRemoveAvatar: %s" % (self.id, name))
         found = 0
