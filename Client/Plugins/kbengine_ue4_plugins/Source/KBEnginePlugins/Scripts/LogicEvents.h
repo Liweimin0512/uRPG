@@ -21,12 +21,12 @@ struct FAVATAR_INFOS
 	UPROPERTY(Category = KBEngine, BlueprintReadWrite, EditAnywhere)
 	FString sdbid;
 
-	void set(DBID _dbid, const FString& _name, uint8 _roleType, int _level, bool _lastSelCharacter)
+	void set(DBID _dbid, const FString& _name, uint8 _raceType, int _level, bool _lastSelCharacter)
 	{
 		name = _name;
 		dbid = _dbid;
 		sdbid = FString::Printf(TEXT("%lld"), dbid);
-		roleType = _roleType;
+		raceType = _raceType;
 		level = _level;
 		lastSelCharacter = _lastSelCharacter;
 	}
@@ -35,7 +35,7 @@ struct FAVATAR_INFOS
 	FString name;
 
 	UPROPERTY(Category = KBEngine, BlueprintReadWrite, EditAnywhere)
-	uint8 roleType;
+	uint8 raceType;
 
 	UPROPERTY(Category = KBEngine, BlueprintReadWrite, EditAnywhere)
 	int level;

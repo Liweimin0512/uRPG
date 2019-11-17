@@ -8,7 +8,8 @@ namespace KBEngine
 {
 
 Account::Account():
-	AccountBase(),characters()
+	AccountBase(),
+	characters()
 {
 }
 
@@ -93,10 +94,10 @@ void Account::onReqAvatarList(const AVATAR_INFOS_LIST& datas)
 		infos.level = characterInfo_fixed_dict.level;
 		infos.raceType = characterInfo_fixed_dict.raceType;
 
-		//const AVATAR_DATA& data_fixed_dict = characterInfo_fixed_dict.data;
+		const AVATAR_DATA& data_fixed_dict = characterInfo_fixed_dict.data;
 
-		//infos.data.param1 = data_fixed_dict.param1;
-		//infos.data.param2 = data_fixed_dict.param2;
+		infos.data.param1 = data_fixed_dict.param1;
+		infos.data.param2 = data_fixed_dict.param2;
 
 		characters.values.Add(infos);
 
@@ -119,10 +120,10 @@ void Account::onCreateAvatarResult(uint8 retcode, const AVATAR_INFOS& info)
 	infos.level = info.level;
 	infos.raceType = info.raceType;
 
-	//const AVATAR_DATA& data_fixed_dict = info.data;
+	const AVATAR_DATA& data_fixed_dict = info.data;
 
-	//infos.data.param1 = data_fixed_dict.param1;
-	//infos.data.param2 = data_fixed_dict.param2;
+	infos.data.param1 = data_fixed_dict.param1;
+	infos.data.param2 = data_fixed_dict.param2;
 
 	if(retcode == 0)
 		characters.values.Add(infos);
