@@ -13,6 +13,7 @@
         -->
         <optimized>true</optimized>
     </Volatile>
+
     <Interfaces>
         <Interface>GameObject</Interface>
 <!--        <Interface>State</Interface>-->
@@ -24,6 +25,11 @@
 <!--        <Interface>Teleport</Interface>-->
 <!--        <Interface>Dialog</Interface>-->
     </Interfaces>
+
+    <Components>
+
+    </Components>
+
     <Properties>
         <raceType>
             <Type>UINT8</Type>
@@ -43,25 +49,25 @@
     </Properties>
 
     <ClientMethods>
-<!--        <onJump>-->
-<!--        </onJump>-->
+        <onJump>
+        </onJump>
     </ClientMethods>
 
     <BaseMethods>
-<!--        <createCell>-->
-<!--            <Arg>ENTITYCALL</Arg>-->
-<!--        </createCell>-->
+        <createCell>
+            <Arg>ENTITYCALL</Arg>
+        </createCell>
     </BaseMethods>
 
     <CellMethods>
-<!--        <relive>-->
-<!--            <Exposed/>-->
-<!--            <Arg>UINT8</Arg>-->
-<!--        </relive>-->
+        <relive>
+            <Exposed/>
+            <Arg>UINT8</Arg>
+        </relive>
 
-<!--        <jump>-->
-<!--            <Exposed/>-->
-<!--        </jump>-->
+        <jump>
+            <Exposed/>
+        </jump>
     </CellMethods>
 
 </root>

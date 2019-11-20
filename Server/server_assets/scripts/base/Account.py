@@ -52,7 +52,7 @@ class Account(KBEngine.Proxy):
             return
 
         spaceUType = GlobalConst.g_demoMaps.get(self.getClientDatas()[0], 1)
-        spaceData = d_spaces.datas.get(spaceUType)
+        # spaceData = d_spaces.datas.get(spaceUType)
         # raceData = d_race.datas.get(raceType)
 
         props = {
