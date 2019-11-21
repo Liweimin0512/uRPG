@@ -439,7 +439,51 @@ void EntityDef::initScriptModules()
 
 	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), property(utype / 41005).");
 
+	TArray<DATATYPE_BASE*> Avatar_onJump_args;
+
+	Method* pAvatar_onJump = new Method();
+	pAvatar_onJump->name = TEXT("onJump");
+	pAvatar_onJump->methodUtype = 12;
+	pAvatar_onJump->aliasID = 1;
+	pAvatar_onJump->args = Avatar_onJump_args;
+
+	pAvatarModule->methods.Add(TEXT("onJump"), pAvatar_onJump); 
 	pAvatarModule->useMethodDescrAlias = true;
+	pAvatarModule->idmethods.Add((uint16)pAvatar_onJump->aliasID, pAvatar_onJump);
+
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), method(onJump / 12).");
+
+	TArray<DATATYPE_BASE*> Avatar_jump_args;
+
+	Method* pAvatar_jump = new Method();
+	pAvatar_jump->name = TEXT("jump");
+	pAvatar_jump->methodUtype = 10;
+	pAvatar_jump->aliasID = -1;
+	pAvatar_jump->args = Avatar_jump_args;
+
+	pAvatarModule->methods.Add(TEXT("jump"), pAvatar_jump); 
+	pAvatarModule->cell_methods.Add(TEXT("jump"), pAvatar_jump);
+
+	pAvatarModule->idcell_methods.Add(pAvatar_jump->methodUtype, pAvatar_jump);
+
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), method(jump / 10).");
+
+	TArray<DATATYPE_BASE*> Avatar_relive_args;
+	Avatar_relive_args.Add(EntityDef::id2datatypes[2]);
+
+	Method* pAvatar_relive = new Method();
+	pAvatar_relive->name = TEXT("relive");
+	pAvatar_relive->methodUtype = 9;
+	pAvatar_relive->aliasID = -1;
+	pAvatar_relive->args = Avatar_relive_args;
+
+	pAvatarModule->methods.Add(TEXT("relive"), pAvatar_relive); 
+	pAvatarModule->cell_methods.Add(TEXT("relive"), pAvatar_relive);
+
+	pAvatarModule->idcell_methods.Add(pAvatar_relive->methodUtype, pAvatar_relive);
+
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), method(relive / 9).");
+
 }
 
 void EntityDef::initDefTypes()

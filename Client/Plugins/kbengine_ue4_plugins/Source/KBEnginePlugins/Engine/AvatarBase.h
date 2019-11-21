@@ -41,6 +41,7 @@ public:
 	uint32 utype;
 	virtual void onUtypeChanged(uint32 oldValue) {}
 
+	virtual void onJump() = 0; 
 
 	void onComponentsEnterworld() override;
 	void onComponentsLeaveworld() override;

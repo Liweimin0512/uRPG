@@ -34,6 +34,8 @@ public:
 	EntityCellEntityCall_AvatarBase(int32 eid, const FString& ename);
 
 	virtual ~EntityCellEntityCall_AvatarBase();
+	void jump();
+	void relive(uint8 arg1);
 };
 
 }

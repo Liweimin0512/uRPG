@@ -56,6 +56,47 @@ EntityCall* AvatarBase::getCellEntityCall()
 
 void AvatarBase::onRemoteMethodCall(MemoryStream& stream)
 {
+	ScriptModule* sm = *EntityDef::moduledefs.Find("Avatar");
+	uint16 methodUtype = 0;
+	uint16 componentPropertyUType = 0;
+
+	if (sm->usePropertyDescrAlias)
+	{
+		componentPropertyUType = stream.readUint8();
+	}
+	else
+	{
+		componentPropertyUType = stream.readUint16();
+	}
+
+	if (sm->useMethodDescrAlias)
+	{
+		methodUtype = stream.read<uint8>();
+	}
+	else
+	{
+		methodUtype = stream.read<uint16>();
+	}
+
+	if(componentPropertyUType > 0)
+	{
+		KBE_ASSERT(false);
+
+		return;
+	}
+
+	Method* pMethod = sm->idmethods[methodUtype];
+
+	switch(pMethod->methodUtype)
+	{
+		case 12:
+		{
+			onJump();
+			break;
+		}
+		default:
+			break;
+	};
 }
 
 void AvatarBase::onUpdatePropertys(MemoryStream& stream)
