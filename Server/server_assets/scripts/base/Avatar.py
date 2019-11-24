@@ -22,7 +22,7 @@ class Avatar(KBEngine.Proxy, GameObject, Teleport):
 
         self.accountEntity = None
         self.cellData["dbid"] = self.databaseID
-        self.name = self.cellData["name"]
+        self.nameB = self.cellData["name"]
         self.spaceUTypeB = self.cellData["spaceUType"]
 
         self._destroyTimer = 0

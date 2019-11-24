@@ -58,10 +58,6 @@ void ASelectAvatarGameModeBase::reqRemoveAvatar(const FAVATAR_INFOS& avatarInfos
 	UKBEventData_reqRemoveAvatar* pEventData = NewObject<UKBEventData_reqRemoveAvatar>();
 	pEventData->avatarInfos = avatarInfos;
 	FAVATAR_INFOS event_avatar;
-
-
-
-
 	KBENGINE_EVENT_FIRE("reqRemoveAvatar", pEventData);
 }
 
@@ -70,6 +66,6 @@ void ASelectAvatarGameModeBase::reqEnterGame(const FAVATAR_INFOS& avatarInfos)
 	// 由于Account实体注册了该事件， 如果此时Account实体存在那么必然会执行到该事件 
 	UKBEventData_reqEnterGame* pEventData = NewObject<UKBEventData_reqEnterGame>();
 	pEventData->avatarInfos = avatarInfos;
-	KBENGINE_EVENT_FIRE("selectAvatarGame", pEventData);
+	KBENGINE_EVENT_FIRE("reqEnterGame", pEventData);
 }
 

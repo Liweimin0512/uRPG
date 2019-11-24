@@ -33,7 +33,7 @@ class Account(KBEngine.Proxy):
         客户端请求创建角色
         :param name: 角色名
         :param raceType: 角色种族
-        :return:角色
+        :return:角色spaceUType
         """
         avatarInfo = TAvatarInfos()
         avatarInfo.extend([0, "", 0, 0, TAvatarData().createFromDict({"param1": 0, "param2": b''})])
@@ -59,6 +59,7 @@ class Account(KBEngine.Proxy):
             "name": name,
             "raceType": raceType,
             "level": 1,
+            "spaceUType"	: spaceUType,
             "position": spaceData.get("spawnPos", (0, -5, -10)),
         }
 
@@ -106,7 +107,7 @@ class Account(KBEngine.Proxy):
         选择摸个角色，请求进入游戏
         :param dbid:角色DBid
         """
-        DEBUG_MSG("Account[%i].selectAvatarGame:%i. self.activeAvatar=%s" % (self.id, dbid, self.activeAvatar))
+        DEBUG_MSG("Account[%i].reqEnterGame:%i. self.activeAvatar=%s" % (self.id, dbid, self.activeAvatar))
         # 注意:使用giveClientTo的entity必须是当前baseapp上的entity
         if self.activeAvatar is None:
             if dbid in self.characters:
@@ -115,7 +116,7 @@ class Account(KBEngine.Proxy):
                 # 当角色创建好之后，account会调用giveClientTo将客户端控制权（可理解为网络连接与某个实体的绑定）切换到Avatar身上，
                 # 之后客户端各种输入输出都通过服务器上这个Avatar来代理，任何proxy实体获得控制权都会调用onEntitiesEnabled
                 # Avatar继承了Teleport，Teleport.onEntitiesEnabled会将玩家创建在具体的场景中
-                KBEngine.createEntityFromDBID("Avatar", dbid, self._onAvatarEnter)
+                KBEngine.createEntityFromDBID("Avatar", dbid, self.__onAvatarCreated)
             else:
                 ERROR_MSG("Account[%i]::selectAvatarGame: not found dbid(%i)" % (self.id, dbid))
         else:
@@ -182,7 +183,7 @@ class Account(KBEngine.Proxy):
 
             self.activeAvatar = None
 
-    def _onAvatarEnter(self, baseRef, dbid, wasActive):
+    def __onAvatarCreated(self, baseRef, dbid, wasActive):
         """
         选择角色进入游戏时被回调
         :param baseRef:
@@ -191,9 +192,9 @@ class Account(KBEngine.Proxy):
         """
         if wasActive:
             ERROR_MSG("Account::__onAvatarCreated:(%i): this character is in world now!" % (self.id))
-            baseRef.accountEntity = self
-            self.activeAvatar = baseRef
-            self.giveClientTo(baseRef)
+            # baseRef.accountEntity = self
+            # self.activeAvatar = baseRef
+            # self.giveClientTo(baseRef)
             return
         if baseRef is None:
             ERROR_MSG("Account::__onAvatarCreated:(%i): the character you wanted to created is not exist!" % (self.id))
@@ -210,8 +211,9 @@ class Account(KBEngine.Proxy):
             return
 
         info = self.characters[dbid]
-        profesional = info[2]
-
+        # avatar.cellData["modelID"] = d_avatar_inittab.datas[info[2]]["modelID"]
+        # avatar.cellData["modelScale"] = d_avatar_inittab.datas[info[2]]["modelScale"]
+        # avatar.cellData["moveSpeed"] = d_avatar_inittab.datas[info[2]]["moveSpeed"]
         avatar.accountEntity = self
         self.activeAvatar = avatar
         self.giveClientTo(avatar)
