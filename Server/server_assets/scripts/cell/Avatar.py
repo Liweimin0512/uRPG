@@ -5,7 +5,9 @@ from KBEDebug import *
 from interfaces.GameObject import GameObject
 # from interfaces.Combat import Combat
 # from interfaces.Spell import Spell
-# from interfaces.Teleport import Teleport
+from interfaces.Teleport import Teleport
+
+
 # from interfaces.Dialog import Dialog
 # from interfaces.State import State
 # from interfaces.Flags import Flags
@@ -14,7 +16,8 @@ from interfaces.GameObject import GameObject
 
 
 class Avatar(KBEngine.Entity,
-             GameObject):
+             GameObject,
+             Teleport):
     def __init__(self):
         KBEngine.Entity.__init__(self)
         GameObject.__init__(self)
@@ -73,7 +76,7 @@ class Avatar(KBEngine.Entity,
         entity销毁
         """
         DEBUG_MSG("Avatar::onDestroy: %i." % self.id)
-        # Teleport.onDestroy(self)
+        Teleport.onDestroy(self)
         # Combat.onDestroy(self)
 
     def relive(self, exposed, type):

@@ -411,11 +411,25 @@ void EntityDef::initScriptModules()
 
 	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), property(own_val / 6).");
 
+	Property* pAvatar_spaceUType = new Property();
+	pAvatar_spaceUType->name = TEXT("spaceUType");
+	pAvatar_spaceUType->properUtype = 41001;
+	pAvatar_spaceUType->properFlags = 8;
+	pAvatar_spaceUType->aliasID = 9;
+	KBVar* pAvatar_spaceUType_defval = new KBVar((uint32)FCString::Atoi64(TEXT("")));
+	pAvatar_spaceUType->pDefaultVal = pAvatar_spaceUType_defval;
+	pAvatarModule->propertys.Add(TEXT("spaceUType"), pAvatar_spaceUType); 
+
+	pAvatarModule->usePropertyDescrAlias = true;
+	pAvatarModule->idpropertys.Add((uint16)pAvatar_spaceUType->aliasID, pAvatar_spaceUType);
+
+	//DEBUG_MSG("EntityDef::initScriptModules: add(Avatar), property(spaceUType / 41001).");
+
 	Property* pAvatar_uid = new Property();
 	pAvatar_uid->name = TEXT("uid");
 	pAvatar_uid->properUtype = 41004;
 	pAvatar_uid->properFlags = 4;
-	pAvatar_uid->aliasID = 9;
+	pAvatar_uid->aliasID = 10;
 	KBVar* pAvatar_uid_defval = new KBVar((uint32)FCString::Atoi64(TEXT("0")));
 	pAvatar_uid->pDefaultVal = pAvatar_uid_defval;
 	pAvatarModule->propertys.Add(TEXT("uid"), pAvatar_uid); 
@@ -429,7 +443,7 @@ void EntityDef::initScriptModules()
 	pAvatar_utype->name = TEXT("utype");
 	pAvatar_utype->properUtype = 41005;
 	pAvatar_utype->properFlags = 4;
-	pAvatar_utype->aliasID = 10;
+	pAvatar_utype->aliasID = 11;
 	KBVar* pAvatar_utype_defval = new KBVar((uint32)FCString::Atoi64(TEXT("0")));
 	pAvatar_utype->pDefaultVal = pAvatar_utype_defval;
 	pAvatarModule->propertys.Add(TEXT("utype"), pAvatar_utype); 

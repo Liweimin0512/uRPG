@@ -1,4 +1,4 @@
-#include "AvatarBase.h"
+#include "SpaceBase.h"
 #include "KBVar.h"
 #include "EntityDef.h"
 #include "ScriptModule.h"
@@ -14,94 +14,53 @@ namespace KBEngine
 
 
 
-void AvatarBase::onComponentsEnterworld()
+void SpaceBase::onComponentsEnterworld()
 {
 }
 
-void AvatarBase::onComponentsLeaveworld()
+void SpaceBase::onComponentsLeaveworld()
 {
 }
 
-void AvatarBase::onGetBase()
+void SpaceBase::onGetBase()
 {
 	if(pBaseEntityCall)
 		delete pBaseEntityCall;
 
-	pBaseEntityCall = new EntityBaseEntityCall_AvatarBase(id(), className());
+	pBaseEntityCall = new EntityBaseEntityCall_SpaceBase(id(), className());
 }
 
-void AvatarBase::onGetCell()
+void SpaceBase::onGetCell()
 {
 	if(pCellEntityCall)
 		delete pCellEntityCall;
 
-	pCellEntityCall = new EntityCellEntityCall_AvatarBase(id(), className());
+	pCellEntityCall = new EntityCellEntityCall_SpaceBase(id(), className());
 }
 
-void AvatarBase::onLoseCell()
+void SpaceBase::onLoseCell()
 {
 	delete pCellEntityCall;
 	pCellEntityCall = NULL;
 }
 
-EntityCall* AvatarBase::getBaseEntityCall()
+EntityCall* SpaceBase::getBaseEntityCall()
 {
 	return pBaseEntityCall;
 }
 
-EntityCall* AvatarBase::getCellEntityCall()
+EntityCall* SpaceBase::getCellEntityCall()
 {
 	return pCellEntityCall;
 }
 
-void AvatarBase::onRemoteMethodCall(MemoryStream& stream)
+void SpaceBase::onRemoteMethodCall(MemoryStream& stream)
 {
-	ScriptModule* sm = *EntityDef::moduledefs.Find("Avatar");
-	uint16 methodUtype = 0;
-	uint16 componentPropertyUType = 0;
-
-	if (sm->usePropertyDescrAlias)
-	{
-		componentPropertyUType = stream.readUint8();
-	}
-	else
-	{
-		componentPropertyUType = stream.readUint16();
-	}
-
-	if (sm->useMethodDescrAlias)
-	{
-		methodUtype = stream.read<uint8>();
-	}
-	else
-	{
-		methodUtype = stream.read<uint16>();
-	}
-
-	if(componentPropertyUType > 0)
-	{
-		KBE_ASSERT(false);
-
-		return;
-	}
-
-	Method* pMethod = sm->idmethods[methodUtype];
-
-	switch(pMethod->methodUtype)
-	{
-		case 12:
-		{
-			onJump();
-			break;
-		}
-		default:
-			break;
-	};
 }
 
-void AvatarBase::onUpdatePropertys(MemoryStream& stream)
+void SpaceBase::onUpdatePropertys(MemoryStream& stream)
 {
-	ScriptModule* sm = *EntityDef::moduledefs.Find("Avatar");
+	ScriptModule* sm = *EntityDef::moduledefs.Find("Space");
 
 	while(stream.length() > 0)
 	{
@@ -144,24 +103,6 @@ void AvatarBase::onUpdatePropertys(MemoryStream& stream)
 				{
 					if(inWorld())
 						onDirectionChanged(oldval_direction);
-				}
-
-				break;
-			}
-			case 5:
-			{
-				uint16 oldval_level = level;
-				level = stream.readUint16();
-
-				if(pProp->isBase())
-				{
-					if(inited())
-						onLevelChanged(oldval_level);
-				}
-				else
-				{
-					if(inWorld())
-						onLevelChanged(oldval_level);
 				}
 
 				break;
@@ -220,24 +161,6 @@ void AvatarBase::onUpdatePropertys(MemoryStream& stream)
 
 				break;
 			}
-			case 6:
-			{
-				uint16 oldval_own_val = own_val;
-				own_val = stream.readUint16();
-
-				if(pProp->isBase())
-				{
-					if(inited())
-						onOwn_valChanged(oldval_own_val);
-				}
-				else
-				{
-					if(inWorld())
-						onOwn_valChanged(oldval_own_val);
-				}
-
-				break;
-			}
 			case 40000:
 			{
 				FVector oldval_position = position;
@@ -259,24 +182,6 @@ void AvatarBase::onUpdatePropertys(MemoryStream& stream)
 			case 40002:
 			{
 				stream.readUint32();
-				break;
-			}
-			case 41001:
-			{
-				uint32 oldval_spaceUType = spaceUType;
-				spaceUType = stream.readUint32();
-
-				if(pProp->isBase())
-				{
-					if(inited())
-						onSpaceUTypeChanged(oldval_spaceUType);
-				}
-				else
-				{
-					if(inWorld())
-						onSpaceUTypeChanged(oldval_spaceUType);
-				}
-
 				break;
 			}
 			case 41004:
@@ -321,9 +226,9 @@ void AvatarBase::onUpdatePropertys(MemoryStream& stream)
 	}
 }
 
-void AvatarBase::callPropertysSetMethods()
+void SpaceBase::callPropertysSetMethods()
 {
-	ScriptModule* sm = EntityDef::moduledefs["Avatar"];
+	ScriptModule* sm = EntityDef::moduledefs["Space"];
 	TMap<uint16, Property*>& pdatas = sm->idpropertys;
 
 	FVector oldval_direction = direction;
@@ -347,29 +252,8 @@ void AvatarBase::callPropertysSetMethods()
 		}
 	}
 
-	uint16 oldval_level = level;
-	Property* pProp_level = pdatas[4];
-	if(pProp_level->isBase())
-	{
-		if(inited() && !inWorld())
-			onLevelChanged(oldval_level);
-	}
-	else
-	{
-		if(inWorld())
-		{
-			if(pProp_level->isOwnerOnly() && !isPlayer())
-			{
-			}
-			else
-			{
-				onLevelChanged(oldval_level);
-			}
-		}
-	}
-
 	uint32 oldval_modelID = modelID;
-	Property* pProp_modelID = pdatas[5];
+	Property* pProp_modelID = pdatas[4];
 	if(pProp_modelID->isBase())
 	{
 		if(inited() && !inWorld())
@@ -390,7 +274,7 @@ void AvatarBase::callPropertysSetMethods()
 	}
 
 	uint8 oldval_modelScale = modelScale;
-	Property* pProp_modelScale = pdatas[6];
+	Property* pProp_modelScale = pdatas[5];
 	if(pProp_modelScale->isBase())
 	{
 		if(inited() && !inWorld())
@@ -411,7 +295,7 @@ void AvatarBase::callPropertysSetMethods()
 	}
 
 	FString oldval_name = name;
-	Property* pProp_name = pdatas[7];
+	Property* pProp_name = pdatas[6];
 	if(pProp_name->isBase())
 	{
 		if(inited() && !inWorld())
@@ -427,27 +311,6 @@ void AvatarBase::callPropertysSetMethods()
 			else
 			{
 				onNameChanged(oldval_name);
-			}
-		}
-	}
-
-	uint16 oldval_own_val = own_val;
-	Property* pProp_own_val = pdatas[8];
-	if(pProp_own_val->isBase())
-	{
-		if(inited() && !inWorld())
-			onOwn_valChanged(oldval_own_val);
-	}
-	else
-	{
-		if(inWorld())
-		{
-			if(pProp_own_val->isOwnerOnly() && !isPlayer())
-			{
-			}
-			else
-			{
-				onOwn_valChanged(oldval_own_val);
 			}
 		}
 	}
@@ -473,29 +336,8 @@ void AvatarBase::callPropertysSetMethods()
 		}
 	}
 
-	uint32 oldval_spaceUType = spaceUType;
-	Property* pProp_spaceUType = pdatas[9];
-	if(pProp_spaceUType->isBase())
-	{
-		if(inited() && !inWorld())
-			onSpaceUTypeChanged(oldval_spaceUType);
-	}
-	else
-	{
-		if(inWorld())
-		{
-			if(pProp_spaceUType->isOwnerOnly() && !isPlayer())
-			{
-			}
-			else
-			{
-				onSpaceUTypeChanged(oldval_spaceUType);
-			}
-		}
-	}
-
 	uint32 oldval_uid = uid;
-	Property* pProp_uid = pdatas[10];
+	Property* pProp_uid = pdatas[7];
 	if(pProp_uid->isBase())
 	{
 		if(inited() && !inWorld())
@@ -516,7 +358,7 @@ void AvatarBase::callPropertysSetMethods()
 	}
 
 	uint32 oldval_utype = utype;
-	Property* pProp_utype = pdatas[11];
+	Property* pProp_utype = pdatas[8];
 	if(pProp_utype->isBase())
 	{
 		if(inited() && !inWorld())
@@ -538,22 +380,19 @@ void AvatarBase::callPropertysSetMethods()
 
 }
 
-AvatarBase::AvatarBase():
+SpaceBase::SpaceBase():
 	Entity(),
 	pBaseEntityCall(NULL),
 	pCellEntityCall(NULL),
-	level((uint16)FCString::Atoi64(TEXT("0"))),
 	modelID((uint32)FCString::Atoi64(TEXT("0"))),
 	modelScale((uint8)FCString::Atoi64(TEXT("30"))),
 	name(TEXT("")),
-	own_val((uint16)FCString::Atoi64(TEXT("0"))),
-	spaceUType((uint32)FCString::Atoi64(TEXT("0"))),
 	uid((uint32)FCString::Atoi64(TEXT("0"))),
 	utype((uint32)FCString::Atoi64(TEXT("0")))
 {
 }
 
-AvatarBase::~AvatarBase()
+SpaceBase::~SpaceBase()
 {
 	if(pBaseEntityCall)
 		delete pBaseEntityCall;
@@ -563,11 +402,11 @@ AvatarBase::~AvatarBase()
 
 }
 
-void AvatarBase::attachComponents()
+void SpaceBase::attachComponents()
 {
 }
 
-void AvatarBase::detachComponents()
+void SpaceBase::detachComponents()
 {
 }
 

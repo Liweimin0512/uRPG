@@ -22,7 +22,7 @@
 <!--        <Interface>SkillBox</Interface>-->
 <!--        <Interface>Combat</Interface>-->
 <!--        <Interface>Spell</Interface>-->
-<!--        <Interface>Teleport</Interface>-->
+        <Interface>Teleport</Interface>
 <!--        <Interface>Dialog</Interface>-->
     </Interfaces>
 

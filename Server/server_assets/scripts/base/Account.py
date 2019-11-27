@@ -53,6 +53,15 @@ class Account(KBEngine.Proxy):
             return
 
         spaceUType = GlobalConst.g_demoMaps.get(self.getClientDatas()[0], 1)
+
+        # 如果是机器人登陆，随机扔进一个场景
+        if self.getClientType() == 6:
+            while True:
+                spaceName = random.choice(list(GlobalConst.g_demoMaps.keys()))
+                if len(spaceName) > 0:
+                    spaceUType = GlobalConst.g_demoMaps[spaceName]
+                    break
+
         spaceData = d_spaces.datas.get(spaceUType)
         # raceData = d_race.datas.get(raceType)
 
@@ -65,11 +74,9 @@ class Account(KBEngine.Proxy):
         }
 
         avatar = KBEngine.createEntityLocally("Avatar", props)
-        # avatar = KBEngine.createEntityAnywhere("Avatar", {})
         if avatar:
-            avatar.writeToDB(self._onAvatarSaved)
+            avatar.writeToDB(self.onAvatarSaved)
 
-        # DEBUG_MSG("Account[%i].reqCreateAvatar:%s.\n" % (self.id, name))
         DEBUG_MSG("Account[%i].reqCreateAvatar:%s. spaceUType=%i, spawnPos=%s.\n" % (
             self.id, name, avatar.cellData["spaceUType"], spaceData.get("spawnPos", (0, 0, 0))))
 
@@ -117,9 +124,9 @@ class Account(KBEngine.Proxy):
                 # 当角色创建好之后，account会调用giveClientTo将客户端控制权（可理解为网络连接与某个实体的绑定）切换到Avatar身上，
                 # 之后客户端各种输入输出都通过服务器上这个Avatar来代理，任何proxy实体获得控制权都会调用onEntitiesEnabled
                 # Avatar继承了Teleport，Teleport.onEntitiesEnabled会将玩家创建在具体的场景中
-                KBEngine.createEntityFromDBID("Avatar", dbid, self.__onAvatarCreated)
+                KBEngine.createEntityFromDBID("Avatar", dbid, self.onAvatarCreated)
             else:
-                ERROR_MSG("Account[%i]::selectAvatarGame: not found dbid(%i)" % (self.id, dbid))
+                ERROR_MSG("Account[%i]::reqEnterGame : not found dbid(%i)" % (self.id, dbid))
         else:
             self.giveClientTo(self.activeAvatar)
 
@@ -134,12 +141,23 @@ class Account(KBEngine.Proxy):
         cell部分。
         """
         INFO_MSG("account[%i] entities enable. entityCall:%s"
-                 % (self.id, self.client))
+                 % (self.id, self.client, self.getClientType(), self.getClientDatas(), self.activeAvatar,
+                    self.__ACCOUNT_NAME__))
 
     def onLogOnAttempt(self, ip, port, password):
         """
         KBEngine method.
         客户端登陆失败时会回调到这里
+        """
+        INFO_MSG("Account[%i]::onLogOnAttempt: ip=%s, port=%i, self_client=%s" % (self.id, ip, port, self.client))
+        """
+        if self.activeAvatar != None:
+        	return KBEngine.LOG_ON_REJECT
+
+        if ip == self.lastClientIpAddr and password == self.password:
+        	return KBEngine.LOG_ON_ACCEPT
+        else:
+        	return KBEngine.LOG_ON_REJECT
         """
         # 如果一个在线的账号被一个客户端登陆并且onLogOnAttempt返回允许
         # 那么会踢掉之前的客户端连接
@@ -149,9 +167,7 @@ class Account(KBEngine.Proxy):
                 self.activeAvatar.giveClientTo(self)
 
             self.relogin = time.time()
-            # self.activeAvatar.destroySelf()
-            if self.activeAvatar.cell is not None:
-                self.activeAvatar.destroyCellEntity()
+            self.activeAvatar.destroySelf()
             self.activeAvatar = None
 
         return KBEngine.LOG_ON_ACCEPT
@@ -184,7 +200,7 @@ class Account(KBEngine.Proxy):
 
             self.activeAvatar = None
 
-    def __onAvatarCreated(self, baseRef, dbid, wasActive):
+    def onAvatarCreated(self, baseRef, dbid, wasActive):
         """
         选择角色进入游戏时被回调
         :param baseRef:
@@ -193,15 +209,12 @@ class Account(KBEngine.Proxy):
         """
         if wasActive:
             ERROR_MSG("Account::__onAvatarCreated:(%i): this character is in world now!" % (self.id))
-            # baseRef.accountEntity = self
-            # self.activeAvatar = baseRef
-            # self.giveClientTo(baseRef)
             return
         if baseRef is None:
             ERROR_MSG("Account::__onAvatarCreated:(%i): the character you wanted to created is not exist!" % (self.id))
             return
 
-        avatar = KBEngine.entities().get(baseRef.id)
+        avatar = KBEngine.entities.get(baseRef.id)
         if avatar is None:
             ERROR_MSG("Account::__onAvatarCreated:(%i): when character was created, it died as well!" % (self.id))
             return
@@ -219,13 +232,13 @@ class Account(KBEngine.Proxy):
         self.activeAvatar = avatar
         self.giveClientTo(avatar)
 
-    def _onAvatarSaved(self, success, avatar):
+    def onAvatarSaved(self, success, avatar):
         """
         新建角色写入服务器回调
         :param success:成功
         :param avatar:角色数据
         """
-        INFO_MSG('Account::_onAvatarSaved:(%i) create avatar state: %i, %s, %i' % (
+        INFO_MSG('Account::onAvatarSaved:(%i) create avatar state: %i, %s, %i' % (
             self.id, success, avatar.cellData["name"], avatar.databaseID))
 
         # 如果此时账号已经销毁， 角色已经无法被记录则我们清除这个角色
