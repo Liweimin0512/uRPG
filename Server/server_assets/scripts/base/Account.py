@@ -63,7 +63,6 @@ class Account(KBEngine.Proxy):
                     break
 
         spaceData = d_spaces.datas.get(spaceUType)
-        # raceData = d_race.datas.get(raceType)
 
         props = {
             "name": name,
@@ -140,9 +139,9 @@ class Account(KBEngine.Proxy):
         该entity被正式激活为可使用， 此时entity已经建立了client对应实体， 可以在此创建它的
         cell部分。
         """
-        INFO_MSG("account[%i] entities enable. entityCall:%s"
-                 % (self.id, self.client, self.getClientType(), self.getClientDatas(), self.activeAvatar,
-                    self.__ACCOUNT_NAME__))
+        # INFO_MSG("account[%i] entities enable. entityCall:%s"
+        #          % (self.id, self.client, self.getClientType(), self.getClientDatas(), self.activeAvatar,
+        #             self.__ACCOUNT_NAME__))
 
     def onLogOnAttempt(self, ip, port, password):
         """

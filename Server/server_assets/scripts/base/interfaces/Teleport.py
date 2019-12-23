@@ -8,12 +8,11 @@ from KBEDebug import *
 
 class Teleport:
     def __init__(self):
-        pass
         # 如果登录是一个副本, 无论如何登录都放置在主场景上
         # 因为副本是需要钥匙开启的，所有的副本都使用实体SpaceDuplicate创建
         # 因此我们只需要简单判断当前spaceUType所对应的配置中场景的脚本类型是否包含"Duplicate"
         # 就能得出是否在一个副本中
-        # spacedatas = d_spaces.datas[self.cellData["spaceUType"]]
+        spacedatas = d_spaces.datas[self.cellData["spaceUType"]]
         # avatar_inittab = d_avatar_inittab.datas[self.raceType]
 
         # if "Duplicate" in spacedatas["entityType"]:
