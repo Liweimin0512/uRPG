@@ -18,8 +18,8 @@ def onBaseAppReady(isBootstrap):
 
     if isBootstrap:
         # 创建spacemanager
-        KBEngine.createEntityLocally("Spaces", {})
-
+        # KBEngine.createEntityLocally("Spaces", {})
+        KBEngine.createEntityLocally("SpaceMgr", {})
 
 def onReadyForShutDown():
     """
@@ -56,14 +56,16 @@ def onReadyForLogin(isBootstrap):
         INFO_MSG('initProgress:completed!')
         return 1.0
 
-    spacesEntity = KBEngine.globalData["Spaces"]
+    # spacesEntity = KBEngine.globalData["Spaces"]
+    spaceMgrEntity = KBEngine.globalData["SpaceMgr"]
 
     tmpDatas = list(d_spaces.datas.keys())
     count = 0
     total = len(tmpDatas)
 
     for utype in tmpDatas:
-        spaceAlloc = spacesEntity.getSpaceAllocs()[utype]
+        # spaceAlloc = spacesEntity.getSpaceAllocs()[utype]
+        spaceAlloc = spaceMgrEntity.getSpaceAllocs()[utype]
         if spaceAlloc.__class__.__name__ != "SpaceAllocDuplicate":
             if len(spaceAlloc.getSpaces()) > 0:
                 count += 1
@@ -72,7 +74,7 @@ def onReadyForLogin(isBootstrap):
 
     if count < total:
         v = float(count) / total
-        # INFO_MSG('initProgress: %f' % v)
+        INFO_MSG('initProgress: %f' % v)
         return v
 
     INFO_MSG('initProgress: completed!')

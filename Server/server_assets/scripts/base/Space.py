@@ -75,21 +75,22 @@ class Space(KBEngine.Entity, GameObject):
         """
         出生怪物
         """
-        if len(self.tmpCreateEntityDatas) <= 0:
-            self.delTimer(tid)
-            return
-
-        datas = self.tmpCreateEntityDatas.pop(0)
-
-        if datas is None:
-            ERROR_MSG("Space::onTimer: spawn %i is error!" % datas[0])
-
-        KBEngine.createEntityAnywhere("SpawnPoint",
-                                      {"spawnEntityNO": datas[0], \
-                                       "position"		: datas[1], \
-                                       "direction"			: datas[2], \
-                                       "modelScale"		: datas[3], \
-                                       "createToCell"		: self.cell})
+        pass
+        # if len(self.tmpCreateEntityDatas) <= 0:
+        #     self.delTimer(tid)
+        #     return
+        #
+        # datas = self.tmpCreateEntityDatas.pop(0)
+        #
+        # if datas is None:
+        #     ERROR_MSG("Space::onTimer: spawn %i is error!" % datas[0])
+        #
+        # KBEngine.createEntityAnywhere("SpawnPoint",
+        #                               {"spawnEntityNO": datas[0], \
+        #                                "position"		: datas[1], \
+        #                                "direction"			: datas[2], \
+        #                                "modelScale"		: datas[3], \
+        #                                "createToCell"		: self.cell})
 
     def loginToSpace(self, avatarEntityCall, context):
         """
@@ -160,7 +161,7 @@ class Space(KBEngine.Entity, GameObject):
         """
         DEBUG_MSG("Space::onGetCell: %i" % self.id)
         self.addTimer(0.1, 0.1, SCDefine.TIMER_TYPE_SPACE_SPAWN_TICK)
-        KBEngine.globalData["Spaces"].onSpaceGetCell(self.spaceUTypeB, self, self.spaceKey)
+        KBEngine.globalData["SpaceMgr"].onSpaceGetCell(self.spaceUTypeB, self, self.spaceKey)
         GameObject.onGetCell(self)
 
 

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import KBEngine
 import GlobalConst
+import d_race
 import d_spaces
 import d_avatar_inittab
 from KBEDebug import *
@@ -13,7 +14,7 @@ class Teleport:
         # 因此我们只需要简单判断当前spaceUType所对应的配置中场景的脚本类型是否包含"Duplicate"
         # 就能得出是否在一个副本中
         spacedatas = d_spaces.datas[self.cellData["spaceUType"]]
-        # avatar_inittab = d_avatar_inittab.datas[self.raceType]
+        # avatar_inittab = d_race.datas[self.raceType]
 
         # if "Duplicate" in spacedatas["entityType"]:
         #     self.cellData["spaceUType"] = avatar_inittab["spaceUType"]
@@ -46,7 +47,7 @@ class Teleport:
                     self.cellData["spaceUType"] = spaceUType
                     self.cellData["position"] = spacedatas.get("spawnPos", (0, 0, 0))
 
-        KBEngine.globalData["Spaces"].loginToSpace(self, self.spaceUTypeB, {})
+        KBEngine.globalData["SpaceMgr"].loginToSpace(self, self.spaceUTypeB, {})
 
 
 
