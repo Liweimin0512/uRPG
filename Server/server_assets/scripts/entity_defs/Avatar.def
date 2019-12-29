@@ -18,7 +18,7 @@
         <Interface>GameObject</Interface>
 <!--        <Interface>State</Interface>-->
 <!--        <Interface>Flags</Interface>-->
-<!--        <Interface>Motion</Interface>-->
+        <Interface>Motion</Interface>
 <!--        <Interface>SkillBox</Interface>-->
 <!--        <Interface>Combat</Interface>-->
 <!--        <Interface>Spell</Interface>-->

@@ -32,6 +32,8 @@ public:
 	virtual void onModelIDChanged(uint32 oldValue) {}
 	uint8 modelScale;
 	virtual void onModelScaleChanged(uint8 oldValue) {}
+	uint8 moveSpeed;
+	virtual void onMoveSpeedChanged(uint8 oldValue) {}
 	FString name;
 	virtual void onNameChanged(const FString& oldValue) {}
 	uint16 own_val;

@@ -202,6 +202,24 @@ void AvatarBase::onUpdatePropertys(MemoryStream& stream)
 
 				break;
 			}
+			case 9:
+			{
+				uint8 oldval_moveSpeed = moveSpeed;
+				moveSpeed = stream.readUint8();
+
+				if(pProp->isBase())
+				{
+					if(inited())
+						onMoveSpeedChanged(oldval_moveSpeed);
+				}
+				else
+				{
+					if(inWorld())
+						onMoveSpeedChanged(oldval_moveSpeed);
+				}
+
+				break;
+			}
 			case 41003:
 			{
 				FString oldval_name = name;
@@ -410,8 +428,29 @@ void AvatarBase::callPropertysSetMethods()
 		}
 	}
 
+	uint8 oldval_moveSpeed = moveSpeed;
+	Property* pProp_moveSpeed = pdatas[7];
+	if(pProp_moveSpeed->isBase())
+	{
+		if(inited() && !inWorld())
+			onMoveSpeedChanged(oldval_moveSpeed);
+	}
+	else
+	{
+		if(inWorld())
+		{
+			if(pProp_moveSpeed->isOwnerOnly() && !isPlayer())
+			{
+			}
+			else
+			{
+				onMoveSpeedChanged(oldval_moveSpeed);
+			}
+		}
+	}
+
 	FString oldval_name = name;
-	Property* pProp_name = pdatas[7];
+	Property* pProp_name = pdatas[8];
 	if(pProp_name->isBase())
 	{
 		if(inited() && !inWorld())
@@ -432,7 +471,7 @@ void AvatarBase::callPropertysSetMethods()
 	}
 
 	uint16 oldval_own_val = own_val;
-	Property* pProp_own_val = pdatas[8];
+	Property* pProp_own_val = pdatas[9];
 	if(pProp_own_val->isBase())
 	{
 		if(inited() && !inWorld())
@@ -474,7 +513,7 @@ void AvatarBase::callPropertysSetMethods()
 	}
 
 	uint32 oldval_spaceUType = spaceUType;
-	Property* pProp_spaceUType = pdatas[9];
+	Property* pProp_spaceUType = pdatas[10];
 	if(pProp_spaceUType->isBase())
 	{
 		if(inited() && !inWorld())
@@ -495,7 +534,7 @@ void AvatarBase::callPropertysSetMethods()
 	}
 
 	uint32 oldval_uid = uid;
-	Property* pProp_uid = pdatas[10];
+	Property* pProp_uid = pdatas[11];
 	if(pProp_uid->isBase())
 	{
 		if(inited() && !inWorld())
@@ -516,7 +555,7 @@ void AvatarBase::callPropertysSetMethods()
 	}
 
 	uint32 oldval_utype = utype;
-	Property* pProp_utype = pdatas[11];
+	Property* pProp_utype = pdatas[12];
 	if(pProp_utype->isBase())
 	{
 		if(inited() && !inWorld())
@@ -545,6 +584,7 @@ AvatarBase::AvatarBase():
 	level((uint16)FCString::Atoi64(TEXT("0"))),
 	modelID((uint32)FCString::Atoi64(TEXT("0"))),
 	modelScale((uint8)FCString::Atoi64(TEXT("30"))),
+	moveSpeed((uint8)FCString::Atoi64(TEXT("50"))),
 	name(TEXT("")),
 	own_val((uint16)FCString::Atoi64(TEXT("0"))),
 	spaceUType((uint32)FCString::Atoi64(TEXT("0"))),

@@ -1,4 +1,4 @@
 ,entityType,name,id,type,spawnPos,resPath
-0,Space,teleportspace,1,1,"(0.0, 1.5, 0.0)",spaces/teleportspace
-1,SpaceDuplicate,Duplicate(副本),2,2,"(0.0, 0.0, 0.0)",spaces/duplicate
-2,Space,kbengine_ue4_demo,3,1,"(-97.9299, 0.0, -158.922)",spaces/kbengine_ue4_demo
+0,Space,kbengine_ue4_demo,1,1,"(-97.9299, 0.0, -158.922)",spaces/main
+1,Space,teleportspace,3,1,"(0.0, 1.5, 0.0)",spaces/teleportspace
+2,SpaceDuplicate,Duplicate(副本),2,2,"(0.0, 0.0, 0.0)",spaces/duplicate

@@ -6,12 +6,10 @@ from interfaces.GameObject import GameObject
 # from interfaces.Combat import Combat
 # from interfaces.Spell import Spell
 from interfaces.Teleport import Teleport
-
-
 # from interfaces.Dialog import Dialog
 # from interfaces.State import State
 # from interfaces.Flags import Flags
-# from interfaces.Motion import Motion
+from interfaces.Motion import Motion
 # from interfaces.SkillBox import SkillBox
 
 
@@ -21,6 +19,7 @@ class Avatar(KBEngine.Entity,
     def __init__(self):
         KBEngine.Entity.__init__(self)
         GameObject.__init__(self)
+        Motion.__init__(self)
 
         # 设置每秒允许的最快速度, 超速会被拉回去
         self.topSpeed = self.moveSpeed + 5.0
