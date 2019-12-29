@@ -11,7 +11,7 @@ CONST_WAIT_CREATE = -1
 
 class SpaceAlloc:
     """
-    普通的场景分配器
+    常规场景分配器
     """
 
     def __init__(self, utype):
