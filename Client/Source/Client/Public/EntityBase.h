@@ -75,10 +75,10 @@ public:
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
 	//	int modelID;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine, meta = (ExposeOnSpawn))
 		float moveSpeed;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine, meta = (ExposeOnSpawn))
 		int entityID;
 
 	// 实体将要移动到的目的地位置

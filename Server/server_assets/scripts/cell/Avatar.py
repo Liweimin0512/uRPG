@@ -15,7 +15,8 @@ from interfaces.Motion import Motion
 
 class Avatar(KBEngine.Entity,
              GameObject,
-             Teleport):
+             Teleport,
+             Motion):
     def __init__(self):
         KBEngine.Entity.__init__(self)
         GameObject.__init__(self)
