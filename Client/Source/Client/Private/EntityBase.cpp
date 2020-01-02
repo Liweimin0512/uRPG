@@ -13,6 +13,12 @@ AEntityBase::AEntityBase()
 	entityID = 0;
 	moveSpeed = 0.f;
 	isOnGround = false;
+
+	if (isPlayer())
+	{
+		AutoPossessPlayer = EAutoReceiveInput::Player0;
+	}
+
 }
 
 // Called when the game starts or when spawned
