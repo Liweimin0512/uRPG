@@ -14,10 +14,7 @@ AEntityBase::AEntityBase()
 	moveSpeed = 0.f;
 	isOnGround = false;
 
-	if (isPlayer())
-	{
-		AutoPossessPlayer = EAutoReceiveInput::Player0;
-	}
+	//AutoPossessPlayer = EAutoReceiveInput::Player0;
 
 }
 
