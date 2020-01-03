@@ -1,1 +1,0 @@
-DIR *.*  /B >list1.txt
