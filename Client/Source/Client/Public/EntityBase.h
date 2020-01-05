@@ -37,8 +37,8 @@ public:
 		return false;
 	}
 
-	//UFUNCTION(BlueprintCallable, Category = "KBEngine")
-	//virtual void FaceRotation(FRotator NewRotation, float DeltaTime = 0.f) override;
+	UFUNCTION(BlueprintCallable, Category = "KBEngine")
+	virtual void FaceRotation(FRotator NewRotation, float DeltaTime = 0.f) override;
 
 	UFUNCTION(BlueprintCallable, Category = "KBEngine")
 	void updateLocation(float DeltaTime);

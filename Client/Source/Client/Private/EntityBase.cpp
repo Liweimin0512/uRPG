@@ -74,3 +74,9 @@ void AEntityBase::updateLocation(float DeltaTime)
 	FaceRotation(targetRotator, DeltaTime);
 }
 
+void AEntityBase::FaceRotation(FRotator NewRotation, float DeltaTime)
+{
+	FRotator CurrentRotation = FMath::RInterpTo(GetActorRotation(), NewRotation, DeltaTime, 8.0f);
+
+	Super::FaceRotation(CurrentRotation, DeltaTime);
+}
