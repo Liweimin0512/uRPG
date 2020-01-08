@@ -9,6 +9,8 @@
 * 数据库：mysql     8.0.17
 * VisualStudio 2019
 
+目前Server目录已经使用git子模块,地址：[UPRG-Server](https://github.com/Liweimin0512/URPG-Server)
+主要是考虑到后期要进行Linux系统上服务器的部署
 建议围观的小伙伴采用和我相同的版本运行项目。
 
 ## 分支描述
