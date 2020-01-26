@@ -192,7 +192,7 @@ namespace KBEngine
 
 	//}
 
-	//void Avatar::onUtypeChanged(uint32 oldValue)
+	//void avatar::onutypechanged(uint32 oldvalue)
 	//{
 
 	//}
