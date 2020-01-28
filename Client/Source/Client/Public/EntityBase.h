@@ -15,11 +15,15 @@ const int ModelID_Avatar = 90000001;
 UCLASS()
 class CLIENT_API AEntityBase : public ACharacter
 {
-	GENERATED_BODY()
+	GENERATED_UCLASS_BODY()
 
 public:
 	// Sets default values for this character's properties
 	AEntityBase();
+
+
+	/** Called once this actor has been deleted */
+	//virtual void Destroyed() override;
 
 protected:
 	// Called when the game starts or when spawned

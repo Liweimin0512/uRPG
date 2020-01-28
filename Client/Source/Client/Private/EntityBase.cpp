@@ -6,16 +6,13 @@
 #include "Engine/Entity.h"
 
 // Sets default values
-AEntityBase::AEntityBase()
+AEntityBase::AEntityBase(const FObjectInitializer& ObjectInitializer) : Super(ObjectInitializer)
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 	entityID = 0;
 	moveSpeed = 0.f;
 	isOnGround = false;
-
-	//AutoPossessPlayer = EAutoReceiveInput::Player0;
-
 }
 
 // Called when the game starts or when spawned
@@ -30,6 +27,8 @@ void AEntityBase::BeginPlay()
 		pEntity->callPropertysSetMethods();
 	}
 }
+
+
 
 // Called every frame
 void AEntityBase::Tick(float DeltaTime)
@@ -80,3 +79,4 @@ void AEntityBase::FaceRotation(FRotator NewRotation, float DeltaTime)
 
 	Super::FaceRotation(CurrentRotation, DeltaTime);
 }
+
