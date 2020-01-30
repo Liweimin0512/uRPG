@@ -83,4 +83,80 @@ public:
 };
 
 
+class KBENGINEPLUGINS_API DATATYPE_BAG : DATATYPE_BASE
+{
+public:
+	class KBENGINEPLUGINS_API DATATYPE__BAG_values22_ArrayType_ChildArray : public DATATYPE_BASE
+	{
+	public:
+		class KBENGINEPLUGINS_API DATATYPE___BAG_values22_ArrayType_ArrayType_ChildArray : public DATATYPE_BASE
+		{
+		public:
+			void createFromStreamEx(MemoryStream& stream, TArray<int64>& datas)
+			{
+				uint32 size = stream.readUint32();
+				while(size > 0)
+				{
+					--size;
+					datas.Add(stream.readInt64());
+				};
+
+			}
+
+			void addToStreamEx(Bundle& stream, const TArray<int64>& v)
+			{
+				stream.writeUint32((uint32)v.Num());
+				for(int i=0; i<v.Num(); ++i)
+				{
+					stream.writeInt64(v[i]);
+				};
+			}
+		};
+
+		DATATYPE___BAG_values22_ArrayType_ArrayType_ChildArray itemType;
+
+		void createFromStreamEx(MemoryStream& stream, TArray<TArray<int64>>& datas)
+		{
+			uint32 size = stream.readUint32();
+			while(size > 0)
+			{
+				--size;
+				itemType.createFromStreamEx(stream, datas.EmplaceAt_GetRef(datas.Num()));
+			};
+
+		}
+
+		void addToStreamEx(Bundle& stream, const TArray<TArray<int64>>& v)
+		{
+			stream.writeUint32((uint32)v.Num());
+			for(int i=0; i<v.Num(); ++i)
+			{
+				itemType.addToStreamEx(stream, v[i]);
+			};
+		}
+	};
+
+	DATATYPE__BAG_values22_ArrayType_ChildArray values22_DataType;
+
+	void createFromStreamEx(MemoryStream& stream, BAG& datas);
+	void addToStreamEx(Bundle& stream, const BAG& v);
+};
+
+
+class KBENGINEPLUGINS_API DATATYPE_EXAMPLES : DATATYPE_BASE
+{
+public:
+	void createFromStreamEx(MemoryStream& stream, EXAMPLES& datas);
+	void addToStreamEx(Bundle& stream, const EXAMPLES& v);
+};
+
+
+class KBENGINEPLUGINS_API DATATYPE_AnonymousArray_32 : DATATYPE_BASE
+{
+public:
+	void createFromStreamEx(MemoryStream& stream, TArray<int32>& datas);
+	void addToStreamEx(Bundle& stream, const TArray<int32>& v);
+};
+
+
 }

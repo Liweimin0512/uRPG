@@ -17,6 +17,8 @@ namespace KBEngine
 class Method;
 class Property;
 class MemoryStream;
+class TestBase;
+class TestNoBaseBase;
 
 // defined in */scripts/entity_defs/Avatar.def
 	// Please inherit and implement "class Avatar : public AvatarBase"
@@ -26,6 +28,22 @@ public:
 	EntityBaseEntityCall_AvatarBase* pBaseEntityCall;
 	EntityCellEntityCall_AvatarBase* pCellEntityCall;
 
+	int32 HP;
+	virtual void onHPChanged(int32 oldValue) {}
+	int32 HP_Max;
+	virtual void onHP_MaxChanged(int32 oldValue) {}
+	int32 MP;
+	virtual void onMPChanged(int32 oldValue) {}
+	int32 MP_Max;
+	virtual void onMP_MaxChanged(int32 oldValue) {}
+	TestBase* component1;
+	virtual void onComponent1Changed(const TestBase& oldValue) {}
+	TestBase* component2;
+	virtual void onComponent2Changed(const TestBase& oldValue) {}
+	TestNoBaseBase* component3;
+	virtual void onComponent3Changed(const TestNoBaseBase& oldValue) {}
+	int32 forbids;
+	virtual void onForbidsChanged(int32 oldValue) {}
 	uint16 level;
 	virtual void onLevelChanged(uint16 oldValue) {}
 	uint32 modelID;
@@ -40,12 +58,22 @@ public:
 	virtual void onOwn_valChanged(uint16 oldValue) {}
 	uint32 spaceUType;
 	virtual void onSpaceUTypeChanged(uint32 oldValue) {}
+	int8 state;
+	virtual void onStateChanged(int8 oldValue) {}
+	uint8 subState;
+	virtual void onSubStateChanged(uint8 oldValue) {}
 	uint32 uid;
 	virtual void onUidChanged(uint32 oldValue) {}
 	uint32 utype;
 	virtual void onUtypeChanged(uint32 oldValue) {}
 
+	virtual void dialog_addOption(uint8 arg1, uint32 arg2, const FString& arg3, int32 arg4) = 0; 
+	virtual void dialog_close() = 0; 
+	virtual void dialog_setText(const FString& arg1, uint8 arg2, uint32 arg3, const FString& arg4) = 0; 
+	virtual void onAddSkill(int32 arg1) = 0; 
 	virtual void onJump() = 0; 
+	virtual void onRemoveSkill(int32 arg1) = 0; 
+	virtual void recvDamage(int32 arg1, int32 arg2, int32 arg3, int32 arg4) = 0; 
 
 	void onComponentsEnterworld() override;
 	void onComponentsLeaveworld() override;
@@ -67,6 +95,7 @@ public:
 
 	void attachComponents() override;
 	void detachComponents() override;
+	TArray<EntityComponent*> getComponents(FString componentName, bool all) override;
 
 };
 

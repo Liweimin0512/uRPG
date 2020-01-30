@@ -47,7 +47,7 @@ void ASelectAvatarGameModeBase::reqCreateAvatar(uint8 raceType, const FString& n
 {
 	// 由于Account实体注册了该事件， 如果此时Account实体存在那么必然会执行到该事件 
 	UKBEventData_reqCreateAvatar* pEventData = NewObject<UKBEventData_reqCreateAvatar>();
-	pEventData->raceType = raceType;
+	pEventData->roleType = raceType;
 	pEventData->name = name;
 	KBENGINE_EVENT_FIRE("reqCreateAvatar", pEventData);
 }
@@ -64,8 +64,8 @@ void ASelectAvatarGameModeBase::reqRemoveAvatar(const FAVATAR_INFOS& avatarInfos
 void ASelectAvatarGameModeBase::reqEnterGame(const FAVATAR_INFOS& avatarInfos)
 {
 	// 由于Account实体注册了该事件， 如果此时Account实体存在那么必然会执行到该事件 
-	UKBEventData_reqEnterGame* pEventData = NewObject<UKBEventData_reqEnterGame>();
+	UKBEventData_selectAvatarGame* pEventData = NewObject<UKBEventData_selectAvatarGame>();
 	pEventData->avatarInfos = avatarInfos;
-	KBENGINE_EVENT_FIRE("reqEnterGame", pEventData);
+	KBENGINE_EVENT_FIRE("selectAvatarGame", pEventData);
 }
 

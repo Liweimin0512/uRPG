@@ -24,6 +24,9 @@ public:
 	*/
 	virtual void installEvents() override;
 
+	UFUNCTION(BlueprintCallable, Category = KBEngine)
+		void reqRelive(int reliveType);
+
 	/* KBE事件
 	*/
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "KBEngine")
@@ -64,9 +67,113 @@ public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "KBEngine")
 		void updatePosition(const UKBEventData* pEventData);
 
+	/* KBE事件
+	*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "KBEngine")
+		void onControlled(const UKBEventData* pEventData);
 
-	//UFUNCTION(BlueprintCallable, Category = "KBEngine")
-	//	AEntityBase* findGameEntity(int entityID);
+	/* KBE事件
+	*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "KBEngine")
+		void set_HP(const UKBEventData* pEventData);
 
+	/* KBE事件
+	*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "KBEngine")
+		void set_MP(const UKBEventData* pEventData);
+
+	/* KBE事件
+	*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "KBEngine")
+		void set_HP_Max(const UKBEventData* pEventData);
+
+	/* KBE事件
+	*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "KBEngine")
+		void set_MP_Max(const UKBEventData* pEventData);
+
+	/* KBE事件
+	*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "KBEngine")
+		void set_level(const UKBEventData* pEventData);
+
+	/* KBE事件
+	*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "KBEngine")
+		void set_name(const UKBEventData* pEventData);
+
+	/* KBE事件
+	*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "KBEngine")
+		void set_moveSpeed(const UKBEventData* pEventData);
+
+	/* KBE事件
+	*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "KBEngine")
+		void set_modelScale(const UKBEventData* pEventData);
+
+	/* KBE事件
+	*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "KBEngine")
+		void set_modelID(const UKBEventData* pEventData);
+
+	/* KBE事件
+	*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "KBEngine")
+		void set_entityNO(const UKBEventData* pEventData);
+
+	/* KBE事件
+	*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "KBEngine")
+		void set_flags(const UKBEventData* pEventData);
+
+	/* KBE事件
+	*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "KBEngine")
+		void set_state(const UKBEventData* pEventData);
+
+	/* KBE事件
+	*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "KBEngine")
+		void set_subState(const UKBEventData* pEventData);
+
+	/* KBE事件
+	*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "KBEngine")
+		void set_forbids(const UKBEventData* pEventData);
+
+	/* KBE事件
+	*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "KBEngine")
+		void recvDamage(const UKBEventData* pEventData);
+
+	/* KBE事件
+	*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "KBEngine")
+		void otherAvatarOnJump(const UKBEventData* pEventData);
+
+	/* KBE事件
+	*/
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "KBEngine")
+		void onAddSkill(const UKBEventData* pEventData);
+
+	UFUNCTION(BlueprintCallable, Category = "KBEngine")
+		AEntityBase* findGameEntity(int entityID);
+
+	UFUNCTION(BlueprintCallable, Category = "KBEngine")
+		void addGameEntity(int entityID, AEntityBase* entity);
+
+	UFUNCTION(BlueprintCallable, Category = "KBEngine")
+		void removeGameEntity(int entityID);
+
+	TMap<ENTITY_ID, AEntityBase*> gameEntities;
+
+	// 在编辑器中配置相关类
+	UPROPERTY(EditDefaultsOnly, Category = KBEngine)
+		TArray<TSubclassOf<class AEntityBase>> GameEntityClassArray;
+
+	// 在编辑器中配置相关类
+	UPROPERTY(EditDefaultsOnly, Category = KBEngine)
+		TArray<TSubclassOf<class AEntityBase>> PlayerCharacterClassArray;
 
 };

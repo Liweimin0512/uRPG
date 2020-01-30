@@ -26,10 +26,10 @@ public:
 
 	virtual ~EntityBaseEntityCall_AccountBase();
 	void reqAvatarList();
-	void reqCreateAvatar(const FString& arg1, uint8 arg2);
-	void reqEnterGame(uint64 arg1);
+	void reqCreateAvatar(uint8 arg1, const FString& arg2);
 	void reqRemoveAvatar(const FString& arg1);
 	void reqRemoveAvatarDBID(uint64 arg1);
+	void selectAvatarGame(uint64 arg1);
 };
 
 class KBENGINEPLUGINS_API EntityCellEntityCall_AccountBase : public EntityCall

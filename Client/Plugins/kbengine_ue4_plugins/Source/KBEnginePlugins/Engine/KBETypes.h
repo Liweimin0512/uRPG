@@ -156,14 +156,14 @@ class AVATAR_INFOS
 public:
 	uint64 dbid;
 	FString name;
-	uint8 raceType;
+	uint8 roleType;
 	uint16 level;
 	AVATAR_DATA data;
 
 	AVATAR_INFOS():
 	dbid(0),
 	name(),
-	raceType(0),
+	roleType(0),
 	level(0),
 	data()
 	{
@@ -173,7 +173,7 @@ public:
 
 inline bool operator ==(const AVATAR_INFOS& a, const AVATAR_INFOS& b)
 {
-	return a.dbid == b.dbid && a.name == b.name && a.raceType == b.raceType && a.level == b.level && a.data == b.data;
+	return a.dbid == b.dbid && a.name == b.name && a.roleType == b.roleType && a.level == b.level && a.data == b.data;
 };
 
 class AVATAR_INFOS_LIST
@@ -191,6 +191,42 @@ public:
 inline bool operator ==(const AVATAR_INFOS_LIST& a, const AVATAR_INFOS_LIST& b)
 {
 	return a.values == b.values;
+};
+
+class BAG
+{
+public:
+	TArray<TArray<int64>> values22;
+
+	BAG():
+	values22()
+	{
+	}
+
+};
+
+inline bool operator ==(const BAG& a, const BAG& b)
+{
+	return a.values22 == b.values22;
+};
+
+class EXAMPLES
+{
+public:
+	int64 k1;
+	int64 k2;
+
+	EXAMPLES():
+	k1(0),
+	k2(0)
+	{
+	}
+
+};
+
+inline bool operator ==(const EXAMPLES& a, const EXAMPLES& b)
+{
+	return a.k1 == b.k1 && a.k2 == b.k2;
 };
 
 

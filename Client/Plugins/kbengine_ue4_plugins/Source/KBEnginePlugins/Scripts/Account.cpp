@@ -23,7 +23,7 @@ void Account::__init__()
 	KBENGINE_REGISTER_EVENT_OVERRIDE_FUNC("reqCreateAvatar", "reqCreateAvatar", [this](const UKBEventData* pEventData)
 	{
 		const UKBEventData_reqCreateAvatar& data = static_cast<const UKBEventData_reqCreateAvatar&>(*pEventData);
-		reqCreateAvatar(data.raceType, data.name);
+		reqCreateAvatar(data.roleType, data.name);
 	});
 
 	KBENGINE_REGISTER_EVENT_OVERRIDE_FUNC("reqRemoveAvatar", "reqRemoveAvatar", [this](const UKBEventData* pEventData)
@@ -32,10 +32,10 @@ void Account::__init__()
 		reqRemoveAvatar(data.avatarInfos.dbid);
 	});
 
-	KBENGINE_REGISTER_EVENT_OVERRIDE_FUNC("reqEnterGame", "reqEnterGame", [this](const UKBEventData* pEventData)
+	KBENGINE_REGISTER_EVENT_OVERRIDE_FUNC("selectAvatarGame", "selectAvatarGame", [this](const UKBEventData* pEventData)
 	{
-		const UKBEventData_reqEnterGame& data = static_cast<const UKBEventData_reqEnterGame&>(*pEventData);
-		reqEnterGame(data.avatarInfos.dbid);
+		const UKBEventData_selectAvatarGame& data = static_cast<const UKBEventData_selectAvatarGame&>(*pEventData);
+		selectAvatarGame(data.avatarInfos.dbid);
 	});
 
 	// 触发登陆成功事件
@@ -60,10 +60,10 @@ void Account::onLastSelCharacterChanged(uint64 oldValue)
 
 }
 
-void Account::reqCreateAvatar(uint8 raceType, const FString& name)
+void Account::reqCreateAvatar(uint8 roleType, const FString& name)
 {
-	DEBUG_MSG("Account::reqCreateAvatar(): raceType=%d", raceType);
-	pBaseEntityCall->reqCreateAvatar(name, raceType);
+	DEBUG_MSG("Account::reqCreateAvatar(): roleType=%d", roleType);
+	pBaseEntityCall->reqCreateAvatar(roleType, name);
 }
 
 void Account::reqRemoveAvatar(uint64 dbid)
@@ -72,10 +72,10 @@ void Account::reqRemoveAvatar(uint64 dbid)
 	pBaseEntityCall->reqRemoveAvatarDBID(dbid);
 }
 
-void Account::reqEnterGame(uint64 dbid)
+void Account::selectAvatarGame(uint64 dbid)
 {
 	DEBUG_MSG("Account::selectAvatarGame(): name=%lld", dbid);
-	pBaseEntityCall->reqEnterGame(dbid);
+	pBaseEntityCall->selectAvatarGame(dbid);
 }
 
 void Account::onReqAvatarList(const AVATAR_INFOS_LIST& datas)
@@ -92,7 +92,7 @@ void Account::onReqAvatarList(const AVATAR_INFOS_LIST& datas)
 		infos.name = characterInfo_fixed_dict.name;
 		infos.dbid = characterInfo_fixed_dict.dbid;
 		infos.level = characterInfo_fixed_dict.level;
-		infos.raceType = characterInfo_fixed_dict.raceType;
+		infos.roleType = characterInfo_fixed_dict.roleType;
 
 		const AVATAR_DATA& data_fixed_dict = characterInfo_fixed_dict.data;
 
@@ -102,7 +102,7 @@ void Account::onReqAvatarList(const AVATAR_INFOS_LIST& datas)
 		characters.values.Add(infos);
 
 		// fill eventData
-		event_avatar.set(infos.dbid, infos.name, infos.raceType, infos.level, (lastSelCharacter == infos.dbid));
+		event_avatar.set(infos.dbid, infos.name, infos.roleType, infos.level, (lastSelCharacter == infos.dbid));
 		pEventData->avatars.Add(event_avatar);
 	}
 
@@ -118,7 +118,7 @@ void Account::onCreateAvatarResult(uint8 retcode, const AVATAR_INFOS& info)
 	infos.name = info.name;
 	infos.dbid = info.dbid;
 	infos.level = info.level;
-	infos.raceType = info.raceType;
+	infos.roleType = info.roleType;
 
 	const AVATAR_DATA& data_fixed_dict = info.data;
 
@@ -129,7 +129,7 @@ void Account::onCreateAvatarResult(uint8 retcode, const AVATAR_INFOS& info)
 		characters.values.Add(infos);
 
 	// fill eventData
-	pEventData->avatarInfos.set(infos.dbid, infos.name, infos.raceType, infos.level, (lastSelCharacter == infos.dbid));
+	pEventData->avatarInfos.set(infos.dbid, infos.name, infos.roleType, infos.level, (lastSelCharacter == infos.dbid));
 	pEventData->errorCode = retcode;
 
 	// Error codes given by Account::reqCreateAvatar on the server
@@ -162,7 +162,7 @@ void Account::onRemoveAvatar(uint64 dbid)
 
 	// ui event
 	UKBEventData_onRemoveAvatar* pEventData = NewObject<UKBEventData_onRemoveAvatar>();
-	pEventData->avatarInfos.set(infos.dbid, infos.name, infos.raceType, infos.level, (lastSelCharacter == infos.dbid));
+	pEventData->avatarInfos.set(infos.dbid, infos.name, infos.roleType, infos.level, (lastSelCharacter == infos.dbid));
 	KBENGINE_EVENT_FIRE("onRemoveAvatar", pEventData);
 
 	characters.values.RemoveAt(infosFind);

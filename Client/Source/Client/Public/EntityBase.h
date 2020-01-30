@@ -17,72 +17,65 @@ class CLIENT_API AEntityBase : public ACharacter
 {
 	GENERATED_UCLASS_BODY()
 
-public:
-	// Sets default values for this character's properties
-	AEntityBase();
-
+		// Called when the game starts or when spawned
+		virtual void BeginPlay() override;
 
 	/** Called once this actor has been deleted */
-	//virtual void Destroyed() override;
+	virtual void Destroyed() override;
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
 	// Called every frame
-	virtual void Tick(float DeltaTime) override;
+	virtual void Tick(float DeltaSeconds) override;
 
 	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	virtual void SetupPlayerInputComponent(class UInputComponent* inputComponent) override;
 
 	UFUNCTION(BlueprintCallable, Category = "KBEngine")
-	virtual bool isPlayer() {
-		return false;
+		virtual void FaceRotation(FRotator NewRotation, float DeltaTime = 0.f) override;
+
+	UFUNCTION(BlueprintCallable, Category = "KBEngine")
+		void updateLocation(float DeltaTime);
+
+	UFUNCTION(BlueprintCallable, Category = "KBEngine")
+		void setTargetLocation(const FVector& loc)
+	{
+		targetLocation = loc;
 	}
 
 	UFUNCTION(BlueprintCallable, Category = "KBEngine")
-	virtual void FaceRotation(FRotator NewRotation, float DeltaTime = 0.f) override;
+		void setTargetRotator(const FRotator& rot)
+	{
+		targetRotator = rot;
+	}
 
 	UFUNCTION(BlueprintCallable, Category = "KBEngine")
-	void updateLocation(float DeltaTime);
+		void setIsOnGround(bool onGround)
+	{
+		isOnGround = onGround;
+	}
 
-	//UFUNCTION(BlueprintCallable, Category = "KBEngine")
-	//void setTargetLocation(const FVector& loc)
-	//{
-	//	targetLocation = loc;
-	//}
+	UFUNCTION(BlueprintCallable, Category = "KBEngine")
+		virtual void setModelID(int modelID);
 
-	//UFUNCTION(BlueprintCallable, Category = "KBEngine")
-	//void setTargetRotator(const FRotator& rot)
-	//{
-	//	targetRotator = rot;
-	//}
-
-	//UFUNCTION(BlueprintCallable, Category = "KBEngine")
-	//	void setIsOnGround(bool onGround)
-	//{
-	//	isOnGround = onGround;
-	//}
-
-	//UFUNCTION(BlueprintCallable, Category = "KBEngine")
-	//	virtual void setModelID(int modelID);
+	UFUNCTION(BlueprintCallable, Category = "KBEngine")
+		virtual bool isPlayer() {
+		return false;
+	}
 
 private:
-	//void createAvatar();
-	//void createMonster();
+	void createAvatar();
+	void createMonster();
 
 public:
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	//	float modelScale;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+		float modelScale;
 
-	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	//	int modelID;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+		int modelID;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine, meta = (ExposeOnSpawn))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
 		float moveSpeed;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine, meta = (ExposeOnSpawn))
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
 		int entityID;
 
 	// 实体将要移动到的目的地位置
@@ -91,9 +84,11 @@ public:
 
 	// 实体将要移动到的目的朝向
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
-	FRotator targetRotator;
+		FRotator targetRotator;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
 		bool isOnGround;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
+		bool isPlayerCharacter;
 };

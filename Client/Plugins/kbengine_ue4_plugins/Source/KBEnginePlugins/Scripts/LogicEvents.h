@@ -21,12 +21,12 @@ struct FAVATAR_INFOS
 	UPROPERTY(Category = KBEngine, BlueprintReadWrite, EditAnywhere)
 	FString sdbid;
 
-	void set(DBID _dbid, const FString& _name, uint8 _raceType, int _level, bool _lastSelCharacter)
+	void set(DBID _dbid, const FString& _name, uint8 _roleType, int _level, bool _lastSelCharacter)
 	{
 		name = _name;
 		dbid = _dbid;
 		sdbid = FString::Printf(TEXT("%lld"), dbid);
-		raceType = _raceType;
+		roleType = _roleType;
 		level = _level;
 		lastSelCharacter = _lastSelCharacter;
 	}
@@ -35,7 +35,7 @@ struct FAVATAR_INFOS
 	FString name;
 
 	UPROPERTY(Category = KBEngine, BlueprintReadWrite, EditAnywhere)
-	uint8 raceType;
+	uint8 roleType;
 
 	UPROPERTY(Category = KBEngine, BlueprintReadWrite, EditAnywhere)
 	int level;
@@ -52,7 +52,7 @@ class KBENGINEPLUGINS_API UKBEventData_reqCreateAvatar : public UKBEventData
 
 public:
 	UPROPERTY(Category = KBEngine, BlueprintReadWrite, EditAnywhere)
-	uint8 raceType;
+	uint8 roleType;
 
 	UPROPERTY(Category = KBEngine, BlueprintReadWrite, EditAnywhere)
 	FString name;
@@ -105,7 +105,7 @@ public:
 };
 
 UCLASS(Blueprintable, BlueprintType)
-class KBENGINEPLUGINS_API UKBEventData_reqEnterGame : public UKBEventData
+class KBENGINEPLUGINS_API UKBEventData_selectAvatarGame : public UKBEventData
 {
 	GENERATED_BODY()
 
