@@ -36,10 +36,6 @@ void AEntityBase::BeginPlay()
 		if (pEntity)
 			pEntity->callPropertysSetMethods();
 	}
-	//if (isPlayerCharacter)
-	//{
-	//	AutoPossessPlayer = EAutoReceiveInput::Player0;
-	//}
 }
 
 void AEntityBase::Destroyed()
@@ -84,7 +80,7 @@ void AEntityBase::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	if (!isPlayer())
+	if (!isPlayerCharacter)
 	{
 		updateLocation(DeltaTime);
 	}

@@ -128,9 +128,11 @@ void AMainGameModeBase::onEnterWorld_Implementation(const UKBEventData* pEventDa
 		{
 			DeferredActor->entityID = pData->entityID;
 			DeferredActor->moveSpeed = pData->moveSpeed;
+
+			UGameplayStatics::FinishSpawningActor(DeferredActor, SpawnTransform);
+
 			auto myPlayerController = UGameplayStatics::GetPlayerController(GWorld, 0);
 			myPlayerController->Possess(DeferredActor);
-			UGameplayStatics::FinishSpawningActor(DeferredActor, SpawnTransform);
 		}
 
 	}
@@ -151,6 +153,9 @@ void AMainGameModeBase::onLeaveWorld_Implementation(const UKBEventData* pEventDa
 {
 	const UKBEventData_onLeaveWorld* pData = Cast<UKBEventData_onLeaveWorld>(pEventData);
 	AEntityBase* pAEntityBase = findGameEntity(pData->entityID);
+
+	auto myPlayerController = UGameplayStatics::GetPlayerController(GWorld, 0);
+	myPlayerController->UnPossess();
 
 	if (pAEntityBase)
 	{
