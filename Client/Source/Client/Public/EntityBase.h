@@ -17,8 +17,8 @@ class CLIENT_API AEntityBase : public ACharacter
 {
 	GENERATED_UCLASS_BODY()
 
-		// Called when the game starts or when spawned
-		virtual void BeginPlay() override;
+	// Called when the game starts or when spawned
+	virtual void BeginPlay() override;
 
 	/** Called once this actor has been deleted */
 	virtual void Destroyed() override;
@@ -56,10 +56,10 @@ class CLIENT_API AEntityBase : public ACharacter
 	UFUNCTION(BlueprintCallable, Category = "KBEngine")
 		virtual void setModelID(int modelID);
 
-	UFUNCTION(BlueprintCallable, Category = "KBEngine")
-		virtual bool isPlayer() {
-		return false;
-	}
+	//UFUNCTION(BlueprintCallable, Category = "KBEngine")
+	//	virtual bool isPlayer() {
+	//	return false;
+	//}
 
 private:
 	void createAvatar();
