@@ -14,16 +14,19 @@ public class Client : ModuleRules
 			new string[] {
 				"Core",
 				"CoreUObject",
-				"Engine",
-				"InputCore",
-				"KBEnginePlugins"
+				"Engine"
 			}
 		);
 
-		// PrivateDependencyModuleNames.AddRange(
-		// 	new string[] {
-		// 		"VictoryBPLibrary"
-		// 	}
-		// );
+		PrivateDependencyModuleNames.AddRange(
+			new string[] {
+				"InputCore",
+				"KBEnginePlugins",
+				"VictoryBPLibrary",
+				"GameplayAbilities",
+				"GameplayTags",
+				"GameplayTasks"
+			}
+		);
 	}
 }
