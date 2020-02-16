@@ -20,6 +20,11 @@
 
 目前Server目录已经使用git子模块,地址：[UPRG-Server](https://github.com/Liweimin0512/URPG-Server)
 
+## UE4插件
+
+* Victory插件，一个功能扩展函数库
+* GameplayAbilities插件，官方提供的能力系统
+
 ## 分支描述
 
 * master 主分支，保证最新的可运行版本
