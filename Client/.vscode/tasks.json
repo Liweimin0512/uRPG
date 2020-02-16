@@ -1,0 +1,977 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Client Win32 Debug Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"Win32",
+				"Debug",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win32 Debug Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"Win32",
+				"Debug",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Client Win32 Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win32 Debug Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"Client",
+				"Win32",
+				"Debug",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win32 DebugGame Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"Win32",
+				"DebugGame",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win32 DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"Win32",
+				"DebugGame",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Client Win32 DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win32 DebugGame Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"Client",
+				"Win32",
+				"DebugGame",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win32 Development Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"Win32",
+				"Development",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win32 Development Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"Win32",
+				"Development",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Client Win32 Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win32 Development Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"Client",
+				"Win32",
+				"Development",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win32 Shipping Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"Win32",
+				"Shipping",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win32 Shipping Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"Win32",
+				"Shipping",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Client Win32 Shipping Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win32 Shipping Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"Client",
+				"Win32",
+				"Shipping",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win32 Test Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"Win32",
+				"Test",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win32 Test Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"Win32",
+				"Test",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Client Win32 Test Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win32 Test Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"Client",
+				"Win32",
+				"Test",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win64 Debug Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"Win64",
+				"Debug",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win64 Debug Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"Win64",
+				"Debug",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Client Win64 Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win64 Debug Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"Client",
+				"Win64",
+				"Debug",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win64 DebugGame Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"Win64",
+				"DebugGame",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win64 DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"Win64",
+				"DebugGame",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Client Win64 DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win64 DebugGame Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"Client",
+				"Win64",
+				"DebugGame",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win64 Development Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"Win64",
+				"Development",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win64 Development Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"Win64",
+				"Development",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Client Win64 Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win64 Development Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"Client",
+				"Win64",
+				"Development",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win64 Shipping Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"Win64",
+				"Shipping",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win64 Shipping Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"Win64",
+				"Shipping",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Client Win64 Shipping Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win64 Shipping Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"Client",
+				"Win64",
+				"Shipping",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win64 Test Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"Win64",
+				"Test",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win64 Test Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"Win64",
+				"Test",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Client Win64 Test Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client Win64 Test Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"Client",
+				"Win64",
+				"Test",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client HTML5 Debug Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"HTML5",
+				"Debug",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client HTML5 Debug Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"HTML5",
+				"Debug",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Client HTML5 Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client HTML5 Debug Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"Client",
+				"HTML5",
+				"Debug",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client HTML5 DebugGame Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"HTML5",
+				"DebugGame",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client HTML5 DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"HTML5",
+				"DebugGame",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Client HTML5 DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client HTML5 DebugGame Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"Client",
+				"HTML5",
+				"DebugGame",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client HTML5 Development Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"HTML5",
+				"Development",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client HTML5 Development Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"HTML5",
+				"Development",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Client HTML5 Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client HTML5 Development Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"Client",
+				"HTML5",
+				"Development",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client HTML5 Shipping Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"HTML5",
+				"Shipping",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client HTML5 Shipping Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"HTML5",
+				"Shipping",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Client HTML5 Shipping Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client HTML5 Shipping Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"Client",
+				"HTML5",
+				"Shipping",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client HTML5 Test Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"HTML5",
+				"Test",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client HTML5 Test Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"Client",
+				"HTML5",
+				"Test",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"Client HTML5 Test Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "Client HTML5 Test Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"Client",
+				"HTML5",
+				"Test",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "ClientEditor Win64 Debug Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"ClientEditor",
+				"Win64",
+				"Debug",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "ClientEditor Win64 Debug Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"ClientEditor",
+				"Win64",
+				"Debug",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"ClientEditor Win64 Debug Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "ClientEditor Win64 Debug Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"ClientEditor",
+				"Win64",
+				"Debug",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "ClientEditor Win64 DebugGame Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"ClientEditor",
+				"Win64",
+				"DebugGame",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "ClientEditor Win64 DebugGame Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"ClientEditor",
+				"Win64",
+				"DebugGame",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"ClientEditor Win64 DebugGame Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "ClientEditor Win64 DebugGame Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"ClientEditor",
+				"Win64",
+				"DebugGame",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "ClientEditor Win64 Development Build",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"ClientEditor",
+				"Win64",
+				"Development",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "ClientEditor Win64 Development Rebuild",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Build.bat",
+			"args": [
+				"ClientEditor",
+				"Win64",
+				"Development",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"dependsOn": [
+				"ClientEditor Win64 Development Clean"
+			],
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		},
+		{
+			"label": "ClientEditor Win64 Development Clean",
+			"group": "build",
+			"command": "Engine\\Build\\BatchFiles\\Clean.bat",
+			"args": [
+				"ClientEditor",
+				"Win64",
+				"Development",
+				"D:\\UnrealProject\\uRPG\\Client\\Client.uproject",
+				"-waitmutex"
+			],
+			"problemMatcher": "$msCompile",
+			"type": "shell",
+			"options": {
+				"cwd": "D:\\Program Files\\Epic Games\\UE_4.22"
+			}
+		}
+	]
+}

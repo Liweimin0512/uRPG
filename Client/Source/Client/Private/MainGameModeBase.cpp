@@ -21,35 +21,35 @@ void AMainGameModeBase::installEvents()
 	Super::installEvents();
 
 	// in world
-	// Õâ¸öÊÂ¼þ´¥·¢Ê±ÎÒÃÇÐèÒªÇÐ»»µØÍ¼µ½ÓÎÏ·ÊÀ½çµØÍ¼
-	KBENGINE_REGISTER_EVENT(KBEngine::KBEventTypes::addSpaceGeometryMapping, addSpaceGeometryMapping);
-	KBENGINE_REGISTER_EVENT(KBEngine::KBEventTypes::onEnterWorld, onEnterWorld);
-	KBENGINE_REGISTER_EVENT(KBEngine::KBEventTypes::onLeaveWorld, onLeaveWorld);
-	KBENGINE_REGISTER_EVENT(KBEngine::KBEventTypes::onEnterSpace, onEnterSpace);
-	KBENGINE_REGISTER_EVENT(KBEngine::KBEventTypes::onLeaveSpace, onLeaveSpace);
-	KBENGINE_REGISTER_EVENT(KBEngine::KBEventTypes::set_position, set_position);
-	KBENGINE_REGISTER_EVENT(KBEngine::KBEventTypes::set_direction, set_direction);
-	KBENGINE_REGISTER_EVENT(KBEngine::KBEventTypes::updatePosition, updatePosition);
-	KBENGINE_REGISTER_EVENT(KBEngine::KBEventTypes::onControlled, onControlled);
+	// ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ð»ï¿½ï¿½ï¿½Í¼ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½Í¼
+	// KBENGINE_REGISTER_EVENT(KBEngine::KBEventTypes::addSpaceGeometryMapping, addSpaceGeometryMapping);
+	// KBENGINE_REGISTER_EVENT(KBEngine::KBEventTypes::onEnterWorld, onEnterWorld);
+	// KBENGINE_REGISTER_EVENT(KBEngine::KBEventTypes::onLeaveWorld, onLeaveWorld);
+	// KBENGINE_REGISTER_EVENT(KBEngine::KBEventTypes::onEnterSpace, onEnterSpace);
+	// KBENGINE_REGISTER_EVENT(KBEngine::KBEventTypes::onLeaveSpace, onLeaveSpace);
+	// KBENGINE_REGISTER_EVENT(KBEngine::KBEventTypes::set_position, set_position);
+	// KBENGINE_REGISTER_EVENT(KBEngine::KBEventTypes::set_direction, set_direction);
+	// KBENGINE_REGISTER_EVENT(KBEngine::KBEventTypes::updatePosition, updatePosition);
+	// KBENGINE_REGISTER_EVENT(KBEngine::KBEventTypes::onControlled, onControlled);
 
 	// in world(register by scripts)
-	KBENGINE_REGISTER_EVENT("set_HP", set_HP);
-	KBENGINE_REGISTER_EVENT("set_MP", set_MP);
-	KBENGINE_REGISTER_EVENT("set_HP_Max", set_HP_Max);
-	KBENGINE_REGISTER_EVENT("set_MP_Max", set_MP_Max);
-	KBENGINE_REGISTER_EVENT("set_level", set_level);
-	KBENGINE_REGISTER_EVENT("set_name", set_name);
-	KBENGINE_REGISTER_EVENT("set_moveSpeed", set_moveSpeed);
-	KBENGINE_REGISTER_EVENT("set_modelScale", set_modelScale);
-	KBENGINE_REGISTER_EVENT("set_modelID", set_modelID);
-	KBENGINE_REGISTER_EVENT("set_entityNO", set_entityNO);
-	KBENGINE_REGISTER_EVENT("set_flags", set_flags);
-	KBENGINE_REGISTER_EVENT("set_state", set_state);
-	KBENGINE_REGISTER_EVENT("set_subState", set_subState);
-	KBENGINE_REGISTER_EVENT("set_forbids", set_forbids);
-	KBENGINE_REGISTER_EVENT("recvDamage", recvDamage);
-	KBENGINE_REGISTER_EVENT("otherAvatarOnJump", otherAvatarOnJump);
-	KBENGINE_REGISTER_EVENT("onAddSkill", onAddSkill);
+	// KBENGINE_REGISTER_EVENT("set_HP", set_HP);
+	// KBENGINE_REGISTER_EVENT("set_MP", set_MP);
+	// KBENGINE_REGISTER_EVENT("set_HP_Max", set_HP_Max);
+	// KBENGINE_REGISTER_EVENT("set_MP_Max", set_MP_Max);
+	// KBENGINE_REGISTER_EVENT("set_level", set_level);
+	// KBENGINE_REGISTER_EVENT("set_name", set_name);
+	// KBENGINE_REGISTER_EVENT("set_moveSpeed", set_moveSpeed);
+	// KBENGINE_REGISTER_EVENT("set_modelScale", set_modelScale);
+	// KBENGINE_REGISTER_EVENT("set_modelID", set_modelID);
+	// KBENGINE_REGISTER_EVENT("set_entityNO", set_entityNO);
+	// KBENGINE_REGISTER_EVENT("set_flags", set_flags);
+	// KBENGINE_REGISTER_EVENT("set_state", set_state);
+	// KBENGINE_REGISTER_EVENT("set_subState", set_subState);
+	// KBENGINE_REGISTER_EVENT("set_forbids", set_forbids);
+	// KBENGINE_REGISTER_EVENT("recvDamage", recvDamage);
+	// KBENGINE_REGISTER_EVENT("otherAvatarOnJump", otherAvatarOnJump);
+	// KBENGINE_REGISTER_EVENT("onAddSkill", onAddSkill);
 }
 
 // Called when the game starts or when spawned
@@ -59,8 +59,8 @@ void AMainGameModeBase::BeginPlay()
 
 	check(KBEngine::KBEngineApp::getSingleton().isInitialized());
 
-	// Èç¹ûÒÑ¾­ÓÐ±»´´½¨µÄÊµÌå£¬ËµÃ÷ËûÃÇÔÚÉÏÒ»¸ö³¡¾°Î´À´µÃ¼°Ìø×ªÖ®Ç°ÒÑ¾­Í¨Öª´´½¨ÁË£¬µ«ÓÉÓÚÎÒÃÇµÄworld³¡¾°²¢Ã»ÓÐÀ´µÃ¼°´´½¨£¬Õâ²¿·ÖÊµÌå½øÈëÊÀ½çÊÂ¼þÒÑ¾­Â©µô
-	// ´ËÊ±ÎÒÃÇÐèÒªÔÙ´Î´¥·¢Ò»´ÎonEnterWorld£¬ÈÃ±íÏÖ²ãÄÜ¹»ÔÚÓÎÏ·³¡¾°ÖÐ´´½¨³öËùÓÐµÄÊµÌå
+	// ï¿½ï¿½ï¿½ï¿½Ñ¾ï¿½ï¿½Ð±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Êµï¿½å£¬Ëµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î´ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½×ªÖ®Ç°ï¿½Ñ¾ï¿½Í¨Öªï¿½ï¿½ï¿½ï¿½ï¿½Ë£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Çµï¿½worldï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½â²¿ï¿½ï¿½Êµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Ñ¾ï¿½Â©ï¿½ï¿½
+	// ï¿½ï¿½Ê±ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ù´Î´ï¿½ï¿½ï¿½Ò»ï¿½ï¿½onEnterWorldï¿½ï¿½ï¿½Ã±ï¿½ï¿½Ö²ï¿½ï¿½Ü¹ï¿½ï¿½ï¿½ï¿½ï¿½Ï·ï¿½ï¿½ï¿½ï¿½ï¿½Ð´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ðµï¿½Êµï¿½ï¿½
 	KBEngine::KBEngineApp::ENTITIES_MAP& entities = KBEngine::KBEngineApp::getSingleton().entities();
 	for (auto& item : entities)
 	{
@@ -82,7 +82,7 @@ void AMainGameModeBase::BeginPlay()
 
 void AMainGameModeBase::reqRelive(int reliveType)
 {
-	// ÓÉÓÚÍæ¼ÒµÄAvatarÊµÌå×¢²áÁË¸ÃÊÂ¼þ£¬ Èç¹û´ËÊ±AvatarÊµÌå´æÔÚÄÇÃ´±ØÈ»»áÖ´ÐÐµ½¸ÃÊÂ¼þ 
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òµï¿½AvatarÊµï¿½ï¿½×¢ï¿½ï¿½ï¿½Ë¸ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ê±AvatarÊµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ã´ï¿½ï¿½È»ï¿½ï¿½Ö´ï¿½Ðµï¿½ï¿½ï¿½ï¿½Â¼ï¿½ 
 	UKBEventData_reqRelive* pEventData = NewObject<UKBEventData_reqRelive>();
 	pEventData->reliveType = reliveType;
 	KBENGINE_EVENT_FIRE("relive", pEventData);
