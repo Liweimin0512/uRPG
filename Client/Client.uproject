@@ -28,6 +28,11 @@
 			"Name": "VictoryBPLibrary",
 			"Enabled": true,
 			"MarketplaceURL": "http://www.ue4code.com"
+		},
+		{
+			"Name": "GitBashToolBar",
+			"Enabled": true,
+			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/content/276f47ed69684414988fcaa3f1a299d0"
 		}
 	]
 }
