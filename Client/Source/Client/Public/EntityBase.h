@@ -2,11 +2,10 @@
 
 #pragma once
 
-#include "Client.h"
+#include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
-#include "Abilities/RPGAbilitySystemComponent.h"
-#include "Abilities/CoreAttributeSet.h"
+#include "Abilities//RPGAbilitySystemComponent.h"
 #include "EntityBase.generated.h"
 
 const int ModelID_NPC = 1002;
@@ -16,55 +15,11 @@ const int ModelID_Gate = 40001001;
 const int ModelID_Avatar = 90000001;
 
 UCLASS()
-class CLIENT_API AEntityBase : public ACharacter,public IAbilitySystemInterface
+class CLIENT_API AEntityBase : public ACharacter//, public IAbilitySystemInterface
 {
 	GENERATED_UCLASS_BODY()
 
 public:
-
-	// AEntityBase();
-
-	virtual void PossessedBy(AController* NewController) override;
-	virtual void UnPossessed() override;
-	virtual void OnRep_Controller() override;
-	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
-
-	// Implement IAbilitySystemInterface
-	UPROPERTY()
-	URPGAbilitySystemComponent* AbilitySystemComponent;
-
-	/** Returns current health, will be 0 if dead */
-	UFUNCTION(BlueprintCallable)
-	virtual float GetHealth() const;
-
-	/** Returns maximum health, health will never be greater than this */
-	UFUNCTION(BlueprintCallable)
-	virtual float GetMaxHealth() const;
-
-	/** Returns current mana */
-	UFUNCTION(BlueprintCallable)
-	virtual float GetMana() const;
-
-	/** Returns maximum mana, mana will never be greater than this */
-	UFUNCTION(BlueprintCallable)
-	virtual float GetMaxMana() const;
-
-	/** Returns current movement speed */
-	UFUNCTION(BlueprintCallable)
-	virtual float GetMoveSpeed() const;
-
-	/** Returns the character level that is passed to the ability system */
-	UFUNCTION(BlueprintCallable)
-	virtual int32 GetCharacterLevel() const;
-
-	/** Modifies the character level, this may change abilities. Returns true on success */
-	UFUNCTION(BlueprintCallable)
-	virtual bool SetCharacterLevel(int32 NewLevel);
-
-
-
-
-
 
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -127,11 +82,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
 		int entityID;
 
-	// 实锟藉将要锟狡讹拷锟斤拷锟斤拷目锟侥碉拷位锟斤拷
+	// 实体将要移动到的目的地位置
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
 		FVector targetLocation;
 
-	// 实锟藉将要锟狡讹拷锟斤拷锟斤拷目锟侥筹拷锟斤拷
+	// 实体将要移动到的目的朝向
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
 		FRotator targetRotator;
 
@@ -141,74 +96,8 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = KBEngine)
 		bool isPlayerCharacter;
 
+	// Implement IAbilitySystemInterface
+	//UPROPERTY()
+	//URPGAbilitySystemComponent* AbilitySystemComponent;
 
-protected:
-	/** The level of this character, should not be modified directly once it has already spawned */
-	UPROPERTY(EditAnywhere, Replicated, Category = Abilities)
-	int32 CharacterLevel;
-
-	/** List of attributes modified by the ability system */
-	UPROPERTY()
-	UCoreAttributeSet* AttributeSet;
-
-	/** If true we have initialized our abilities */
-	UPROPERTY()
-	int32 bAbilitiesInitialized;
-
-
-	/**
-	 * Called when character takes damage, which may have killed them
-	 *
-	 * @param DamageAmount Amount of damage that was done, not clamped based on current health
-	 * @param HitInfo The hit info that generated this damage
-	 * @param DamageTags The gameplay tags of the event that did the damage
-	 * @param InstigatorCharacter The character that initiated this damage
-	 * @param DamageCauser The actual actor that did the damage, might be a weapon or projectile
-	 */
-	UFUNCTION(BlueprintImplementableEvent)
-	void OnDamaged(float DamageAmount, const FHitResult& HitInfo, const struct FGameplayTagContainer& DamageTags, AEntityBase* InstigatorCharacter, AActor* DamageCauser);
-
-	/**
-	 * Called when health is changed, either from healing or from being damaged
-	 * For damage this is called in addition to OnDamaged/OnKilled
-	 *
-	 * @param DeltaValue Change in health value, positive for heal, negative for cost. If 0 the delta is unknown
-	 * @param EventTags The gameplay tags of the event that changed mana
-	 */
-	UFUNCTION(BlueprintImplementableEvent)
-	void OnHealthChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
-
-	/**
-	 * Called when mana is changed, either from healing or from being used as a cost
-	 *
-	 * @param DeltaValue Change in mana value, positive for heal, negative for cost. If 0 the delta is unknown
-	 * @param EventTags The gameplay tags of the event that changed mana
-	 */
-	UFUNCTION(BlueprintImplementableEvent)
-	void OnManaChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
-
-	/**
-	 * Called when movement speed is changed
-	 *
-	 * @param DeltaValue Change in move speed
-	 * @param EventTags The gameplay tags of the event that changed mana
-	 */
-	UFUNCTION(BlueprintImplementableEvent)
-	void OnMoveSpeedChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
-
-
-
-	/** Apply the startup gameplay abilities and effects */
-	void AddStartupGameplayAbilities();
-
-	/** Attempts to remove any startup gameplay abilities */
-	void RemoveStartupGameplayAbilities();
-
-
-
-	// Called from RPGAttributeSet, these call BP events above
-	virtual void HandleDamage(float DamageAmount, const FHitResult& HitInfo, const struct FGameplayTagContainer& DamageTags, AEntityBase* InstigatorCharacter, AActor* DamageCauser);
-	virtual void HandleHealthChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
-	virtual void HandleManaChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
-	virtual void HandleMoveSpeedChanged(float DeltaValue, const struct FGameplayTagContainer& EventTags);
 };
