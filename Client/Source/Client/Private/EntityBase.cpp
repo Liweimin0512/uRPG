@@ -16,8 +16,6 @@ AEntityBase::AEntityBase(const FObjectInitializer& ObjectInitializer) : Super(Ob
 	moveSpeed = 0.f;
 	isOnGround = false;
 	isPlayerCharacter = false;
-
-
 }
 
 // Called when the game starts or when spawned
