@@ -11,6 +11,11 @@ ACharacterBase::ACharacterBase()
 
 	AbilitySystemComponent = CreateDefaultSubobject<URPGAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
 	AbilitySystemComponent->SetIsReplicated(true);
+
+	// 创建属性集
+	AttributeSet = CreateDefaultSubobject<UCoreAttributeSet>(TEXT("AttributeSet"));
+
+	bAbilitiesInitialized = false;
 }
 
 // Called when the game starts or when spawned
@@ -18,6 +23,16 @@ void ACharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
 	
+}
+
+void ACharacterBase::AddStartupGameplayAbilities()
+{
+	check(AbilitySystemComponent);
+
+	if (Role == ROLE_Authority && !bAbilitiesInitialized)
+	{
+		//TODO 初始化Ability和Effect
+	}
 }
 
 // Called every frame
@@ -34,8 +49,47 @@ void ACharacterBase::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 
 }
 
+void ACharacterBase::PossessedBy(AController* NewController)
+{
+	Super::PossessedBy(NewController);
+
+	//TODO 背包相关初始化
+
+	//技能初始化
+	if (AbilitySystemComponent)
+	{
+		AbilitySystemComponent->InitAbilityActorInfo(this, this);
+		AddStartupGameplayAbilities();
+	}
+}
+
+void ACharacterBase::UnPossessed()
+{
+}
+
+void ACharacterBase::OnRep_Controller()
+{
+	Super::OnRep_Controller();
+
+	// 这里因为控制器改变了，必须将AS组件上的ActorInfo更新一下
+	if (AbilitySystemComponent)
+	{
+		AbilitySystemComponent->RefreshAbilityActorInfo();
+	}
+}
+
 UAbilitySystemComponent* ACharacterBase::GetAbilitySystemComponent() const
 {
-	return nullptr;
+	return AbilitySystemComponent;
+}
+
+float ACharacterBase::GetHealth() const
+{
+	return AttributeSet->GetHealth();
+}
+
+float ACharacterBase::GetMaxHealth() const
+{
+	return AttributeSet->GetMaxHealth();
 }
 
