@@ -5,5 +5,3 @@
 #include "EngineMinimal.h"
 #include "Engine/Engine.h"
 #include "Net/UnrealNetwork.h"
-
-// Client_API DECLARE_LOG_CATEGORY_EXTERN(LogActionRPG, Log, All);
