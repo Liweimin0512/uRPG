@@ -1,8 +1,0 @@
-{
-	"files.exclude": {
-		"D:/UnrealProject/uRPG/Client/.vscode": true,
-		"D:/UnrealProject/uRPG/Client/Content": true,
-		"D:/UnrealProject/uRPG/Client/Intermediate": true,
-		"D:/UnrealProject/uRPG/Client/Saved": true
-	}
-}
