@@ -1,6 +1,7 @@
 # 《创世物语》
 
 利用 UE4 + KBEngine 开发的MMORPG游戏Demo
+[EnglishDoces](https://github.com/Liweimin0512/uRPG/blob/master/Manage/CreationStory.md)
 
 ## 游戏概述
 
